@@ -1,6 +1,7 @@
 // Shared visual pieces that give the site its own look: script-accent headings,
 // a kolam-style divider, arch-framed product cards and the promise icons.
-import { OffsiteBadge, OffsiteLink } from "@/components/offsite";
+import { Link } from "@tanstack/react-router";
+import { OffsiteLink } from "@/components/offsite";
 import type { ReactNode } from "react";
 import type { Product } from "@/lib/products";
 
@@ -113,13 +114,11 @@ export function ProductCard({
   const H = headingLevel;
   return (
     <article className="group flex flex-col text-center">
-      <a
-        href={product.indriyaUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`View ${product.name} on indriya.com (opens in a new tab)`}
-        title="Opens the official indriya.com in a new tab"
-        className="relative block overflow-hidden rounded-t-[999px] bg-[#efe1cd] p-1.5 ring-1 sm:p-2 ring-gold/30 transition-shadow duration-500 group-hover:shadow-[0_18px_40px_-20px_rgba(74,20,32,0.45)]"
+      <Link
+        to="/jewellery/$slug"
+        params={{ slug: product.slug }}
+        aria-label={`${product.name}: see details`}
+        className="relative block overflow-hidden rounded-t-[999px] bg-[#efe1cd] p-1.5 ring-1 ring-gold/30 transition-shadow duration-500 group-hover:shadow-[0_18px_40px_-20px_rgba(74,20,32,0.45)] sm:p-2"
       >
         <img
           src={product.image}
@@ -130,17 +129,27 @@ export function ProductCard({
           decoding="async"
           className="aspect-[4/5] w-full rounded-t-[999px] object-cover mix-blend-multiply transition-transform duration-700 group-hover:scale-[1.04]"
         />
-        <OffsiteBadge className="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 transition-opacity group-hover:opacity-100" />
-      </a>
+      </Link>
       <H className="mt-4 font-display text-base font-normal leading-snug text-ink sm:mt-5 sm:text-xl">
-        {product.name}
+        <Link to="/jewellery/$slug" params={{ slug: product.slug }} className="hover:text-maroon">
+          {product.name}
+        </Link>
       </H>
       <p className="mx-auto mt-1 hidden max-w-[16rem] flex-1 text-[13px] leading-relaxed text-muted-foreground sm:block">
         {product.description}
       </p>
-      <OffsiteLink href={product.indriyaUrl} variant="pill" className="mx-auto mt-3 sm:mt-4">
-        <span className="hidden sm:inline">View on&nbsp;</span>indriya.com
-      </OffsiteLink>
+      <div className="mx-auto mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:mt-4">
+        <Link
+          to="/jewellery/$slug"
+          params={{ slug: product.slug }}
+          className="border-b border-gold pb-0.5 text-[11px] font-medium uppercase tracking-[0.16em] text-maroon hover:text-gold"
+        >
+          Details
+        </Link>
+        <OffsiteLink href={product.indriyaUrl} variant="pill">
+          indriya.com
+        </OffsiteLink>
+      </div>
     </article>
   );
 }

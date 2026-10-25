@@ -29,6 +29,30 @@ export type Product = {
   indriyaUrl: string;
 };
 
+/** Matching piece that completes a set, where Anantara has one. */
+export const PAIRS: Record<string, string> = {
+  "heirloom-ganesha-gold-bridal-necklace": "heirloom-ganesha-gold-bridal-drop-earrings",
+  "heirloom-ganesha-gold-bridal-drop-earrings": "heirloom-ganesha-gold-bridal-necklace",
+  "udaya-gold-bridal-necklace": "udaya-gold-bridal-drop-earrings",
+  "udaya-gold-bridal-drop-earrings": "udaya-gold-bridal-necklace",
+  "vinayaka-gold-bridal-necklace": "vinayaka-gold-bridal-drop-earrings",
+  "vinayaka-gold-bridal-drop-earrings": "vinayaka-gold-bridal-necklace",
+};
+
+export const productPath = (p: Product) => `/jewellery/${p.slug}`;
+
+export const findProduct = (slug: string) => PRODUCTS.find((p) => p.slug === slug);
+
+/** Pieces to suggest on a product page: its set partner first, then others of the opposite type. */
+export const relatedTo = (p: Product, n = 4): Product[] => {
+  const pair = PAIRS[p.slug];
+  const first = pair ? PRODUCTS.filter((x) => x.slug === pair) : [];
+  const rest = PRODUCTS.filter((x) => x.slug !== p.slug && x.slug !== pair).sort(
+    (a, b) => Number(a.type === p.type) - Number(b.type === p.type),
+  );
+  return [...first, ...rest].slice(0, n);
+};
+
 export const PRODUCTS: Product[] = [
   {
     slug: "heirloom-ganesha-gold-bridal-necklace",
