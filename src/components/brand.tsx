@@ -19,9 +19,13 @@ export function ScriptHeading({
   className?: string;
 }) {
   return (
-    <Tag className={`font-display text-4xl leading-tight text-ink sm:text-5xl ${className}`}>
+    <Tag
+      className={`font-display text-4xl font-light leading-tight tracking-wide text-ink sm:text-[3.25rem] ${className}`}
+    >
       {before && <>{before} </>}
-      <span className="font-script text-[1.35em] font-normal text-maroon">{script}</span>
+      <span className="font-script text-[1.3em] font-normal tracking-normal text-gold">
+        {script}
+      </span>
       {after && <> {after}</>}
     </Tag>
   );
@@ -34,20 +38,20 @@ export function KolamDivider({ className = "" }: { className?: string }) {
       className={`flex items-center justify-center gap-3 text-gold ${className}`}
       aria-hidden="true"
     >
-      <span className="h-px w-16 bg-gold/60 sm:w-24" />
-      <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+      <span className="h-px w-20 bg-gold/50 sm:w-32" />
+      <svg width="22" height="22" viewBox="0 0 34 34" fill="none">
         <circle cx="17" cy="17" r="2.5" fill="currentColor" />
         <path
           d="M17 3c3 5 3 9 0 14-3-5-3-9 0-14Zm0 28c-3-5-3-9 0-14 3 5 3 9 0 14ZM3 17c5-3 9-3 14 0-5 3-9 3-14 0Zm28 0c-5 3-9 3-14 0 5-3 9-3 14 0Z"
           stroke="currentColor"
-          strokeWidth="1.2"
+          strokeWidth="1"
         />
         <circle cx="6" cy="6" r="1.3" fill="currentColor" />
         <circle cx="28" cy="6" r="1.3" fill="currentColor" />
         <circle cx="6" cy="28" r="1.3" fill="currentColor" />
         <circle cx="28" cy="28" r="1.3" fill="currentColor" />
       </svg>
-      <span className="h-px w-16 bg-gold/60 sm:w-24" />
+      <span className="h-px w-20 bg-gold/50 sm:w-32" />
     </div>
   );
 }
@@ -58,7 +62,7 @@ export function SectionIntro({ children }: { children: ReactNode }) {
   );
 }
 
-/** Product card with an arch-topped image frame and a "View on Indriya" button to the official site. */
+/** Product card: arch-topped frame with a hairline gold border, quiet serif name, understated link. */
 export function ProductCard({
   product,
   headingLevel = "h3",
@@ -68,8 +72,14 @@ export function ProductCard({
 }) {
   const H = headingLevel;
   return (
-    <article className="group flex flex-col">
-      <div className="relative overflow-hidden rounded-t-[999px] border border-border bg-[#fbeee3]">
+    <article className="group flex flex-col text-center">
+      <a
+        href={product.indriyaUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`View ${product.name} on Indriya`}
+        className="relative block overflow-hidden rounded-t-[999px] bg-[#f7ebe0] p-2 ring-1 ring-gold/30 transition-shadow duration-500 group-hover:shadow-[0_18px_40px_-20px_rgba(74,20,32,0.45)]"
+      >
         <img
           src={product.image}
           alt={product.alt}
@@ -77,27 +87,23 @@ export function ProductCard({
           height={584}
           loading="lazy"
           decoding="async"
-          className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="aspect-[4/5] w-full rounded-t-[999px] object-cover transition-transform duration-700 group-hover:scale-[1.04]"
         />
-        <a
-          href={product.indriyaUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`Save ${product.name} to your wishlist on Indriya`}
-          className="absolute right-3 top-1/2 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-ivory/90 text-maroon shadow-sm opacity-0 transition-opacity group-hover:opacity-100 focus:opacity-100"
-        >
-          <Heart className="h-5 w-5" aria-hidden="true" />
-        </a>
-      </div>
-      <H className="mt-4 font-sans text-base font-semibold leading-snug text-ink">{product.name}</H>
-      <p className="mt-1 flex-1 text-sm text-muted-foreground">{product.description}</p>
+        <span className="absolute right-4 top-1/2 inline-flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-ivory/90 text-maroon opacity-0 transition-opacity group-hover:opacity-100">
+          <Heart className="h-4 w-4" aria-hidden="true" />
+        </span>
+      </a>
+      <H className="mt-5 font-display text-xl font-normal leading-snug text-ink">{product.name}</H>
+      <p className="mx-auto mt-1 max-w-[16rem] flex-1 text-[13px] leading-relaxed text-muted-foreground">
+        {product.description}
+      </p>
       <a
         href={product.indriyaUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-3 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-maroon px-5 text-sm font-medium text-ivory transition-colors hover:bg-maroon/90"
+        className="mx-auto mt-4 inline-flex items-center gap-2 border-b border-gold pb-1 text-[11px] font-medium uppercase tracking-[0.22em] text-maroon transition-colors hover:text-gold"
       >
-        View on Indriya <ExternalLink className="h-4 w-4" aria-hidden="true" />
+        View on Indriya <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
       </a>
     </article>
   );
@@ -106,15 +112,15 @@ export function ProductCard({
 /** Line icons for the three promises, drawn in terracotta. */
 export function PromiseIcon({ kind }: { kind: "certified" | "pricing" | "exchange" }) {
   const common = {
-    width: 56,
-    height: 56,
+    width: 48,
+    height: 48,
     viewBox: "0 0 56 56",
     fill: "none",
     stroke: "currentColor",
-    strokeWidth: 1.6,
+    strokeWidth: 1.1,
     strokeLinecap: "round" as const,
     strokeLinejoin: "round" as const,
-    className: "shrink-0 text-terracotta",
+    className: "shrink-0 text-gold",
     "aria-hidden": true,
   };
   if (kind === "certified")

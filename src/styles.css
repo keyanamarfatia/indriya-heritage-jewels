@@ -74,12 +74,12 @@
 :root {
   /* Indriya Temple Jewellery palette */
   /* Softer palette: rosewood instead of deep maroon, warm cream base */
-  --maroon: #7a3b45; /* rosewood — headings, nav, small accents */
+  --maroon: #4a1420; /* deep oxblood red */
   --ivory: #fbf5ec; /* page cream */
   --sand: #f4e8d8; /* menus, footer, soft panels */
-  --gold: #b8862b; /* antique gold */
-  --terracotta: #c0674f; /* line icons, eyebrows */
-  --ink: #3a2a2a; /* body text */
+  --gold: #a8834a; /* muted antique gold */
+  --terracotta: #8c5a3c; /* bronze */
+  --ink: #2b1b1e; /* body text */
   --navy: #102d6d; /* Indriya logo colour, used only for the logo */
   --radius: 0.25rem;
   --background: var(--ivory);
@@ -166,5 +166,102 @@
   h2,
   h3 {
     font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+}
+
+@layer components {
+  /* Luxury buttons: square edges, spaced capitals, thin borders */
+  .btn-lux {
+    display: inline-flex;
+    height: 3.25rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0 2.25rem;
+    background: var(--maroon);
+    color: var(--ivory);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+  .btn-lux:hover {
+    background: #2f0b13;
+  }
+  .btn-lux-outline {
+    display: inline-flex;
+    height: 3.25rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0 2.25rem;
+    border: 1px solid currentColor;
+    color: var(--maroon);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+  .btn-lux-outline:hover {
+    background: var(--maroon);
+    color: var(--ivory);
+  }
+  .eyebrow {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+}
+
+@layer components {
+  /* Buttons for the dark red hero panels */
+  .btn-lux-gold {
+    display: inline-flex;
+    height: 3.25rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0 2.25rem;
+    background: #d8b878;
+    color: var(--maroon);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+  }
+  .btn-lux-gold:hover {
+    background: #e6cc96;
+  }
+  .btn-lux-ghost {
+    display: inline-flex;
+    height: 3.25rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0 2.25rem;
+    border: 1px solid rgba(251, 245, 236, 0.55);
+    color: var(--ivory);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+  .btn-lux-ghost:hover {
+    background: var(--ivory);
+    color: var(--maroon);
   }
 }

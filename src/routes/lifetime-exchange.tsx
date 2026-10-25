@@ -42,10 +42,7 @@ function ExchangePage() {
         <p className="mt-8 text-sm text-muted-foreground">
           Exact deductions and terms follow Indriya&rsquo;s official exchange policy in store.
         </p>
-        <Link
-          to="/store-locator"
-          className="mt-8 inline-flex h-12 items-center rounded-full bg-maroon px-7 font-medium text-ivory hover:bg-maroon/90"
-        >
+        <Link to="/store-locator" className="btn-lux mt-8">
           Find a Store Near You
         </Link>
       </div>

@@ -212,7 +212,7 @@ function StoreCard({ store }: { store: Store }) {
             href={mapsUrl(store)}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-full bg-maroon px-5 text-sm font-medium text-ivory hover:bg-maroon/90"
+            className="btn-lux flex-1"
           >
             <Navigation className="h-4 w-4" aria-hidden="true" /> Open in Google Maps
           </a>
@@ -220,7 +220,7 @@ function StoreCard({ store }: { store: Store }) {
             href={store.detailsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-maroon px-5 text-sm font-medium text-maroon hover:bg-maroon/5"
+            className="btn-lux-outline"
           >
             Store page on Indriya <ExternalLink className="h-4 w-4" aria-hidden="true" />
           </a>
@@ -243,12 +243,7 @@ function StoreLocatorPage() {
             See the temple jewellery collection in person. Read each store&rsquo;s address and hours
             here, then open it in Google Maps for directions.
           </p>
-          <a
-            href={STORES_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 inline-flex h-12 items-center gap-2 rounded-full bg-maroon px-7 font-medium text-ivory hover:bg-maroon/90"
-          >
+          <a href={STORES_URL} target="_blank" rel="noopener noreferrer" className="btn-lux mt-6">
             Open the official Indriya store locator{" "}
             <ExternalLink className="h-4 w-4" aria-hidden="true" />
           </a>

@@ -4,6 +4,8 @@ import { ExternalLink, Heart, MapPin, Menu, Phone, Search, Sparkles, User, X } f
 import { OFFICIAL_URL } from "@/lib/site";
 import { ANANTARA_URL, PRODUCTS } from "@/lib/products";
 import logo from "@/assets/indriya-logo.png";
+import logoLight from "@/assets/indriya-logo-light.png";
+import { GoldRateWidget } from "@/components/gold-rate";
 
 /** Indriya's customer care number, as listed in the footer of indriya.com. */
 const CARE_PHONE = "1800-210-8383";
@@ -83,7 +85,6 @@ const NAV: NavItem[] = [
       {
         title: "On Indriya",
         links: [
-          { label: "Today's Gold Rate", href: OFFICIAL_URL, external: true },
           { label: "Indriya Stores", href: `${OFFICIAL_URL}jewellery-stores`, external: true },
           { label: "Visit indriya.com", href: OFFICIAL_URL, external: true },
         ],
@@ -107,7 +108,7 @@ function MenuAnchor({ link, className }: { link: MenuLink; className?: string })
 function SearchBox({ className = "" }: { className?: string }) {
   return (
     <form action="/temple-jewellery" method="get" role="search" className={className}>
-      <label className="flex h-11 items-center gap-3 rounded-full border border-maroon/50 bg-card px-5 focus-within:border-maroon">
+      <label className="flex h-11 items-center gap-3 rounded-full border border-maroon/25 bg-card/70 px-5 focus-within:border-maroon">
         <Search className="h-5 w-5 text-maroon" aria-hidden="true" />
         <span className="sr-only">Search temple jewellery</span>
         <input
@@ -127,13 +128,16 @@ export function SiteShell({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       {/* Student-project disclaimer, linking to the real brand */}
-      <div role="note" className="bg-sand px-5 py-2 text-center text-xs text-ink sm:text-sm">
+      <div
+        role="note"
+        className="bg-maroon px-5 py-2 text-center text-[11px] tracking-wide text-ivory/85 sm:text-xs"
+      >
         Student project for Atlas SkillTech University, not the official Indriya website.{" "}
         <a
           href={OFFICIAL_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="whitespace-nowrap font-semibold text-maroon underline underline-offset-2"
+          className="whitespace-nowrap font-medium text-[#e2c48f] underline underline-offset-2"
         >
           Visit the official Indriya site{" "}
           <ExternalLink className="inline h-3.5 w-3.5" aria-hidden="true" />
@@ -192,12 +196,12 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
         {/* Row 2: category nav with dropdown panels (desktop) */}
         <nav aria-label="Main" className="hidden lg:block">
-          <ul className="mx-auto flex max-w-7xl justify-center gap-9 px-8">
+          <ul className="mx-auto flex max-w-7xl justify-center gap-10 px-8">
             {NAV.map((item) => (
               <li key={item.label} className="group">
                 <a
                   href={item.href}
-                  className="inline-block border-b-2 border-transparent py-3 text-[15px] text-maroon transition-colors hover:border-terracotta group-focus-within:border-terracotta"
+                  className="inline-block border-b border-transparent py-3.5 text-[11px] font-medium uppercase tracking-[0.22em] text-maroon transition-colors hover:border-gold group-focus-within:border-gold"
                 >
                   {item.label}
                 </a>
@@ -206,15 +210,13 @@ export function SiteShell({ children }: { children: ReactNode }) {
                     <div className="mx-auto flex max-w-6xl gap-12 px-8 py-8">
                       {item.columns.map((col) => (
                         <div key={col.title}>
-                          <p className="text-xs font-semibold uppercase tracking-widest text-terracotta">
-                            {col.title}
-                          </p>
+                          <p className="eyebrow">{col.title}</p>
                           <ul className="mt-4 space-y-3">
                             {col.links.map((l) => (
                               <li key={l.label}>
                                 <MenuAnchor
                                   link={l}
-                                  className="text-[15px] text-maroon hover:underline"
+                                  className="font-display text-lg text-maroon hover:text-gold"
                                 />
                               </li>
                             ))}
@@ -279,77 +281,82 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
       <main className="flex-1">{children}</main>
 
-      <footer className="bg-sand px-6 pb-28 pt-12 text-ink sm:px-12 lg:pb-12">
+      <footer className="bg-maroon px-6 pb-28 pt-16 text-ivory/85 sm:px-12 lg:pb-12">
         <div className="mx-auto grid max-w-7xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <img src={logo} alt="Indriya" width={274} height={79} className="h-10 w-auto" />
-            <p className="mt-3 font-script text-3xl text-maroon">Every Jewel Tells a Story</p>
+            <img src={logoLight} alt="Indriya" width={274} height={79} className="h-10 w-auto" />
+            <p className="mt-4 font-display text-2xl italic text-[#e2c48f]">
+              Every Jewel Tells a Story
+            </p>
           </div>
           <div>
-            <p className="font-semibold">Shop</p>
+            <p className="eyebrow">Shop</p>
             <ul className="mt-3 space-y-2 text-sm">
               <li>
-                <a href="/temple-jewellery" className="hover:text-maroon">
+                <a href="/temple-jewellery" className="hover:text-[#e2c48f]">
                   Temple Jewellery
                 </a>
               </li>
               <li>
-                <a href="/temple-jewellery?type=necklace" className="hover:text-maroon">
+                <a href="/temple-jewellery?type=necklace" className="hover:text-[#e2c48f]">
                   Necklaces
                 </a>
               </li>
               <li>
-                <a href="/temple-jewellery?type=earrings" className="hover:text-maroon">
+                <a href="/temple-jewellery?type=earrings" className="hover:text-[#e2c48f]">
                   Earrings
                 </a>
               </li>
               <li>
-                <a href="/temple-jewellery/varalakshmi-vratham" className="hover:text-maroon">
+                <a href="/temple-jewellery/varalakshmi-vratham" className="hover:text-[#e2c48f]">
                   Varalakshmi Vratham
                 </a>
               </li>
             </ul>
           </div>
           <div>
-            <p className="font-semibold">Help</p>
+            <p className="eyebrow">Help</p>
             <ul className="mt-3 space-y-2 text-sm">
               <li>
-                <a href="/store-locator" className="hover:text-maroon">
+                <a href="/store-locator" className="hover:text-[#e2c48f]">
                   Store Locator
                 </a>
               </li>
               <li>
-                <a href="/lifetime-exchange" className="hover:text-maroon">
+                <a href="/lifetime-exchange" className="hover:text-[#e2c48f]">
                   Lifetime Exchange
                 </a>
               </li>
               <li>
-                <a href="/temple-jewellery-guide" className="hover:text-maroon">
+                <a href="/temple-jewellery-guide" className="hover:text-[#e2c48f]">
                   Temple Jewellery Guide
                 </a>
               </li>
               <li>
-                <a href="/temple-jewellery/varalakshmi-vratham#faq" className="hover:text-maroon">
+                <a
+                  href="/temple-jewellery/varalakshmi-vratham#faq"
+                  className="hover:text-[#e2c48f]"
+                >
                   FAQ
                 </a>
               </li>
             </ul>
           </div>
           <div>
-            <p className="font-semibold">Official Indriya</p>
+            <p className="eyebrow">Official Indriya</p>
             <ul className="mt-3 space-y-2 text-sm">
               <li>
                 <a
                   href={OFFICIAL_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-maroon"
+                  className="hover:text-[#e2c48f]"
                 >
                   indriya.com <ExternalLink className="inline h-3.5 w-3.5" aria-hidden="true" />
                 </a>
               </li>
               <li>
-                <a href={`tel:${CARE_PHONE.replace(/-/g, "")}`} className="hover:text-maroon">
+                <a href={`tel:${CARE_PHONE.replace(/-/g, "")}`} className="hover:text-[#e2c48f]">
                   Customer care {CARE_PHONE}
                 </a>
               </li>
@@ -357,7 +364,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             </ul>
           </div>
         </div>
-        <div className="mx-auto mt-10 max-w-7xl space-y-1 border-t border-maroon/15 pt-6 text-center text-sm text-muted-foreground">
+        <div className="mx-auto mt-12 max-w-7xl space-y-1 border-t border-ivory/15 pt-6 text-center text-xs text-ivory/60">
           <p>
             Student project for Atlas SkillTech University — not affiliated with Indriya / Aditya
             Birla Group.
@@ -371,32 +378,11 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
       {/* Floating gold-rate and call buttons */}
       <div className="fixed bottom-20 right-4 z-50 flex flex-col items-end gap-3 lg:bottom-6 lg:right-6">
-        <a
-          href={OFFICIAL_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group flex items-center gap-2"
-          aria-label="Check today's gold rate on Indriya"
-        >
-          <span className="hidden rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-maroon shadow-sm sm:inline">
-            Today&rsquo;s gold rate
-          </span>
-          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-maroon shadow-lg transition-transform group-hover:scale-105">
-            <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
-              <path d="M4 20 9 12h12l5 8Z" fill="#d9a441" />
-              <path d="M9 12 11 8h8l2 4Z" fill="#f0c766" />
-              <path d="M4 20h22v3H4Z" fill="#b8862b" />
-              <path
-                d="m24 4 .8 1.8L26.6 6.6 24.8 7.4 24 9.2 23.2 7.4 21.4 6.6 23.2 5.8Z"
-                fill="#fbf5ec"
-              />
-            </svg>
-          </span>
-        </a>
+        <GoldRateWidget />
         <a
           href={`tel:${CARE_PHONE.replace(/-/g, "")}`}
           aria-label={`Call Indriya customer care on ${CARE_PHONE}`}
-          className="flex h-14 w-14 items-center justify-center rounded-full bg-terracotta text-ivory shadow-lg transition-transform hover:scale-105"
+          className="flex h-14 w-14 items-center justify-center rounded-full border border-gold/60 bg-ivory text-maroon shadow-lg transition-transform hover:scale-105"
         >
           <Phone className="h-6 w-6" aria-hidden="true" />
         </a>
@@ -405,7 +391,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       {/* Sticky store CTA on mobile */}
       <Link
         to="/store-locator"
-        className="fixed inset-x-4 bottom-4 z-50 flex h-12 items-center justify-center gap-2 rounded-full bg-maroon font-medium text-ivory shadow-lg lg:hidden"
+        className="fixed inset-x-4 bottom-4 z-50 flex h-12 items-center justify-center gap-2 bg-maroon text-xs font-medium uppercase tracking-[0.22em] text-ivory shadow-lg lg:hidden"
       >
         <MapPin className="h-5 w-5" aria-hidden="true" />
         Find a Store

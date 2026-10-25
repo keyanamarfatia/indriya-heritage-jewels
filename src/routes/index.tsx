@@ -25,45 +25,44 @@ function Index() {
   return (
     <SiteShell>
       {/* Hero: arch-framed campaign photo with our own headline */}
-      <section className="relative overflow-hidden bg-sand">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-12 sm:px-8 lg:grid-cols-[1.1fr_1fr] lg:py-16">
+      <section className="relative overflow-hidden bg-maroon text-ivory">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_75%_40%,rgba(168,131,74,0.28),transparent_55%)]"
+        />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[1.1fr_1fr] lg:py-24">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-terracotta">
-              Anantara · Bridal Temple Jewellery
-            </p>
-            <h1 className="mt-4 font-display text-5xl leading-[1.05] text-ink sm:text-7xl">
-              Every <span className="font-script text-[1.3em] font-normal text-maroon">Jewel</span>{" "}
+            <p className="eyebrow !text-[#d8b878]">Anantara · Bridal Temple Jewellery</p>
+            <h1 className="mt-6 font-display text-5xl font-light leading-[1.05] text-ivory sm:text-7xl">
+              Every{" "}
+              <span className="font-script text-[1.3em] font-normal text-[#d8b878]">Jewel</span>{" "}
               Tells a Story
             </h1>
-            <p className="mt-6 max-w-lg text-lg text-muted-foreground">
+            <p className="mt-6 max-w-lg text-lg font-light leading-relaxed text-ivory/75">
               South Indian temple jewellery in BIS Hallmark gold, shaped by hand with Lakshmi,
               Ganesha and Garuda motifs for brides and festive mornings.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Link
-                to="/temple-jewellery/varalakshmi-vratham"
-                className="inline-flex h-12 items-center rounded-full bg-maroon px-7 font-medium text-ivory hover:bg-maroon/90"
-              >
+              <Link to="/temple-jewellery/varalakshmi-vratham" className="btn-lux-gold">
                 Shop the Varalakshmi Collection
               </Link>
-              <Link
-                to="/temple-jewellery"
-                className="inline-flex h-12 items-center rounded-full border border-maroon px-7 font-medium text-maroon hover:bg-maroon/5"
-              >
+              <Link to="/temple-jewellery" className="btn-lux-ghost">
                 Explore Temple Jewellery
               </Link>
             </div>
           </div>
           <div className="mx-auto w-full max-w-md">
-            <div className="overflow-hidden rounded-t-[999px] border-4 border-ivory shadow-xl">
-              <img
-                src={brideImage}
-                alt="A South Indian bride in a cream silk saree wearing Indriya Anantara gold temple jewellery: layered necklaces, a waist belt and a maang tikka"
-                width={900}
-                height={834}
-                fetchPriority="high"
-                className="aspect-[4/5] w-full object-cover object-top"
-              />
+            <div className="rounded-t-[999px] p-2 ring-1 ring-[#d8b878]/60">
+              <div className="overflow-hidden rounded-t-[999px]">
+                <img
+                  src={brideImage}
+                  alt="A South Indian bride in a cream silk saree wearing Indriya Anantara gold temple jewellery: layered necklaces, a waist belt and a maang tikka"
+                  width={900}
+                  height={834}
+                  fetchPriority="high"
+                  className="aspect-[4/5] w-full object-cover object-top"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -122,17 +121,14 @@ function Index() {
             ))}
           </div>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Link
-              to="/temple-jewellery"
-              className="inline-flex h-12 items-center rounded-full bg-maroon px-7 font-medium text-ivory hover:bg-maroon/90"
-            >
+            <Link to="/temple-jewellery" className="btn-lux">
               View all 12 pieces
             </Link>
             <a
               href={ANANTARA_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-12 items-center gap-2 rounded-full border border-maroon px-7 font-medium text-maroon hover:bg-maroon/5"
+              className="btn-lux-outline"
             >
               Anantara on Indriya <ExternalLink className="h-4 w-4" aria-hidden="true" />
             </a>
@@ -177,7 +173,7 @@ function Index() {
       {/* Guide + stores */}
       <section className="mx-auto grid max-w-6xl gap-8 px-5 pb-20 sm:px-8 md:grid-cols-2">
         <Link to="/temple-jewellery-guide" className="group rounded-2xl bg-sand p-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-terracotta">Read</p>
+          <p className="eyebrow">Read</p>
           <h2 className="mt-3 font-display text-3xl text-ink">The Temple Jewellery Guide</h2>
           <p className="mt-3 text-muted-foreground">
             Where temple jewellery comes from, what Lakshmi, peacock and lotus motifs mean, and how

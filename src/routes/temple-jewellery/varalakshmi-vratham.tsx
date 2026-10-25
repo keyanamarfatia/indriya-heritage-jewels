@@ -6,7 +6,7 @@ import { breadcrumbLd, jsonLd, pageHead, absoluteUrl } from "@/lib/site";
 import { TEMPLE_FAQS, faqPageLd } from "@/lib/faqs";
 import { ANANTARA_URL, productBySlug } from "@/lib/products";
 import heroImage from "@/assets/anantara/ganesha-large.webp";
-import nakshiImage from "@/assets/anantara/ganesha-detail.webp";
+import nakshiImage from "@/assets/anantara/vishnu-haar.webp";
 
 const PATH = "/temple-jewellery/varalakshmi-vratham";
 const TITLE = "Temple Jewellery for Varalakshmi Vratham | Indriya";
@@ -71,37 +71,35 @@ function VaralakshmiPage() {
   return (
     <SiteShell>
       {/* Hero: text left, arch-framed jewellery right */}
-      <section className="bg-sand">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-12 sm:px-8 lg:grid-cols-2 lg:py-16">
+      <section className="relative overflow-hidden bg-maroon text-ivory">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_75%_45%,rgba(168,131,74,0.3),transparent_55%)]"
+        />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 sm:px-8 lg:grid-cols-2 lg:py-24">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-terracotta">
-              Varalakshmi Vratham Collection
-            </p>
-            <h1 className="mt-4 font-display text-5xl leading-[1.08] text-ink sm:text-6xl">
+            <p className="eyebrow !text-[#d8b878]">Varalakshmi Vratham Collection</p>
+            <h1 className="mt-6 font-display text-5xl font-light leading-[1.08] text-ivory sm:text-6xl">
               Temple Jewellery for{" "}
-              <span className="font-script text-[1.25em] font-normal text-maroon">Varalakshmi</span>{" "}
+              <span className="font-script text-[1.25em] font-normal text-[#d8b878]">
+                Varalakshmi
+              </span>{" "}
               Vratham
             </h1>
-            <p className="mt-5 max-w-lg text-lg text-muted-foreground">
+            <p className="mt-6 max-w-lg text-lg font-light text-ivory/75">
               Welcome Varalakshmi home in gold. Every Jewel Tells a Story.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Link
-                to="/store-locator"
-                className="inline-flex h-12 items-center rounded-full bg-maroon px-7 font-medium text-ivory hover:bg-maroon/90"
-              >
+              <Link to="/store-locator" className="btn-lux-gold">
                 Find a Store Near You
               </Link>
-              <Link
-                to="/temple-jewellery"
-                className="inline-flex h-12 items-center rounded-full border border-maroon px-7 font-medium text-maroon hover:bg-maroon/5"
-              >
+              <Link to="/temple-jewellery" className="btn-lux-ghost">
                 Explore the Collection
               </Link>
             </div>
           </div>
           <div className="mx-auto w-full max-w-md">
-            <div className="overflow-hidden rounded-t-[999px] border-4 border-ivory bg-[#fbeee3] shadow-xl">
+            <div className="overflow-hidden rounded-t-[999px] bg-[#f7ebe0] outline outline-1 outline-offset-8 outline-[#d8b878]/60">
               <img
                 src={heroImage}
                 alt="Heirloom Ganesha 22 karat gold temple necklace with a Lord Ganesha pendant, ruby drops and pearls for Varalakshmi Vratham"
@@ -194,9 +192,9 @@ function VaralakshmiPage() {
           </div>
           <img
             src={nakshiImage}
-            alt="Close-up of nakshi work on a gold temple necklace: a hand-chased deity pendant with ruby and pearl drops"
-            width={368}
-            height={368}
+            alt="Vishnu Haar gold temple necklace with hand-chased nakshi deity pendant, red stones and a pearl fringe"
+            width={584}
+            height={584}
             loading="lazy"
             decoding="async"
             className="w-full rounded-t-[999px] border-4 border-sand object-cover"
@@ -306,17 +304,14 @@ function VaralakshmiPage() {
             . Our jewellery experts will help you find the piece that belongs on your puja plate.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link
-              to="/store-locator"
-              className="inline-flex h-12 items-center rounded-full bg-maroon px-7 font-medium text-ivory hover:bg-maroon/90"
-            >
+            <Link to="/store-locator" className="btn-lux">
               Find a Store Near You
             </Link>
             <a
               href={ANANTARA_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-12 items-center gap-2 rounded-full border border-maroon px-7 font-medium text-maroon hover:bg-maroon/5"
+              className="btn-lux-outline"
             >
               Shop Anantara on Indriya <ExternalLink className="h-4 w-4" aria-hidden="true" />
             </a>

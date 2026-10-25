@@ -68,7 +68,7 @@ function HaramPage() {
               href={MALA.indriyaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex h-12 items-center gap-2 rounded-full bg-maroon px-7 font-medium text-ivory hover:bg-maroon/90"
+              className="btn-lux mt-6"
             >
               View price on Indriya <ExternalLink className="h-4 w-4" aria-hidden="true" />
             </a>
@@ -96,16 +96,10 @@ function HaramPage() {
             </ul>
 
             <div className="mt-10 flex flex-wrap gap-4">
-              <Link
-                to="/store-locator"
-                className="inline-flex h-12 items-center rounded-full border border-maroon px-7 font-medium text-maroon hover:bg-maroon/5"
-              >
+              <Link to="/store-locator" className="btn-lux-outline">
                 Find a Store Near You
               </Link>
-              <Link
-                to="/temple-jewellery/varalakshmi-vratham"
-                className="inline-flex h-12 items-center rounded-full border border-maroon px-7 font-medium text-maroon hover:bg-maroon/5"
-              >
+              <Link to="/temple-jewellery/varalakshmi-vratham" className="btn-lux-outline">
                 See the Varalakshmi collection
               </Link>
             </div>
