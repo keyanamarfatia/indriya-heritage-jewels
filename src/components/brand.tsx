@@ -3,7 +3,7 @@
 import { Link } from "@tanstack/react-router";
 import { OffsiteLink } from "@/components/offsite";
 import type { ReactNode } from "react";
-import type { Product } from "@/lib/products";
+import { productSrcSet, type Product } from "@/lib/products";
 
 /** Heading with one word in script, e.g. "Temple <Treasures>". Renders as a normal heading for SEO. */
 export function ScriptHeading({
@@ -128,6 +128,8 @@ export function ProductCard({
       >
         <img
           src={product.image}
+          srcSet={productSrcSet(product)}
+          sizes="(min-width: 1024px) 260px, (min-width: 640px) 45vw, 46vw"
           alt={product.alt}
           width={584}
           height={584}

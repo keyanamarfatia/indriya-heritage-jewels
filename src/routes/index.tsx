@@ -3,7 +3,7 @@ import { OffsiteLink } from "@/components/offsite";
 import { SiteShell } from "@/components/site-shell";
 import { KolamDivider, ProductCard, PromiseIcon, ScriptHeading } from "@/components/brand";
 import { OFFICIAL_URL, SITE_NAME, absoluteUrl, jsonLd, pageHead } from "@/lib/site";
-import { ANANTARA_URL, PRODUCTS, productBySlug } from "@/lib/products";
+import { ANANTARA_URL, PRODUCTS, productBySlug, productSrcSet } from "@/lib/products";
 import bannerImage from "@/assets/anantara/anantara-banner.webp";
 import banner640 from "@/assets/anantara/anantara-banner-640.webp";
 import banner960 from "@/assets/anantara/anantara-banner-960.webp";
@@ -146,6 +146,8 @@ function Index() {
               <div className="overflow-hidden rounded-t-[999px] border border-border bg-[#efe1cd]">
                 <img
                   src={c.p.image}
+                  srcSet={productSrcSet(c.p)}
+                  sizes="(min-width: 640px) 360px, 90vw"
                   alt={c.p.alt}
                   width={584}
                   height={584}

@@ -16,6 +16,25 @@ import udayaEarrings from "@/assets/anantara/udaya-earrings.webp";
 export const ANANTARA_URL =
   "https://www.indriya.com/anantara/anantara-collection?collection_name=936";
 
+// Small (≈320px) versions for product grids. Matched by source path, so it also works
+// after Vite adds content hashes to file names in production.
+const ALL_IMAGES = import.meta.glob("@/assets/anantara/*.webp", {
+  eager: true,
+  import: "default",
+}) as Record<string, string>;
+
+const THUMB_BY_FULL: Record<string, string> = {};
+for (const [path, url] of Object.entries(ALL_IMAGES)) {
+  const thumb = ALL_IMAGES[path.replace(/\.webp$/, "-300.webp")];
+  if (thumb) THUMB_BY_FULL[url] = thumb;
+}
+
+/** srcset for product cards: a 320px thumb for phones and grids, the full image for larger screens. */
+export const productSrcSet = (p: { image: string }, fullWidth = 584) => {
+  const thumb = THUMB_BY_FULL[p.image];
+  return thumb ? `${thumb} 400w, ${p.image} ${fullWidth}w` : undefined;
+};
+
 export type ProductType = "necklace" | "earrings";
 
 export type Product = {

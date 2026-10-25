@@ -222,3 +222,19 @@ export const mapEmbedUrl = (s: Store) =>
   `https://maps.google.com/maps?q=${encodeURIComponent(`Indriya ${s.name}, ${s.address}`)}&z=16&output=embed`;
 
 export const officialStoreUrl = (s: Store) => `${STORES_URL}/mumbai/${s.slug}`;
+
+// 480px versions of store photos for cards and phones (matched by source path, hash-safe).
+const STORE_IMAGES = import.meta.glob("@/assets/stores/*.webp", {
+  eager: true,
+  import: "default",
+}) as Record<string, string>;
+const SMALL_BY_FULL: Record<string, string> = {};
+for (const [path, url] of Object.entries(STORE_IMAGES)) {
+  const small = STORE_IMAGES[path.replace(/\.webp$/, "-480.webp")];
+  if (small) SMALL_BY_FULL[url] = small;
+}
+
+export const storeSrcSet = (src: string) => {
+  const small = SMALL_BY_FULL[src];
+  return small ? `${small} 480w, ${src} ${STORE_PHOTO_SIZE.width}w` : undefined;
+};

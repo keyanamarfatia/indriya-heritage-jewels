@@ -1,6 +1,13 @@
 import { Link } from "@tanstack/react-router";
 import { Clock, MapPin, Navigation, Phone, Star } from "lucide-react";
-import { STORE_PHOTO_SIZE, coverOf, directionsUrl, telHref, type Store } from "@/lib/stores";
+import {
+  STORE_PHOTO_SIZE,
+  coverOf,
+  directionsUrl,
+  storeSrcSet,
+  telHref,
+  type Store,
+} from "@/lib/stores";
 
 export function Rating({ store, className = "" }: { store: Store; className?: string }) {
   return (
@@ -34,6 +41,8 @@ export function StoreCard({
       >
         <img
           src={cover.src}
+          srcSet={storeSrcSet(cover.src)}
+          sizes="(min-width: 768px) 520px, 92vw"
           alt={cover.alt}
           width={STORE_PHOTO_SIZE.width}
           height={STORE_PHOTO_SIZE.height}
