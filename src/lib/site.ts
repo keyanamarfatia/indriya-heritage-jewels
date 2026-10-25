@@ -5,6 +5,9 @@ export const SITE_URL = "https://indriya-heritage-jewels.lovable.app";
 
 export const SITE_NAME = "Indriya Temple Jewellery";
 
+/** The real brand's website, linked from the student-project banner. */
+export const OFFICIAL_URL = "https://www.indriya.com/";
+
 /** Author shown on the Temple Jewellery Guide (E-E-A-T). */
 export const GUIDE_AUTHOR = {
   name: "Indriya Project Team",

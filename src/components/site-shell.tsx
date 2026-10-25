@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
-import { MapPin, Menu, X } from "lucide-react";
+import { ExternalLink, MapPin, Menu, X } from "lucide-react";
+import { OFFICIAL_URL } from "@/lib/site";
 
 const NAV = [
   { to: "/temple-jewellery", label: "Collection" },
@@ -15,6 +16,19 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
+      {/* Student-project disclaimer, linking to the real brand */}
+      <div role="note" className="bg-gold px-5 py-2 text-center text-sm text-maroon">
+        Student project for Atlas SkillTech University, not the official Indriya website.{" "}
+        <a
+          href={OFFICIAL_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="whitespace-nowrap font-semibold underline underline-offset-2"
+        >
+          Visit the official Indriya site{" "}
+          <ExternalLink className="inline h-3.5 w-3.5" aria-hidden="true" />
+        </a>
+      </div>
       <header className="sticky top-0 z-40 border-b border-gold/30 bg-maroon text-ivory">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
           <Link
