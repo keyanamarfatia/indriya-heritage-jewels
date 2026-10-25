@@ -162,20 +162,17 @@ function StorePage() {
           <div className="text-center">
             <ScriptHeading before="Find your" script="way" />
           </div>
-          <div className="relative mt-10">
+          <div className="mt-10 grid gap-6 lg:grid-cols-[400px_1fr] lg:items-stretch">
+            <StoreDetails store={store} />
             <div className="overflow-hidden rounded-3xl border border-border bg-sand">
               <iframe
                 title={`Map showing Indriya ${store.name}`}
                 src={mapEmbedUrl(store)}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="block h-[360px] w-full border-0 lg:h-[560px]"
+                className="block h-[360px] w-full border-0 lg:h-full lg:min-h-[520px]"
               />
             </div>
-            <StoreDetails
-              store={store}
-              className="mt-6 lg:absolute lg:bottom-8 lg:left-8 lg:top-8 lg:mt-0 lg:w-[400px] lg:overflow-y-auto"
-            />
           </div>
         </section>
 
@@ -264,9 +261,7 @@ function StoreDetails({ store, className = "" }: { store: Store; className?: str
     rows.push({ icon: Languages, label: "Languages spoken", body: store.languages.join(", ") });
 
   return (
-    <aside
-      className={`rounded-3xl border border-gold/30 bg-card/95 p-7 shadow-[0_30px_60px_-30px_rgba(74,20,32,0.5)] backdrop-blur ${className}`}
-    >
+    <aside className={`rounded-3xl border border-gold/30 bg-card p-7 ${className}`}>
       <div className="flex items-center justify-between gap-3">
         <h2 className="font-display text-3xl text-ink">Store details</h2>
         {store.flagship && (
