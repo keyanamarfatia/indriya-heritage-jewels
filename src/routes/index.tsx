@@ -1,16 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { OffsiteLink } from "@/components/offsite";
 import { SiteShell } from "@/components/site-shell";
-import {
-  HeroArch,
-  KolamDivider,
-  ProductCard,
-  PromiseIcon,
-  ScriptHeading,
-} from "@/components/brand";
+import { KolamDivider, ProductCard, PromiseIcon, ScriptHeading } from "@/components/brand";
 import { pageHead } from "@/lib/site";
 import { ANANTARA_URL, PRODUCTS, productBySlug } from "@/lib/products";
-import brideImage from "@/assets/anantara/anantara-bride.webp";
+import bannerImage from "@/assets/anantara/anantara-banner.webp";
+import logoLight from "@/assets/indriya-logo-light.png";
 import rcity from "@/assets/stores/r-city-mall-mumbai-1.webp";
 
 export const Route = createFileRoute("/")({
@@ -30,40 +25,60 @@ const earrings = PRODUCTS.filter((p) => p.type === "earrings");
 function Index() {
   return (
     <SiteShell>
-      {/* Hero: arch-framed campaign photo with our own headline */}
-      <section className="relative overflow-hidden bg-maroon text-ivory">
+      {/* Hero: full-width campaign banner with our own lockup over a deep-red fade */}
+      <section className="relative isolate overflow-hidden bg-maroon text-ivory">
+        <img
+          src={bannerImage}
+          alt="A South Indian bride in a cream silk saree wearing Indriya Anantara gold temple jewellery, leaning on a carved wooden pillar"
+          width={1353}
+          height={926}
+          fetchPriority="high"
+          className="relative -z-10 block h-[52vh] min-h-80 w-full object-cover object-[58%_12%] md:absolute md:inset-y-0 md:right-0 md:h-full md:min-h-0 md:w-[72%] md:object-[40%_20%]"
+        />
+        {/* Fade into deep red so the text reads, and the photo melts into the panel */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_75%_40%,rgba(168,131,74,0.28),transparent_55%)]"
+          className="absolute inset-x-0 top-[calc(max(52vh,20rem)-8rem)] -z-10 h-32 bg-gradient-to-b from-transparent to-maroon md:inset-0 md:top-0 md:h-auto md:bg-gradient-to-r md:from-maroon md:from-[30%] md:via-maroon/60 md:via-[48%] md:to-transparent md:to-[70%]"
         />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[1.1fr_1fr] lg:py-24">
-          <div>
-            <p className="eyebrow !text-[#d8b878]">Anantara · Bridal Temple Jewellery</p>
-            <h1 className="mt-6 font-display text-5xl font-light leading-[1.05] text-ivory sm:text-7xl">
-              Every{" "}
-              <span className="font-script text-[1.3em] font-normal text-[#d8b878]">Jewel</span>{" "}
-              Tells a Story
-            </h1>
-            <p className="mt-6 max-w-lg text-lg font-light leading-relaxed text-ivory/75">
-              South Indian temple jewellery in BIS Hallmark gold, shaped by hand with Lakshmi,
-              Ganesha and Garuda motifs for brides and festive mornings.
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-maroon/60 to-transparent"
+        />
+
+        <div className="relative mx-auto -mt-20 flex max-w-7xl px-5 pb-24 sm:px-8 md:mt-0 md:min-h-[640px] md:items-center md:py-20 lg:min-h-[78vh]">
+          <div className="max-w-xl">
+            <img
+              src={logoLight}
+              alt=""
+              aria-hidden="true"
+              width={274}
+              height={79}
+              className="h-10 w-auto opacity-90 sm:h-12"
+            />
+            <p className="mt-6 flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.35em] text-[#d8b878]">
+              <span className="h-px w-8 bg-[#d8b878]/70" /> Presents
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
+            <p className="mt-3 font-script text-6xl leading-none text-[#e2c48f] sm:text-7xl">
+              Anantara
+            </p>
+            <p className="mt-2 text-xs font-medium uppercase tracking-[0.3em] text-ivory/80">
+              Bridal Temple Jewellery Collection
+            </p>
+            <h1 className="mt-8 font-display text-4xl font-light leading-[1.1] text-ivory sm:text-5xl">
+              Every Jewel Tells a Story
+            </h1>
+            <p className="mt-4 max-w-md text-base font-light leading-relaxed text-ivory/80 sm:text-lg">
+              Be the bride of your dreams, adorned in divine heritage: hand-finished temple gold
+              with Lakshmi, Ganesha and Garuda motifs.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3 sm:gap-4">
               <Link to="/temple-jewellery/varalakshmi-vratham" className="btn-lux-gold">
                 Shop the Varalakshmi Vratham Edit
               </Link>
               <Link to="/temple-jewellery" className="btn-lux-ghost">
-                Explore Temple Jewellery
+                Explore the Collection
               </Link>
             </div>
-          </div>
-          <div className="mx-auto w-full max-w-md">
-            <HeroArch
-              src={brideImage}
-              alt="A South Indian bride in a cream silk saree wearing Indriya Anantara gold temple jewellery: layered necklaces, a waist belt and a maang tikka"
-              width={941}
-              height={894}
-            />
           </div>
         </div>
       </section>

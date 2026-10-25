@@ -142,7 +142,12 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur">
         {/* Row 1: logo, search, quick links */}
         <div className="mx-auto flex max-w-7xl items-center gap-6 px-5 py-3 sm:px-8">
-          <Link to="/" aria-label="Indriya Temple Jewellery, home" onClick={() => setOpen(false)}>
+          <Link
+            to="/"
+            aria-label="Indriya Temple Jewellery, home"
+            onClick={() => setOpen(false)}
+            className="shrink-0"
+          >
             <img src={logo} alt="Indriya" width={274} height={79} className="h-9 w-auto sm:h-11" />
           </Link>
           <SearchBox className="mx-auto hidden w-full max-w-xl md:block" />
@@ -200,12 +205,12 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
         {/* Row 2: category nav with dropdown panels (desktop) */}
         <nav aria-label="Main" className="hidden lg:block">
-          <ul className="mx-auto flex max-w-7xl justify-center gap-10 px-8">
+          <ul className="mx-auto flex max-w-7xl justify-center gap-6 px-8 xl:gap-10">
             {NAV.map((item) => (
               <li key={item.label} className="group">
                 <a
                   href={item.href}
-                  className="inline-block border-b border-transparent py-3.5 text-[11px] font-medium uppercase tracking-[0.22em] text-maroon transition-colors hover:border-gold group-focus-within:border-gold"
+                  className="inline-block whitespace-nowrap border-b border-transparent py-3.5 text-[11px] font-medium uppercase tracking-[0.22em] text-maroon transition-colors hover:border-gold group-focus-within:border-gold"
                 >
                   {item.label}
                 </a>
