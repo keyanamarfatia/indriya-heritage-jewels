@@ -83,7 +83,7 @@ function CollectionPage() {
                 key={f.label}
                 href={href}
                 aria-current={active ? "page" : undefined}
-                className={`border px-5 py-2 text-xs uppercase tracking-[0.2em] transition-colors ${
+                className={`rounded-full border px-5 py-2 text-xs uppercase tracking-[0.14em] transition-colors ${
                   active
                     ? "border-maroon bg-maroon text-ivory"
                     : "border-border bg-card text-maroon hover:border-maroon"

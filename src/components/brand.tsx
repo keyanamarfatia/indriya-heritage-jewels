@@ -138,7 +138,7 @@ export function ProductCard({
         href={product.indriyaUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="mx-auto mt-4 inline-flex items-center gap-2 border-b border-gold pb-1 text-[11px] font-medium uppercase tracking-[0.22em] text-maroon transition-colors hover:text-gold"
+        className="mx-auto mt-4 inline-flex items-center gap-2 border-b border-gold pb-1 text-[11px] font-medium uppercase tracking-[0.16em] text-maroon transition-colors hover:text-gold"
       >
         View on Indriya <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
       </a>

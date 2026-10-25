@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Clock, ExternalLink, MapPin, Navigation, Phone, Star } from "lucide-react";
+import { useState } from "react";
+import { Clock, ExternalLink, Map as MapIcon, MapPin, Navigation, Phone, Star } from "lucide-react";
 import { Breadcrumbs, SiteShell } from "@/components/site-shell";
 import { KolamDivider, ScriptHeading } from "@/components/brand";
 import { OFFICIAL_URL, breadcrumbLd, jsonLd, pageHead } from "@/lib/site";
@@ -140,11 +141,29 @@ export const Route = createFileRoute("/store-locator")({
   component: StoreLocatorPage,
 });
 
+const embedUrl = (s: Store) =>
+  `https://maps.google.com/maps?q=${encodeURIComponent(`Indriya ${s.name}, ${s.address}`)}&z=16&output=embed`;
+
+function StoreMap({ store, className = "" }: { store: Store; className?: string }) {
+  return (
+    <iframe
+      title={`Map showing Indriya ${store.name}`}
+      src={embedUrl(store)}
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade"
+      className={`block w-full border-0 ${className}`}
+    />
+  );
+}
+
 function StoreCard({ store }: { store: Store }) {
+  const [showMap, setShowMap] = useState(false);
   return (
     <li className="flex flex-col overflow-hidden rounded-2xl border border-border bg-card">
       <div className="relative">
-        {store.photo ? (
+        {showMap || !store.photo ? (
+          <StoreMap store={store} className="aspect-[3/1] min-h-56" />
+        ) : (
           <img
             src={store.photo}
             alt={`Inside the Indriya jewellery store at ${store.name}`}
@@ -152,18 +171,11 @@ function StoreCard({ store }: { store: Store }) {
             height={300}
             loading="lazy"
             decoding="async"
-            className="aspect-[3/1] w-full object-cover"
+            className="aspect-[3/1] min-h-56 w-full object-cover"
           />
-        ) : (
-          <div
-            className="flex aspect-[3/1] w-full items-center justify-center bg-sand"
-            aria-hidden="true"
-          >
-            <MapPin className="h-10 w-10 text-terracotta" />
-          </div>
         )}
         {store.flagship && (
-          <span className="absolute left-0 top-4 bg-maroon px-4 py-1.5 text-sm font-medium text-ivory">
+          <span className="pointer-events-none absolute left-0 top-4 rounded-r-full bg-maroon px-4 py-1.5 text-sm font-medium text-ivory">
             Flagship Store
           </span>
         )}
@@ -208,23 +220,29 @@ function StoreCard({ store }: { store: Store }) {
           </ul>
         )}
         <div className="mt-6 flex flex-wrap gap-3 pt-2">
-          <a
-            href={mapsUrl(store)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-lux flex-1"
-          >
-            <Navigation className="h-4 w-4" aria-hidden="true" /> Open in Google Maps
+          <a href={mapsUrl(store)} target="_blank" rel="noopener noreferrer" className="btn-lux">
+            <Navigation className="h-4 w-4" aria-hidden="true" /> Get Directions
           </a>
-          <a
-            href={store.detailsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-lux-outline"
-          >
-            Store page on Indriya <ExternalLink className="h-4 w-4" aria-hidden="true" />
-          </a>
+          {store.photo && (
+            <button
+              type="button"
+              onClick={() => setShowMap((v) => !v)}
+              aria-pressed={showMap}
+              className="btn-lux-outline"
+            >
+              <MapIcon className="h-4 w-4" aria-hidden="true" />
+              {showMap ? "Show Photo" : "Show Map"}
+            </button>
+          )}
         </div>
+        <a
+          href={store.detailsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 inline-flex items-center gap-1.5 self-start text-sm text-maroon underline decoration-gold underline-offset-4 hover:text-gold"
+        >
+          Store page on Indriya <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+        </a>
       </div>
     </li>
   );
@@ -244,7 +262,7 @@ function StoreLocatorPage() {
             here, then open it in Google Maps for directions.
           </p>
           <a href={STORES_URL} target="_blank" rel="noopener noreferrer" className="btn-lux mt-6">
-            Open the official Indriya store locator{" "}
+            Official Indriya store locator{" "}
             <ExternalLink className="h-4 w-4" aria-hidden="true" />
           </a>
           <KolamDivider className="mt-8" />

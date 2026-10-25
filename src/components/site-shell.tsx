@@ -391,7 +391,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       {/* Sticky store CTA on mobile */}
       <Link
         to="/store-locator"
-        className="fixed inset-x-4 bottom-4 z-50 flex h-12 items-center justify-center gap-2 bg-maroon text-xs font-medium uppercase tracking-[0.22em] text-ivory shadow-lg lg:hidden"
+        className="fixed inset-x-4 bottom-4 z-50 flex h-12 items-center justify-center gap-2 rounded-full bg-maroon text-xs font-medium uppercase tracking-[0.14em] text-ivory shadow-lg lg:hidden"
       >
         <MapPin className="h-5 w-5" aria-hidden="true" />
         Find a Store

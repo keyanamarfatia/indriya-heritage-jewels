@@ -61,7 +61,7 @@ export function GoldRateWidget() {
         <div
           role="dialog"
           aria-label="Today's gold rate"
-          className="absolute bottom-0 right-[4.5rem] max-h-[80vh] w-[19rem] overflow-y-auto border border-gold/40 bg-ivory p-6 text-left shadow-[0_24px_60px_-20px_rgba(74,20,32,0.45)] sm:w-80"
+          className="absolute bottom-0 right-[4.5rem] max-h-[80vh] w-[19rem] overflow-y-auto rounded-2xl border border-gold/40 bg-ivory p-6 text-left shadow-[0_24px_60px_-20px_rgba(74,20,32,0.45)] sm:w-80"
         >
           <button
             type="button"
@@ -128,7 +128,7 @@ export function GoldRateWidget() {
             href={OFFICIAL_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-2 border-b border-gold pb-1 text-[11px] font-medium uppercase tracking-[0.22em] text-maroon hover:text-gold"
+            className="mt-4 inline-flex items-center gap-2 border-b border-gold pb-1 text-[11px] font-medium uppercase tracking-[0.16em] text-maroon hover:text-gold"
           >
             Check today&rsquo;s rate on Indriya{" "}
             <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
@@ -163,7 +163,7 @@ export function GoldRateWidget() {
         className="group flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
       >
         {!open && (
-          <span className="hidden border border-gold/40 bg-ivory px-3 py-1.5 font-display text-base italic text-maroon shadow-sm sm:inline">
+          <span className="hidden rounded-full border border-gold/40 bg-ivory px-4 py-1.5 font-display text-base italic text-maroon shadow-sm sm:inline">
             Today&rsquo;s gold rate
           </span>
         )}
