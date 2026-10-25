@@ -21,7 +21,12 @@
 @theme inline {
   --font-display: "Cormorant Garamond", "Georgia", serif;
   --font-sans: "DM Sans", "system-ui", sans-serif;
+  --font-script: "Allura", "Brush Script MT", cursive;
   --color-maroon: var(--maroon);
+  --color-sand: var(--sand);
+  --color-terracotta: var(--terracotta);
+  --color-ink: var(--ink);
+  --color-navy: var(--navy);
   --color-gold: var(--gold);
   --color-ivory: var(--ivory);
   --radius-sm: calc(var(--radius) - 4px);
@@ -68,13 +73,18 @@
 
 :root {
   /* Indriya Temple Jewellery palette */
-  --maroon: oklch(0.285 0.082 10.7);      /* #4A1420 */
-  --ivory: oklch(0.974 0.011 84.6);       /* #FAF6EE */
-  --gold: oklch(0.654 0.12 78.1);         /* #B8862B */
+  /* Softer palette: rosewood instead of deep maroon, warm cream base */
+  --maroon: #7a3b45; /* rosewood — headings, nav, small accents */
+  --ivory: #fbf5ec; /* page cream */
+  --sand: #f4e8d8; /* menus, footer, soft panels */
+  --gold: #b8862b; /* antique gold */
+  --terracotta: #c0674f; /* line icons, eyebrows */
+  --ink: #3a2a2a; /* body text */
+  --navy: #102d6d; /* Indriya logo colour, used only for the logo */
   --radius: 0.25rem;
   --background: var(--ivory);
-  --foreground: var(--maroon);
-  --card: oklch(0.99 0.005 84.6);
+  --foreground: var(--ink);
+  --card: #fffdf8;
   --card-foreground: var(--maroon);
   --popover: var(--ivory);
   --popover-foreground: var(--maroon);
@@ -82,13 +92,13 @@
   --primary-foreground: var(--maroon);
   --secondary: var(--maroon);
   --secondary-foreground: var(--ivory);
-  --muted: oklch(0.935 0.02 84.6);
-  --muted-foreground: oklch(0.46 0.06 20);
+  --muted: var(--sand);
+  --muted-foreground: #6b5650;
   --accent: oklch(0.935 0.02 84.6);
   --accent-foreground: var(--maroon);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.87 0.03 80);
+  --border: #e8d9c4;
   --input: oklch(0.87 0.03 80);
   --ring: var(--gold);
   --chart-1: oklch(0.646 0.222 41.116);
@@ -152,7 +162,9 @@
     font-family: var(--font-sans);
   }
 
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     font-family: var(--font-display);
   }
 }

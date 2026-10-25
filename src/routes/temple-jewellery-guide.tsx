@@ -9,7 +9,7 @@ import {
   jsonLd,
   pageHead,
 } from "@/lib/site";
-import chokerImage from "@/assets/temple-choker.webp";
+import guideImage from "@/assets/anantara/ganesha-large.webp";
 
 const PATH = "/temple-jewellery-guide";
 const HEADLINE = "Temple Jewellery Guide: History, Designs and Care";
@@ -80,11 +80,11 @@ function GuidePage() {
         <p className="mt-4 text-lg text-muted-foreground">{DESCRIPTION}</p>
 
         <img
-          src={chokerImage}
-          alt="Antique gold Lakshmi temple choker with carved goddess panels, pearl drops and ruby and emerald stones"
-          width={800}
-          height={500}
-          className="mt-8 w-full rounded-lg object-cover"
+          src={guideImage}
+          alt="Heirloom Ganesha gold temple necklace from Indriya's Anantara collection, with a deity pendant, ruby drops and pearls"
+          width={900}
+          height={900}
+          className="mt-8 aspect-[16/10] w-full rounded-t-[200px] bg-[#fbeee3] object-cover"
           loading="lazy"
           decoding="async"
         />
