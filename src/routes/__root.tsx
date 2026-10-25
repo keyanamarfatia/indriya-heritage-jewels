@@ -81,14 +81,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Indriya Temple Jewellery" },
       {
         name: "description",
-        content:
-          "South Indian temple jewellery, inspired by centuries of heritage craft.",
+        content: "South Indian temple jewellery, inspired by centuries of heritage craft.",
       },
       { property: "og:title", content: "Indriya Temple Jewellery" },
       {
         property: "og:description",
-        content:
-          "South Indian temple jewellery, inspired by centuries of heritage craft.",
+        content: "South Indian temple jewellery, inspired by centuries of heritage craft.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -119,7 +117,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en-IN">
       <head>
         <HeadContent />
       </head>
