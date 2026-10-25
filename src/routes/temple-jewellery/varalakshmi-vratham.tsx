@@ -12,6 +12,8 @@ import { breadcrumbLd, jsonLd, pageHead, absoluteUrl } from "@/lib/site";
 import { TEMPLE_FAQS, faqPageLd } from "@/lib/faqs";
 import { ANANTARA_URL, productBySlug } from "@/lib/products";
 import heroImage from "@/assets/anantara/ganesha-large.webp";
+import hero480 from "@/assets/anantara/ganesha-large-480.webp";
+import hero800 from "@/assets/anantara/ganesha-large-800.webp";
 import nakshiImage from "@/assets/anantara/vishnu-haar.webp";
 
 const PATH = "/temple-jewellery/varalakshmi-vratham";
@@ -109,6 +111,8 @@ function VaralakshmiPage() {
           <div className="mx-auto w-full max-w-md">
             <HeroArch
               src={heroImage}
+              srcSet={`${hero480} 480w, ${hero800} 800w, ${heroImage} 1280w`}
+              sizes="(min-width: 1024px) 448px, 90vw"
               alt="Heirloom Ganesha 22 karat gold temple necklace with a Lord Ganesha pendant, ruby drops and pearls for Varalakshmi Vratham"
               width={1280}
               height={1280}

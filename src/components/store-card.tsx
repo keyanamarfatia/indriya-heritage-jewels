@@ -30,7 +30,7 @@ export function StoreCard({
         to="/store-locator/$slug"
         params={{ slug: store.slug }}
         className="relative block overflow-hidden"
-        aria-label={`Show details for Indriya ${store.name}`}
+        aria-label={`${store.flagship ? "Flagship Store: " : ""}Show details for Indriya ${store.name}`}
       >
         <img
           src={cover.src}

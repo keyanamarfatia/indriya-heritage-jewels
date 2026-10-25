@@ -24,7 +24,7 @@ export function ScriptHeading({
       className={`font-display text-4xl font-light leading-tight tracking-wide text-ink sm:text-[3.25rem] ${className}`}
     >
       {before && <>{before} </>}
-      <span className="font-script text-[1.3em] font-normal tracking-normal text-gold">
+      <span className="font-script text-[1.3em] font-normal tracking-normal text-gold-deep">
         {script}
       </span>
       {after && <> {after}</>}
@@ -71,6 +71,8 @@ export function HeroArch({
   height,
   className = "",
   imgClassName = "",
+  srcSet,
+  sizes,
   blend = false,
 }: {
   blend?: boolean;
@@ -80,6 +82,8 @@ export function HeroArch({
   height: number;
   className?: string;
   imgClassName?: string;
+  srcSet?: string;
+  sizes?: string;
 }) {
   return (
     <div
@@ -88,6 +92,8 @@ export function HeroArch({
     >
       <img
         src={src}
+        srcSet={srcSet}
+        sizes={sizes}
         alt={alt}
         width={width}
         height={height}
@@ -142,7 +148,7 @@ export function ProductCard({
         <Link
           to="/jewellery/$slug"
           params={{ slug: product.slug }}
-          className="border-b border-gold pb-0.5 text-[11px] font-medium uppercase tracking-[0.16em] text-maroon hover:text-gold"
+          className="border-b border-gold pb-0.5 text-[11px] font-medium uppercase tracking-[0.16em] text-maroon hover:text-gold-deep"
         >
           Details
         </Link>

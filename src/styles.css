@@ -1,6 +1,14 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+/* Self-hosted fonts (no render-blocking request to Google Fonts) */
+@import "@fontsource-variable/dm-sans/index.css";
+@import "@fontsource/cormorant-garamond/latin-300.css";
+@import "@fontsource/cormorant-garamond/latin-400.css";
+@import "@fontsource/cormorant-garamond/latin-500.css";
+@import "@fontsource/cormorant-garamond/latin-600.css";
+@import "@fontsource/cormorant-garamond/latin-400-italic.css";
+@import "@fontsource/allura/latin-400.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -20,13 +28,14 @@
 
 @theme inline {
   --font-display: "Cormorant Garamond", "Georgia", serif;
-  --font-sans: "DM Sans", "system-ui", sans-serif;
+  --font-sans: "DM Sans Variable", "DM Sans", system-ui, sans-serif;
   --font-script: "Allura", "Brush Script MT", cursive;
   --color-maroon: var(--maroon);
   --color-sand: var(--sand);
   --color-terracotta: var(--terracotta);
   --color-ink: var(--ink);
   --color-navy: var(--navy);
+  --color-gold-deep: var(--gold-deep);
   --color-gold: var(--gold);
   --color-ivory: var(--ivory);
   --color-linen: var(--linen);
@@ -80,6 +89,7 @@
   --linen: #efe4d4; /* page background: warm, muted cream */
   --sand: #e8d9c3; /* menus, soft panels */
   --gold: #a8834a; /* muted antique gold */
+  --gold-deep: #7a5a24; /* gold for text on cream: 4.5:1+ contrast */
   --terracotta: #8c5a3c; /* bronze */
   --ink: #2b1b1e; /* body text */
   --navy: #102d6d; /* Indriya logo colour, used only for the logo */
@@ -227,7 +237,7 @@
     font-weight: 500;
     letter-spacing: 0.35em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--gold-deep);
   }
 }
 

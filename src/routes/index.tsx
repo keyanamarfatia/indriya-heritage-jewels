@@ -2,20 +2,58 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { OffsiteLink } from "@/components/offsite";
 import { SiteShell } from "@/components/site-shell";
 import { KolamDivider, ProductCard, PromiseIcon, ScriptHeading } from "@/components/brand";
-import { pageHead } from "@/lib/site";
+import { OFFICIAL_URL, SITE_NAME, absoluteUrl, jsonLd, pageHead } from "@/lib/site";
 import { ANANTARA_URL, PRODUCTS, productBySlug } from "@/lib/products";
 import bannerImage from "@/assets/anantara/anantara-banner.webp";
+import banner640 from "@/assets/anantara/anantara-banner-640.webp";
+import banner960 from "@/assets/anantara/anantara-banner-960.webp";
 import logoLight from "@/assets/indriya-logo-light.png";
 import rcity from "@/assets/stores/r-city-mall-mumbai-1.webp";
 
 export const Route = createFileRoute("/")({
-  head: () =>
-    pageHead({
+  head: () => {
+    const base = pageHead({
       title: "Indriya Temple Jewellery — Every Jewel Tells a Story",
       description:
         "Heritage South Indian temple jewellery in BIS Hallmark gold, from Indriya's Anantara bridal collection. Explore Varalakshmi Vratham pieces and our guide.",
       path: "/",
-    }),
+    });
+    return {
+      ...base,
+      // Preload the hero banner so the largest image starts downloading immediately
+      links: [
+        ...base.links,
+        {
+          rel: "preload",
+          as: "image",
+          href: bannerImage,
+          imageSrcSet: `${banner640} 640w, ${banner960} 960w, ${bannerImage} 1353w`,
+          imageSizes: "(min-width: 768px) 72vw, 100vw",
+          fetchPriority: "high",
+        },
+      ],
+      scripts: [
+        jsonLd({
+          "@type": "Organization",
+          name: "Indriya",
+          url: OFFICIAL_URL,
+          logo: absoluteUrl(logoLight),
+          parentOrganization: { "@type": "Organization", name: "Aditya Birla Group" },
+          sameAs: [OFFICIAL_URL],
+        }),
+        jsonLd({
+          "@type": "WebSite",
+          name: SITE_NAME,
+          url: absoluteUrl("/"),
+          potentialAction: {
+            "@type": "SearchAction",
+            target: `${absoluteUrl("/temple-jewellery")}?q={search_term_string}`,
+            "query-input": "required name=search_term_string",
+          },
+        }),
+      ],
+    };
+  },
   component: Index,
 });
 
@@ -29,6 +67,8 @@ function Index() {
       <section className="relative isolate overflow-hidden bg-maroon text-ivory">
         <img
           src={bannerImage}
+          srcSet={`${banner640} 640w, ${banner960} 960w, ${bannerImage} 1353w`}
+          sizes="(min-width: 768px) 72vw, 100vw"
           alt="A South Indian bride in a cream silk saree wearing Indriya Anantara gold temple jewellery, leaning on a carved wooden pillar"
           width={1353}
           height={926}

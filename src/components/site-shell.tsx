@@ -72,7 +72,7 @@ const NAV: NavItem[] = [
   { label: "Jewellery Guide", href: "/temple-jewellery-guide" },
   { label: "Stores", href: "/store-locator" },
   {
-    label: "More",
+    label: "Our Promises",
     href: "/lifetime-exchange",
     columns: [
       {
@@ -225,7 +225,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
                               <li key={l.label}>
                                 <MenuAnchor
                                   link={l}
-                                  className="font-display text-lg text-maroon hover:text-gold"
+                                  className="font-display text-lg text-maroon hover:text-gold-deep"
                                 />
                               </li>
                             ))}
@@ -294,7 +294,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             </p>
           </div>
           <div>
-            <p className="eyebrow">Shop</p>
+            <p className="eyebrow !text-[#d8b878]">Shop</p>
             <ul className="mt-3 space-y-2 text-sm">
               <li>
                 <a href="/temple-jewellery" className="hover:text-[#e2c48f]">
@@ -319,7 +319,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             </ul>
           </div>
           <div>
-            <p className="eyebrow">Help</p>
+            <p className="eyebrow !text-[#d8b878]">Help</p>
             <ul className="mt-3 space-y-2 text-sm">
               <li>
                 <a href="/store-locator" className="hover:text-[#e2c48f]">
@@ -347,7 +347,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             </ul>
           </div>
           <div>
-            <p className="eyebrow">Official Indriya</p>
+            <p className="eyebrow !text-[#d8b878]">Official Indriya</p>
             <ul className="mt-3 space-y-2 text-sm">
               <li>
                 <OffsiteLink href={OFFICIAL_URL} variant="light">

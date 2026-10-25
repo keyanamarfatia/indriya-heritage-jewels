@@ -61,7 +61,7 @@ function StoreLocatorPage() {
         <div className="mx-auto max-w-6xl px-5 py-12 text-center sm:px-8">
           <h1 className="font-display text-5xl text-ink sm:text-6xl">
             Indriya in your{" "}
-            <span className="font-script text-[1.25em] font-normal text-gold">city</span>
+            <span className="font-script text-[1.25em] font-normal text-gold-deep">city</span>
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
             See the temple jewellery collection in person. Find a store, get directions, or open its
