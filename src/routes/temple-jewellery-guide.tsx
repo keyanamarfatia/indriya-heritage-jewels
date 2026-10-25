@@ -82,8 +82,8 @@ function GuidePage() {
         <img
           src={guideImage}
           alt="Heirloom Ganesha gold temple necklace from Indriya's Anantara collection, with a deity pendant, ruby drops and pearls"
-          width={900}
-          height={900}
+          width={1280}
+          height={1280}
           className="mt-8 aspect-[16/10] w-full rounded-t-[200px] bg-[#fbeee3] object-cover"
           loading="lazy"
           decoding="async"

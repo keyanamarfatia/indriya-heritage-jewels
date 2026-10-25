@@ -62,6 +62,43 @@ export function SectionIntro({ children }: { children: ReactNode }) {
   );
 }
 
+/** Hero image in an arch, with one fine gold line set just inside the edge. */
+export function HeroArch({
+  src,
+  alt,
+  width,
+  height,
+  className = "",
+  imgClassName = "",
+}: {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  className?: string;
+  imgClassName?: string;
+}) {
+  return (
+    <div
+      className={`relative overflow-hidden rounded-t-[999px] bg-[#fff1e4] shadow-[0_30px_70px_-30px_rgba(0,0,0,0.55)] ${className}`}
+      style={{ aspectRatio: `${width} / ${height}` }}
+    >
+      <img
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        fetchPriority="high"
+        className={`h-full w-full object-cover ${imgClassName}`}
+      />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-3 rounded-t-[999px] border border-[#e8d3a6]/80"
+      />
+    </div>
+  );
+}
+
 /** Product card: arch-topped frame with a hairline gold border, quiet serif name, understated link. */
 export function ProductCard({
   product,

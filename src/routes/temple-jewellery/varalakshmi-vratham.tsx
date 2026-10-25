@@ -1,7 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ExternalLink } from "lucide-react";
 import { Breadcrumbs, SiteShell } from "@/components/site-shell";
-import { KolamDivider, ProductCard, PromiseIcon, ScriptHeading } from "@/components/brand";
+import {
+  HeroArch,
+  KolamDivider,
+  ProductCard,
+  PromiseIcon,
+  ScriptHeading,
+} from "@/components/brand";
 import { breadcrumbLd, jsonLd, pageHead, absoluteUrl } from "@/lib/site";
 import { TEMPLE_FAQS, faqPageLd } from "@/lib/faqs";
 import { ANANTARA_URL, productBySlug } from "@/lib/products";
@@ -99,16 +105,12 @@ function VaralakshmiPage() {
             </div>
           </div>
           <div className="mx-auto w-full max-w-md">
-            <div className="overflow-hidden rounded-t-[999px] bg-[#f7ebe0] outline outline-1 outline-offset-8 outline-[#d8b878]/60">
-              <img
-                src={heroImage}
-                alt="Heirloom Ganesha 22 karat gold temple necklace with a Lord Ganesha pendant, ruby drops and pearls for Varalakshmi Vratham"
-                width={900}
-                height={900}
-                fetchPriority="high"
-                className="aspect-[4/5] w-full object-cover"
-              />
-            </div>
+            <HeroArch
+              src={heroImage}
+              alt="Heirloom Ganesha 22 karat gold temple necklace with a Lord Ganesha pendant, ruby drops and pearls for Varalakshmi Vratham"
+              width={1280}
+              height={1280}
+            />
           </div>
         </div>
       </section>

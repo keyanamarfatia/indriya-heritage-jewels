@@ -1,7 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ExternalLink } from "lucide-react";
 import { SiteShell } from "@/components/site-shell";
-import { KolamDivider, ProductCard, PromiseIcon, ScriptHeading } from "@/components/brand";
+import {
+  HeroArch,
+  KolamDivider,
+  ProductCard,
+  PromiseIcon,
+  ScriptHeading,
+} from "@/components/brand";
 import { pageHead } from "@/lib/site";
 import { ANANTARA_URL, PRODUCTS, productBySlug } from "@/lib/products";
 import brideImage from "@/assets/anantara/anantara-bride.webp";
@@ -52,18 +58,12 @@ function Index() {
             </div>
           </div>
           <div className="mx-auto w-full max-w-md">
-            <div className="rounded-t-[999px] p-2 ring-1 ring-[#d8b878]/60">
-              <div className="overflow-hidden rounded-t-[999px]">
-                <img
-                  src={brideImage}
-                  alt="A South Indian bride in a cream silk saree wearing Indriya Anantara gold temple jewellery: layered necklaces, a waist belt and a maang tikka"
-                  width={900}
-                  height={834}
-                  fetchPriority="high"
-                  className="aspect-[4/5] w-full object-cover object-top"
-                />
-              </div>
-            </div>
+            <HeroArch
+              src={brideImage}
+              alt="A South Indian bride in a cream silk saree wearing Indriya Anantara gold temple jewellery: layered necklaces, a waist belt and a maang tikka"
+              width={941}
+              height={894}
+            />
           </div>
         </div>
       </section>
