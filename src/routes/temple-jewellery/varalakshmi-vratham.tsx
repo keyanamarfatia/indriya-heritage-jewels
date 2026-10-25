@@ -29,6 +29,24 @@ export const Route = createFileRoute("/temple-jewellery/varalakshmi-vratham")({
         name: "Temple Jewellery for Varalakshmi Vratham",
         description: DESCRIPTION,
         url: absoluteUrl(PATH),
+        // Product schema for each featured piece. No price or availability: this is a student
+        // project without real pricing, so those fields are left out rather than invented.
+        mainEntity: {
+          "@type": "ItemList",
+          itemListElement: PIECES.map((p, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            item: {
+              "@type": "Product",
+              name: p.name,
+              description: p.description,
+              image: absoluteUrl(p.src),
+              brand: { "@type": "Brand", name: "Indriya" },
+              material: "22-karat BIS Hallmark gold",
+              category: "Temple jewellery",
+            },
+          })),
+        },
       }),
     ],
   }),
@@ -41,6 +59,8 @@ const PIECES = [
     w: 800,
     h: 500,
     name: "Lakshmi temple choker",
+    description:
+      "Antique gold temple choker with hand-chased Goddess Lakshmi panels, pearl drops and ruby and emerald stones.",
     alt: "Antique gold Lakshmi temple choker with carved goddess panels, pearl drops and ruby and emerald stones",
   },
   {
@@ -48,6 +68,8 @@ const PIECES = [
     w: 400,
     h: 340,
     name: "Lakshmi temple jhumkas",
+    description:
+      "Bell-shaped antique gold jhumkas with a Goddess Lakshmi stud and a ring of pearl drops.",
     alt: "Pair of antique gold temple jhumkas with Goddess Lakshmi studs and pearl drops",
   },
   {
@@ -55,6 +77,8 @@ const PIECES = [
     w: 430,
     h: 240,
     name: "Nakshi temple bangle",
+    description:
+      "Hand-chased nakshi temple bangle in antique gold with a Lakshmi motif and red stones.",
     alt: "Antique gold nakshi temple bangle with Lakshmi motif and red stones on maroon silk",
   },
 ];

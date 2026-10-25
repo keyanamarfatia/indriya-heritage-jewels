@@ -1,7 +1,7 @@
 // Shared SEO helpers for the Indriya student-project site.
 
 /** Public URL of the published Lovable site. Update this if the site is published under a different domain. */
-export const SITE_URL = "https://indriya-heritage-jewels.lovable.app";
+export const SITE_URL = "https://stories-in-antique-gold.lovable.app";
 
 export const SITE_NAME = "Indriya Temple Jewellery";
 
