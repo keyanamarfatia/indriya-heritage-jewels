@@ -84,7 +84,7 @@ function GuidePage() {
           alt="Heirloom Ganesha gold temple necklace from Indriya's Anantara collection, with a deity pendant, ruby drops and pearls"
           width={1280}
           height={1280}
-          className="mt-8 aspect-[16/10] w-full rounded-t-[200px] bg-[#fbeee3] object-cover"
+          className="mt-8 aspect-[16/10] w-full rounded-t-[200px] bg-[#efe1cd] object-cover"
           loading="lazy"
           decoding="async"
         />

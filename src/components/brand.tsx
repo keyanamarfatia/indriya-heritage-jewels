@@ -1,6 +1,6 @@
 // Shared visual pieces that give the site its own look: script-accent headings,
 // a kolam-style divider, arch-framed product cards and the promise icons.
-import { ExternalLink, Heart } from "lucide-react";
+import { OffsiteBadge, OffsiteLink } from "@/components/offsite";
 import type { ReactNode } from "react";
 import type { Product } from "@/lib/products";
 
@@ -70,7 +70,9 @@ export function HeroArch({
   height,
   className = "",
   imgClassName = "",
+  blend = false,
 }: {
+  blend?: boolean;
   src: string;
   alt: string;
   width: number;
@@ -80,7 +82,7 @@ export function HeroArch({
 }) {
   return (
     <div
-      className={`relative overflow-hidden rounded-t-[999px] bg-[#fff1e4] shadow-[0_30px_70px_-30px_rgba(0,0,0,0.55)] ${className}`}
+      className={`relative overflow-hidden rounded-t-[999px] bg-[#efe1cd] shadow-[0_30px_70px_-30px_rgba(0,0,0,0.55)] ${className}`}
       style={{ aspectRatio: `${width} / ${height}` }}
     >
       <img
@@ -90,6 +92,7 @@ export function HeroArch({
         height={height}
         fetchPriority="high"
         className={`h-full w-full object-cover ${imgClassName}`}
+        style={{ mixBlendMode: blend ? "multiply" : undefined }}
       />
       <span
         aria-hidden="true"
@@ -114,8 +117,9 @@ export function ProductCard({
         href={product.indriyaUrl}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={`View ${product.name} on Indriya`}
-        className="relative block overflow-hidden rounded-t-[999px] bg-[#f7ebe0] p-2 ring-1 ring-gold/30 transition-shadow duration-500 group-hover:shadow-[0_18px_40px_-20px_rgba(74,20,32,0.45)]"
+        aria-label={`View ${product.name} on indriya.com (opens in a new tab)`}
+        title="Opens the official indriya.com in a new tab"
+        className="relative block overflow-hidden rounded-t-[999px] bg-[#efe1cd] p-1.5 ring-1 sm:p-2 ring-gold/30 transition-shadow duration-500 group-hover:shadow-[0_18px_40px_-20px_rgba(74,20,32,0.45)]"
       >
         <img
           src={product.image}
@@ -124,24 +128,19 @@ export function ProductCard({
           height={584}
           loading="lazy"
           decoding="async"
-          className="aspect-[4/5] w-full rounded-t-[999px] object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+          className="aspect-[4/5] w-full rounded-t-[999px] object-cover mix-blend-multiply transition-transform duration-700 group-hover:scale-[1.04]"
         />
-        <span className="absolute right-4 top-1/2 inline-flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-ivory/90 text-maroon opacity-0 transition-opacity group-hover:opacity-100">
-          <Heart className="h-4 w-4" aria-hidden="true" />
-        </span>
+        <OffsiteBadge className="absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 transition-opacity group-hover:opacity-100" />
       </a>
-      <H className="mt-5 font-display text-xl font-normal leading-snug text-ink">{product.name}</H>
-      <p className="mx-auto mt-1 max-w-[16rem] flex-1 text-[13px] leading-relaxed text-muted-foreground">
+      <H className="mt-4 font-display text-base font-normal leading-snug text-ink sm:mt-5 sm:text-xl">
+        {product.name}
+      </H>
+      <p className="mx-auto mt-1 hidden max-w-[16rem] flex-1 text-[13px] leading-relaxed text-muted-foreground sm:block">
         {product.description}
       </p>
-      <a
-        href={product.indriyaUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mx-auto mt-4 inline-flex items-center gap-2 border-b border-gold pb-1 text-[11px] font-medium uppercase tracking-[0.16em] text-maroon transition-colors hover:text-gold"
-      >
-        View on Indriya <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
-      </a>
+      <OffsiteLink href={product.indriyaUrl} variant="pill" className="mx-auto mt-3 sm:mt-4">
+        <span className="hidden sm:inline">View on&nbsp;</span>indriya.com
+      </OffsiteLink>
     </article>
   );
 }

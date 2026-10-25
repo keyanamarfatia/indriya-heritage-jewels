@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ExternalLink, Star } from "lucide-react";
+import { OffsiteLink } from "@/components/offsite";
+import { Star } from "lucide-react";
 import { Breadcrumbs, SiteShell } from "@/components/site-shell";
 import { KolamDivider, ScriptHeading } from "@/components/brand";
 import { StoreCard } from "@/components/store-card";
@@ -66,9 +67,9 @@ function StoreLocatorPage() {
             See the temple jewellery collection in person. Find a store, get directions, or open its
             page for the map, hours and services.
           </p>
-          <a href={STORES_URL} target="_blank" rel="noopener noreferrer" className="btn-lux mt-6">
-            Official Indriya store locator <ExternalLink className="h-4 w-4" aria-hidden="true" />
-          </a>
+          <OffsiteLink href={STORES_URL} variant="button" className="mt-6">
+            Official store locator on indriya.com
+          </OffsiteLink>
           <KolamDivider className="mt-8" />
         </div>
       </section>
@@ -103,15 +104,13 @@ function StoreLocatorPage() {
           <ul className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
             {OTHER_CITIES.map((city) => (
               <li key={city}>
-                <a
+                <OffsiteLink
                   href={STORES_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between gap-2 rounded-full border border-border bg-card px-5 py-3.5 transition-colors hover:border-maroon"
+                  variant="icon"
+                  className="w-full justify-between rounded-full border border-navy/25 bg-navy/[0.04] px-5 py-3.5 hover:bg-navy/10"
                 >
-                  <span className="font-display text-xl text-maroon">{city}</span>
-                  <ExternalLink className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
-                </a>
+                  <span className="font-display text-xl">{city}</span>
+                </OffsiteLink>
               </li>
             ))}
           </ul>

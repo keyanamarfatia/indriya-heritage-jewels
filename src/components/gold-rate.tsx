@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { ExternalLink, X } from "lucide-react";
+import { X } from "lucide-react";
+import { OffsiteLink } from "@/components/offsite";
 import { OFFICIAL_URL } from "@/lib/site";
 import { fetchLiveGold, type LiveGold } from "@/lib/live-gold";
 
@@ -18,7 +19,8 @@ const inr = new Intl.NumberFormat("en-IN", {
   maximumFractionDigits: 0,
 });
 
-export function GoldRateWidget() {
+export function GoldRateWidget({ variant = "float" }: { variant?: "float" | "dock" }) {
+  const dock = variant === "dock";
   const [open, setOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const [live, setLive] = useState<LiveGold | null>(null);
@@ -61,7 +63,11 @@ export function GoldRateWidget() {
         <div
           role="dialog"
           aria-label="Today's gold rate"
-          className="absolute bottom-0 right-[4.5rem] max-h-[80vh] w-[19rem] overflow-y-auto rounded-2xl border border-gold/40 bg-ivory p-6 text-left shadow-[0_24px_60px_-20px_rgba(74,20,32,0.45)] sm:w-80"
+          className={`${
+            dock
+              ? "fixed inset-x-3 bottom-[5.25rem] max-h-[70vh]"
+              : "absolute bottom-0 right-[4.5rem] max-h-[80vh] w-80"
+          } overflow-y-auto rounded-2xl border border-gold/40 bg-card p-6 text-left shadow-[0_24px_60px_-20px_rgba(74,20,32,0.45)]`}
         >
           <button
             type="button"
@@ -124,15 +130,9 @@ export function GoldRateWidget() {
             As last listed on indriya.com, {INDRIYA_RATE.updated}. Your store confirms the rate on
             your bill.
           </p>
-          <a
-            href={OFFICIAL_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 inline-flex items-center gap-2 border-b border-gold pb-1 text-[11px] font-medium uppercase tracking-[0.16em] text-maroon hover:text-gold"
-          >
-            Check today&rsquo;s rate on Indriya{" "}
-            <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
-          </a>
+          <OffsiteLink href={OFFICIAL_URL} variant="pill" className="mt-4">
+            Today&rsquo;s rate on indriya.com
+          </OffsiteLink>
           <p className="mt-4 text-[10px] text-muted-foreground/80">
             Live data:{" "}
             <a
@@ -155,30 +155,46 @@ export function GoldRateWidget() {
           </p>
         </div>
       )}
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-        aria-label="Show today's gold rate"
-        className="group flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
-      >
-        {!open && (
-          <span className="hidden rounded-full border border-gold/40 bg-ivory px-4 py-1.5 font-display text-base italic text-maroon shadow-sm sm:inline">
-            Today&rsquo;s gold rate
+      {dock ? (
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          aria-label="Show today's gold rate"
+          className="flex h-14 w-full flex-col items-center justify-center gap-0.5 text-[10px] font-medium uppercase tracking-[0.12em] text-ivory"
+        >
+          <GoldBar size={22} />
+          Gold rate
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          aria-label="Show today's gold rate"
+          className="group flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
+        >
+          {!open && (
+            <span className="hidden rounded-full border border-gold/40 bg-card px-4 py-1.5 font-display text-base italic text-maroon shadow-sm sm:inline">
+              Today&rsquo;s gold rate
+            </span>
+          )}
+          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-maroon shadow-lg ring-1 ring-gold/60 transition-transform group-hover:scale-105">
+            <GoldBar size={30} />
           </span>
-        )}
-        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-maroon shadow-lg ring-1 ring-gold/60 transition-transform group-hover:scale-105">
-          <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
-            <path d="M4 20 9 12h12l5 8Z" fill="#d9a441" />
-            <path d="M9 12 11 8h8l2 4Z" fill="#f0c766" />
-            <path d="M4 20h22v3H4Z" fill="#b8862b" />
-            <path
-              d="m24 4 .8 1.8L26.6 6.6 24.8 7.4 24 9.2 23.2 7.4 21.4 6.6 23.2 5.8Z"
-              fill="#fbf5ec"
-            />
-          </svg>
-        </span>
-      </button>
+        </button>
+      )}
     </div>
+  );
+}
+
+function GoldBar({ size }: { size: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 30 30" aria-hidden="true">
+      <path d="M4 20 9 12h12l5 8Z" fill="#d9a441" />
+      <path d="M9 12 11 8h8l2 4Z" fill="#f0c766" />
+      <path d="M4 20h22v3H4Z" fill="#b8862b" />
+      <path d="m24 4 .8 1.8L26.6 6.6 24.8 7.4 24 9.2 23.2 7.4 21.4 6.6 23.2 5.8Z" fill="#fbf5ec" />
+    </svg>
   );
 }

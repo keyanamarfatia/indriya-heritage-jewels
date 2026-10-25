@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ExternalLink } from "lucide-react";
+import { OffsiteLink } from "@/components/offsite";
 import { SiteShell } from "@/components/site-shell";
 import {
   HeroArch,
@@ -50,7 +50,7 @@ function Index() {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link to="/temple-jewellery/varalakshmi-vratham" className="btn-lux-gold">
-                Shop the Varalakshmi Collection
+                Shop the Varalakshmi Vratham Edit
               </Link>
               <Link to="/temple-jewellery" className="btn-lux-ghost">
                 Explore Temple Jewellery
@@ -72,7 +72,7 @@ function Index() {
       <section className="mx-auto max-w-6xl px-5 py-16 text-center sm:px-8">
         <ScriptHeading before="Shop by" script="Category" />
         <KolamDivider className="mt-6" />
-        <div className="mx-auto mt-10 grid max-w-3xl gap-8 sm:grid-cols-2">
+        <div className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-4 sm:gap-8">
           {[
             {
               label: "Necklaces",
@@ -88,7 +88,7 @@ function Index() {
             },
           ].map((c) => (
             <a key={c.label} href={c.href} className="group block">
-              <div className="overflow-hidden rounded-t-[999px] border border-border bg-[#fbeee3]">
+              <div className="overflow-hidden rounded-t-[999px] border border-border bg-[#efe1cd]">
                 <img
                   src={c.p.image}
                   alt={c.p.alt}
@@ -115,7 +115,7 @@ function Index() {
               Indriya.
             </p>
           </div>
-          <div className="mt-10 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-8 sm:gap-y-12 lg:grid-cols-4">
             {PRODUCTS.slice(0, 8).map((p) => (
               <ProductCard key={p.slug} product={p} />
             ))}
@@ -124,14 +124,9 @@ function Index() {
             <Link to="/temple-jewellery" className="btn-lux">
               View all 12 pieces
             </Link>
-            <a
-              href={ANANTARA_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-lux-outline"
-            >
-              Anantara on Indriya <ExternalLink className="h-4 w-4" aria-hidden="true" />
-            </a>
+            <OffsiteLink href={ANANTARA_URL} variant="button">
+              Anantara on indriya.com
+            </OffsiteLink>
           </div>
         </div>
       </section>

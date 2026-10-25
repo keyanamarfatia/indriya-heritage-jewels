@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ExternalLink } from "lucide-react";
+import { OffsiteLink } from "@/components/offsite";
 import { Breadcrumbs, SiteShell } from "@/components/site-shell";
 import {
   HeroArch,
@@ -84,7 +84,9 @@ function VaralakshmiPage() {
         />
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 sm:px-8 lg:grid-cols-2 lg:py-24">
           <div>
-            <p className="eyebrow !text-[#d8b878]">Varalakshmi Vratham Collection</p>
+            <p className="eyebrow !text-[#d8b878]">
+              Festive Edit · Pieces from the Anantara Collection
+            </p>
             <h1 className="mt-6 font-display text-5xl font-light leading-[1.08] text-ivory sm:text-6xl">
               Temple Jewellery for{" "}
               <span className="font-script text-[1.25em] font-normal text-[#d8b878]">
@@ -110,6 +112,7 @@ function VaralakshmiPage() {
               alt="Heirloom Ganesha 22 karat gold temple necklace with a Lord Ganesha pendant, ruby drops and pearls for Varalakshmi Vratham"
               width={1280}
               height={1280}
+              blend
             />
           </div>
         </div>
@@ -147,8 +150,11 @@ function VaralakshmiPage() {
         <section className="pb-16">
           <div className="text-center">
             <ScriptHeading before="Pieces for the" script="Vratham" />
+            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+              Chosen from Anantara, Indriya&rsquo;s bridal temple jewellery collection.
+            </p>
           </div>
-          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-8 lg:grid-cols-4">
             {FEATURED.map((p) => (
               <ProductCard key={p.slug} product={p} />
             ))}
@@ -209,7 +215,7 @@ function VaralakshmiPage() {
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
             Pair the Heirloom Ganesha necklace with its matching jhumkas for the full festive look.
           </p>
-          <div className="mx-auto mt-10 grid max-w-3xl gap-8 sm:grid-cols-2">
+          <div className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-4 sm:gap-8">
             {SET.map((p) => (
               <ProductCard key={p.slug} product={p} />
             ))}
@@ -309,14 +315,9 @@ function VaralakshmiPage() {
             <Link to="/store-locator" className="btn-lux">
               Find a Store Near You
             </Link>
-            <a
-              href={ANANTARA_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-lux-outline"
-            >
-              Shop Anantara on Indriya <ExternalLink className="h-4 w-4" aria-hidden="true" />
-            </a>
+            <OffsiteLink href={ANANTARA_URL} variant="button">
+              Anantara on indriya.com
+            </OffsiteLink>
           </div>
         </section>
       </div>

@@ -1,11 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
-import { ExternalLink, Heart, MapPin, Menu, Phone, Search, Sparkles, User, X } from "lucide-react";
+import { ArrowUpRight, Heart, MapPin, Menu, Phone, Search, Sparkles, User, X } from "lucide-react";
 import { OFFICIAL_URL } from "@/lib/site";
 import { ANANTARA_URL, PRODUCTS } from "@/lib/products";
 import logo from "@/assets/indriya-logo.png";
 import logoLight from "@/assets/indriya-logo-light.png";
 import { GoldRateWidget } from "@/components/gold-rate";
+import { OffsiteLink } from "@/components/offsite";
 
 /** Indriya's customer care number, as listed in the footer of indriya.com. */
 const CARE_PHONE = "1800-210-8383";
@@ -95,9 +96,9 @@ const NAV: NavItem[] = [
 
 function MenuAnchor({ link, className }: { link: MenuLink; className?: string }) {
   return link.external ? (
-    <a href={link.href} target="_blank" rel="noopener noreferrer" className={className}>
-      {link.label} <ExternalLink className="inline h-3.5 w-3.5 opacity-70" aria-hidden="true" />
-    </a>
+    <OffsiteLink href={link.href} className={`${className ?? ""} !text-navy`}>
+      {link.label}
+    </OffsiteLink>
   ) : (
     <a href={link.href} className={className}>
       {link.label}
@@ -133,18 +134,12 @@ export function SiteShell({ children }: { children: ReactNode }) {
         className="bg-maroon px-5 py-2 text-center text-[11px] tracking-wide text-ivory/85 sm:text-xs"
       >
         Student project for Atlas SkillTech University, not the official Indriya website.{" "}
-        <a
-          href={OFFICIAL_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="whitespace-nowrap font-medium text-[#e2c48f] underline underline-offset-2"
-        >
-          Visit the official Indriya site{" "}
-          <ExternalLink className="inline h-3.5 w-3.5" aria-hidden="true" />
-        </a>
+        <OffsiteLink href={OFFICIAL_URL} variant="light" className="whitespace-nowrap font-medium">
+          Visit the official indriya.com
+        </OffsiteLink>
       </div>
 
-      <header className="sticky top-0 z-40 border-b border-border bg-ivory/95 backdrop-blur">
+      <header className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur">
         {/* Row 1: logo, search, quick links */}
         <div className="mx-auto flex max-w-7xl items-center gap-6 px-5 py-3 sm:px-8">
           <Link to="/" aria-label="Indriya Temple Jewellery, home" onClick={() => setOpen(false)}>
@@ -155,33 +150,42 @@ export function SiteShell({ children }: { children: ReactNode }) {
             aria-label="Quick links"
             className="ml-auto hidden items-center gap-5 text-sm text-maroon md:flex"
           >
-            <a
-              href={OFFICIAL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden items-center gap-1.5 hover:text-ink xl:flex"
-            >
-              <Sparkles className="h-5 w-5" aria-hidden="true" /> Golden Programs
-            </a>
             <Link to="/store-locator" className="flex items-center gap-1.5 hover:text-ink">
               <MapPin className="h-5 w-5" aria-hidden="true" /> Store
             </Link>
-            <a
-              href={ANANTARA_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Wishlist on Indriya"
+            {/* Everything in this navy pill opens indriya.com */}
+            <div
+              className="flex items-center gap-4 rounded-full border border-navy/25 bg-navy/[0.05] py-1.5 pl-3 pr-4 text-navy"
+              title="These open the official indriya.com in a new tab"
             >
-              <Heart className="h-5 w-5" aria-hidden="true" />
-            </a>
-            <a
-              href={OFFICIAL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Your Indriya account"
-            >
-              <User className="h-5 w-5" aria-hidden="true" />
-            </a>
+              <span className="flex items-center gap-0.5 text-[10px] font-medium uppercase tracking-[0.14em] text-navy/70">
+                indriya.com <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
+              </span>
+              <OffsiteLink
+                href={OFFICIAL_URL}
+                variant="icon"
+                arrow={false}
+                className="hidden whitespace-nowrap xl:inline-flex"
+              >
+                <Sparkles className="h-4 w-4" aria-hidden="true" /> Golden Programs
+              </OffsiteLink>
+              <OffsiteLink
+                href={ANANTARA_URL}
+                variant="icon"
+                arrow={false}
+                label="Wishlist on Indriya"
+              >
+                <Heart className="h-4 w-4" aria-hidden="true" />
+              </OffsiteLink>
+              <OffsiteLink
+                href={OFFICIAL_URL}
+                variant="icon"
+                arrow={false}
+                label="Your Indriya account"
+              >
+                <User className="h-4 w-4" aria-hidden="true" />
+              </OffsiteLink>
+            </div>
           </nav>
           <button
             type="button"
@@ -250,7 +254,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
         {/* Mobile menu */}
         {open && (
-          <nav aria-label="Mobile" className="border-t border-border bg-ivory px-5 pb-5 lg:hidden">
+          <nav aria-label="Mobile" className="border-t border-border bg-card px-5 pb-5 lg:hidden">
             <SearchBox className="mt-4 md:hidden" />
             <ul className="mt-2">
               {NAV.map((item) => (
@@ -265,14 +269,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 </li>
               ))}
               <li>
-                <a
-                  href={OFFICIAL_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block py-3 text-base text-maroon"
-                >
-                  Visit indriya.com <ExternalLink className="inline h-4 w-4" aria-hidden="true" />
-                </a>
+                <OffsiteLink href={OFFICIAL_URL} variant="pill" className="mt-3 !text-sm">
+                  Visit the official indriya.com
+                </OffsiteLink>
               </li>
             </ul>
           </nav>
@@ -346,14 +345,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
             <p className="eyebrow">Official Indriya</p>
             <ul className="mt-3 space-y-2 text-sm">
               <li>
-                <a
-                  href={OFFICIAL_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-[#e2c48f]"
-                >
-                  indriya.com <ExternalLink className="inline h-3.5 w-3.5" aria-hidden="true" />
-                </a>
+                <OffsiteLink href={OFFICIAL_URL} variant="light">
+                  indriya.com
+                </OffsiteLink>
               </li>
               <li>
                 <a href={`tel:${CARE_PHONE.replace(/-/g, "")}`} className="hover:text-[#e2c48f]">
@@ -376,26 +370,40 @@ export function SiteShell({ children }: { children: ReactNode }) {
         </div>
       </footer>
 
-      {/* Floating gold-rate and call buttons */}
-      <div className="fixed bottom-20 right-4 z-50 flex flex-col items-end gap-3 lg:bottom-6 lg:right-6">
+      {/* Desktop: floating gold-rate and call buttons */}
+      <div className="fixed bottom-6 right-6 z-50 hidden flex-col items-end gap-3 lg:flex">
         <GoldRateWidget />
         <a
           href={`tel:${CARE_PHONE.replace(/-/g, "")}`}
           aria-label={`Call Indriya customer care on ${CARE_PHONE}`}
-          className="flex h-14 w-14 items-center justify-center rounded-full border border-gold/60 bg-ivory text-maroon shadow-lg transition-transform hover:scale-105"
+          className="flex h-14 w-14 items-center justify-center rounded-full border border-gold/60 bg-card text-maroon shadow-lg transition-transform hover:scale-105"
         >
           <Phone className="h-6 w-6" aria-hidden="true" />
         </a>
       </div>
 
-      {/* Sticky store CTA on mobile */}
-      <Link
-        to="/store-locator"
-        className="fixed inset-x-4 bottom-4 z-50 flex h-12 items-center justify-center gap-2 rounded-full bg-maroon text-xs font-medium uppercase tracking-[0.14em] text-ivory shadow-lg lg:hidden"
+      {/* Mobile: one bottom dock instead of floating buttons over the content */}
+      <nav
+        aria-label="Quick actions"
+        className="fixed inset-x-3 bottom-3 z-50 grid grid-cols-3 divide-x divide-ivory/15 overflow-visible rounded-full bg-maroon shadow-[0_12px_30px_-10px_rgba(0,0,0,0.5)] ring-1 ring-gold/40 lg:hidden"
       >
-        <MapPin className="h-5 w-5" aria-hidden="true" />
-        Find a Store
-      </Link>
+        <Link
+          to="/store-locator"
+          className="flex h-14 flex-col items-center justify-center gap-0.5 text-[10px] font-medium uppercase tracking-[0.12em] text-ivory"
+        >
+          <MapPin className="h-5 w-5 text-[#d8b878]" aria-hidden="true" />
+          Stores
+        </Link>
+        <GoldRateWidget variant="dock" />
+        <a
+          href={`tel:${CARE_PHONE.replace(/-/g, "")}`}
+          aria-label={`Call Indriya customer care on ${CARE_PHONE}`}
+          className="flex h-14 flex-col items-center justify-center gap-0.5 text-[10px] font-medium uppercase tracking-[0.12em] text-ivory"
+        >
+          <Phone className="h-5 w-5 text-[#d8b878]" aria-hidden="true" />
+          Call
+        </a>
+      </nav>
     </div>
   );
 }

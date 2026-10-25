@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ExternalLink } from "lucide-react";
+import { OffsiteLink } from "@/components/offsite";
 import { Breadcrumbs, SiteShell } from "@/components/site-shell";
 import { KolamDivider, ProductCard, ScriptHeading } from "@/components/brand";
 import { breadcrumbLd, pageHead } from "@/lib/site";
@@ -107,7 +107,7 @@ function CollectionPage() {
         </div>
 
         {shown.length > 0 ? (
-          <ul className="mt-10 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-8 sm:gap-y-12 lg:grid-cols-4">
             {shown.map((p) => (
               <li key={p.slug}>
                 <ProductCard product={p} headingLevel="h2" />
@@ -117,14 +117,7 @@ function CollectionPage() {
         ) : (
           <p className="mt-12 text-center text-muted-foreground">
             No pieces match that search here.{" "}
-            <a
-              href={ANANTARA_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-maroon underline"
-            >
-              Browse the full collection on Indriya
-            </a>
+            <OffsiteLink href={ANANTARA_URL}>Browse the full collection on indriya.com</OffsiteLink>
             .
           </p>
         )}
@@ -148,10 +141,9 @@ function CollectionPage() {
             </Link>
             .
           </p>
-          <a href={ANANTARA_URL} target="_blank" rel="noopener noreferrer" className="btn-lux mt-6">
-            See all Anantara pieces on Indriya{" "}
-            <ExternalLink className="h-4 w-4" aria-hidden="true" />
-          </a>
+          <OffsiteLink href={ANANTARA_URL} variant="button" className="mt-6">
+            All Anantara pieces on indriya.com
+          </OffsiteLink>
         </div>
       </div>
     </SiteShell>

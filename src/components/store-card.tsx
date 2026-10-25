@@ -49,12 +49,12 @@ export function StoreCard({
       </Link>
 
       <div className="flex flex-1 flex-col p-6">
-        <div className="flex items-start justify-between gap-3">
+        <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
           <div>
             <H className="font-display text-2xl leading-tight text-ink">{store.name}</H>
             <p className="mt-0.5 text-sm text-terracotta">{store.landmark}</p>
           </div>
-          <Rating store={store} className="shrink-0 pt-1" />
+          <Rating store={store} className="shrink-0 sm:pt-1" />
         </div>
 
         <div className="my-4 h-px bg-gold/25" />
@@ -71,7 +71,7 @@ export function StoreCard({
             </span>
             <a
               href={telHref(store.phone)}
-              className="flex items-center gap-2.5 text-maroon hover:underline"
+              className="flex items-center gap-2.5 py-1 text-maroon hover:underline"
             >
               <Phone className="h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
               {store.phone}
@@ -79,21 +79,22 @@ export function StoreCard({
           </li>
         </ul>
 
-        <div className="mt-auto flex items-center gap-3 pt-6">
+        <div className="mt-auto grid grid-cols-[1fr_1fr_auto] items-center gap-2 pt-6 sm:gap-3">
           <a
             href={directionsUrl(store)}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-lux flex-1 !px-4"
+            className="btn-lux !px-3 sm:!px-4"
           >
             <Navigation className="h-4 w-4" aria-hidden="true" /> Directions
           </a>
           <Link
             to="/store-locator/$slug"
             params={{ slug: store.slug }}
-            className="btn-lux-outline flex-1 !px-4"
+            className="btn-lux-outline !px-3 sm:!px-4"
           >
-            Show Details
+            <span className="sm:hidden">Details</span>
+            <span className="hidden sm:inline">Show Details</span>
           </Link>
           <a
             href={telHref(store.phone)}

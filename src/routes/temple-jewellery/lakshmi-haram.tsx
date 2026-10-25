@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { OffsiteLink } from "@/components/offsite";
 import { Breadcrumbs, SiteShell } from "@/components/site-shell";
-import { ExternalLink } from "lucide-react";
 import { ProductCard, ScriptHeading } from "@/components/brand";
 import { breadcrumbLd, pageHead } from "@/lib/site";
 import { productBySlug } from "@/lib/products";
@@ -41,7 +41,7 @@ function HaramPage() {
           ]}
         />
         <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-start">
-          <div className="overflow-hidden rounded-t-[999px] border border-border bg-[#fbeee3]">
+          <div className="overflow-hidden rounded-t-[999px] border border-border bg-[#efe1cd]">
             <img
               src={MALA.image}
               alt={MALA.alt}
@@ -64,14 +64,9 @@ function HaramPage() {
               Lakshmi coin motifs in 22 karat gold, finished with green drops, and is made to be
               layered over a temple choker.
             </p>
-            <a
-              href={MALA.indriyaUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-lux mt-6"
-            >
-              View price on Indriya <ExternalLink className="h-4 w-4" aria-hidden="true" />
-            </a>
+            <OffsiteLink href={MALA.indriyaUrl} variant="button" className="mt-6">
+              View price on indriya.com
+            </OffsiteLink>
 
             <h2 className="mt-10 font-display text-3xl text-maroon">
               Why it suits Varalakshmi Vratham
@@ -108,7 +103,7 @@ function HaramPage() {
 
         <section className="mt-20 text-center">
           <ScriptHeading before="You may also" script="like" />
-          <div className="mx-auto mt-10 grid max-w-3xl gap-8 sm:grid-cols-2">
+          <div className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-4 sm:gap-8">
             {[UDAYA, productBySlug("vinayaka-gold-bridal-necklace")].map((p) => (
               <ProductCard key={p.slug} product={p} />
             ))}

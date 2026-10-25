@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { OffsiteLink } from "@/components/offsite";
 import {
   Clock,
-  ExternalLink,
   Gem,
   Languages,
   MapPin,
@@ -265,7 +265,7 @@ function StoreDetails({ store, className = "" }: { store: Store; className?: str
 
   return (
     <aside
-      className={`rounded-3xl border border-gold/30 bg-ivory/95 p-7 shadow-[0_30px_60px_-30px_rgba(74,20,32,0.5)] backdrop-blur ${className}`}
+      className={`rounded-3xl border border-gold/30 bg-card/95 p-7 shadow-[0_30px_60px_-30px_rgba(74,20,32,0.5)] backdrop-blur ${className}`}
     >
       <div className="flex items-center justify-between gap-3">
         <h2 className="font-display text-3xl text-ink">Store details</h2>
@@ -301,14 +301,9 @@ function StoreDetails({ store, className = "" }: { store: Store; className?: str
           ))}
         </ul>
       )}
-      <a
-        href={officialStoreUrl(store)}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-6 inline-flex items-center gap-1.5 text-sm text-maroon underline decoration-gold underline-offset-4 hover:text-gold"
-      >
-        This store on indriya.com <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
-      </a>
+      <OffsiteLink href={officialStoreUrl(store)} variant="pill" className="mt-6">
+        This store on indriya.com
+      </OffsiteLink>
     </aside>
   );
 }
