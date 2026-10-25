@@ -14,6 +14,8 @@ const PATHS = [
   "/temple-jewellery-guide",
   "/lifetime-exchange",
   "/store-locator",
+  "/store-locator/borivali-w-mumbai",
+  "/store-locator/phoenix-marketcity-kurla",
 ];
 
 describe("App routing", () => {

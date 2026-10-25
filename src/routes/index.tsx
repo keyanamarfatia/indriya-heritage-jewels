@@ -11,7 +11,7 @@ import {
 import { pageHead } from "@/lib/site";
 import { ANANTARA_URL, PRODUCTS, productBySlug } from "@/lib/products";
 import brideImage from "@/assets/anantara/anantara-bride.webp";
-import rcity from "@/assets/stores/rcity.webp";
+import rcity from "@/assets/stores/r-city-mall-mumbai-1.webp";
 
 export const Route = createFileRoute("/")({
   head: () =>
@@ -190,10 +190,10 @@ function Index() {
           <img
             src={rcity}
             alt="Inside the Indriya jewellery store at R City Mall, Mumbai, with its blue deer sculpture"
-            width={900}
-            height={336}
+            width={710}
+            height={543}
             loading="lazy"
-            className="aspect-[3/1] w-full object-cover"
+            className="aspect-[16/9] w-full object-cover"
           />
           <div className="p-8 pt-6">
             <h2 className="font-display text-3xl text-ink">Visit a store</h2>

@@ -11,8 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LifetimeExchangeRouteImport } from './routes/lifetime-exchange'
-import { Route as StoreLocatorRouteImport } from './routes/store-locator'
 import { Route as TempleJewelleryGuideRouteImport } from './routes/temple-jewellery-guide'
+import { Route as StoreLocatorIndexRouteImport } from './routes/store-locator/index'
+import { Route as StoreLocatorSlugRouteImport } from './routes/store-locator/$slug'
 import { Route as TempleJewelleryIndexRouteImport } from './routes/temple-jewellery/index'
 import { Route as TempleJewelleryLakshmiHaramRouteImport } from './routes/temple-jewellery/lakshmi-haram'
 import { Route as TempleJewelleryVaralakshmiVrathamRouteImport } from './routes/temple-jewellery/varalakshmi-vratham'
@@ -27,14 +28,19 @@ const LifetimeExchangeRoute = LifetimeExchangeRouteImport.update({
   path: '/lifetime-exchange',
   getParentRoute: () => rootRouteImport,
 } as any)
-const StoreLocatorRoute = StoreLocatorRouteImport.update({
-  id: '/store-locator',
-  path: '/store-locator',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const TempleJewelleryGuideRoute = TempleJewelleryGuideRouteImport.update({
   id: '/temple-jewellery-guide',
   path: '/temple-jewellery-guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoreLocatorIndexRoute = StoreLocatorIndexRouteImport.update({
+  id: '/store-locator/',
+  path: '/store-locator/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoreLocatorSlugRoute = StoreLocatorSlugRouteImport.update({
+  id: '/store-locator/$slug',
+  path: '/store-locator/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TempleJewelleryIndexRoute = TempleJewelleryIndexRouteImport.update({
@@ -58,29 +64,32 @@ const TempleJewelleryVaralakshmiVrathamRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/lifetime-exchange': typeof LifetimeExchangeRoute
-  '/store-locator': typeof StoreLocatorRoute
   '/temple-jewellery-guide': typeof TempleJewelleryGuideRoute
+  '/store-locator/$slug': typeof StoreLocatorSlugRoute
   '/temple-jewellery/lakshmi-haram': typeof TempleJewelleryLakshmiHaramRoute
   '/temple-jewellery/varalakshmi-vratham': typeof TempleJewelleryVaralakshmiVrathamRoute
+  '/store-locator/': typeof StoreLocatorIndexRoute
   '/temple-jewellery/': typeof TempleJewelleryIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/lifetime-exchange': typeof LifetimeExchangeRoute
-  '/store-locator': typeof StoreLocatorRoute
   '/temple-jewellery-guide': typeof TempleJewelleryGuideRoute
+  '/store-locator/$slug': typeof StoreLocatorSlugRoute
   '/temple-jewellery/lakshmi-haram': typeof TempleJewelleryLakshmiHaramRoute
   '/temple-jewellery/varalakshmi-vratham': typeof TempleJewelleryVaralakshmiVrathamRoute
+  '/store-locator': typeof StoreLocatorIndexRoute
   '/temple-jewellery': typeof TempleJewelleryIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/lifetime-exchange': typeof LifetimeExchangeRoute
-  '/store-locator': typeof StoreLocatorRoute
   '/temple-jewellery-guide': typeof TempleJewelleryGuideRoute
+  '/store-locator/$slug': typeof StoreLocatorSlugRoute
   '/temple-jewellery/lakshmi-haram': typeof TempleJewelleryLakshmiHaramRoute
   '/temple-jewellery/varalakshmi-vratham': typeof TempleJewelleryVaralakshmiVrathamRoute
+  '/store-locator/': typeof StoreLocatorIndexRoute
   '/temple-jewellery/': typeof TempleJewelleryIndexRoute
 }
 export interface FileRouteTypes {
@@ -88,38 +97,42 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/lifetime-exchange'
-    | '/store-locator'
     | '/temple-jewellery-guide'
+    | '/store-locator/$slug'
     | '/temple-jewellery/lakshmi-haram'
     | '/temple-jewellery/varalakshmi-vratham'
+    | '/store-locator/'
     | '/temple-jewellery/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/lifetime-exchange'
-    | '/store-locator'
     | '/temple-jewellery-guide'
+    | '/store-locator/$slug'
     | '/temple-jewellery/lakshmi-haram'
     | '/temple-jewellery/varalakshmi-vratham'
+    | '/store-locator'
     | '/temple-jewellery'
   id:
     | '__root__'
     | '/'
     | '/lifetime-exchange'
-    | '/store-locator'
     | '/temple-jewellery-guide'
+    | '/store-locator/$slug'
     | '/temple-jewellery/lakshmi-haram'
     | '/temple-jewellery/varalakshmi-vratham'
+    | '/store-locator/'
     | '/temple-jewellery/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LifetimeExchangeRoute: typeof LifetimeExchangeRoute
-  StoreLocatorRoute: typeof StoreLocatorRoute
   TempleJewelleryGuideRoute: typeof TempleJewelleryGuideRoute
+  StoreLocatorSlugRoute: typeof StoreLocatorSlugRoute
   TempleJewelleryLakshmiHaramRoute: typeof TempleJewelleryLakshmiHaramRoute
   TempleJewelleryVaralakshmiVrathamRoute: typeof TempleJewelleryVaralakshmiVrathamRoute
+  StoreLocatorIndexRoute: typeof StoreLocatorIndexRoute
   TempleJewelleryIndexRoute: typeof TempleJewelleryIndexRoute
 }
 
@@ -139,18 +152,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LifetimeExchangeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/store-locator': {
-      id: '/store-locator'
-      path: '/store-locator'
-      fullPath: '/store-locator'
-      preLoaderRoute: typeof StoreLocatorRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/temple-jewellery-guide': {
       id: '/temple-jewellery-guide'
       path: '/temple-jewellery-guide'
       fullPath: '/temple-jewellery-guide'
       preLoaderRoute: typeof TempleJewelleryGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/store-locator/': {
+      id: '/store-locator/'
+      path: '/store-locator'
+      fullPath: '/store-locator/'
+      preLoaderRoute: typeof StoreLocatorIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/store-locator/$slug': {
+      id: '/store-locator/$slug'
+      path: '/store-locator/$slug'
+      fullPath: '/store-locator/$slug'
+      preLoaderRoute: typeof StoreLocatorSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/temple-jewellery/': {
@@ -180,11 +200,12 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LifetimeExchangeRoute: LifetimeExchangeRoute,
-  StoreLocatorRoute: StoreLocatorRoute,
   TempleJewelleryGuideRoute: TempleJewelleryGuideRoute,
+  StoreLocatorSlugRoute: StoreLocatorSlugRoute,
   TempleJewelleryLakshmiHaramRoute: TempleJewelleryLakshmiHaramRoute,
   TempleJewelleryVaralakshmiVrathamRoute:
     TempleJewelleryVaralakshmiVrathamRoute,
+  StoreLocatorIndexRoute: StoreLocatorIndexRoute,
   TempleJewelleryIndexRoute: TempleJewelleryIndexRoute,
 }
 export const routeTree = rootRouteImport
