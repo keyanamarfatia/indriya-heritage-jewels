@@ -85,7 +85,7 @@ function VaralakshmiPage() {
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 sm:px-8 lg:grid-cols-2 lg:py-24">
           <div>
             <p className="eyebrow !text-[#d8b878]">
-              Festive Edit · Pieces from the Anantara Collection
+              The Anantara Collection · For Varalakshmi Vratham
             </p>
             <h1 className="mt-6 font-display text-5xl font-light leading-[1.08] text-ivory sm:text-6xl">
               Temple Jewellery for{" "}
@@ -151,7 +151,8 @@ function VaralakshmiPage() {
           <div className="text-center">
             <ScriptHeading before="Pieces for the" script="Vratham" />
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Chosen from Anantara, Indriya&rsquo;s bridal temple jewellery collection.
+              From Anantara, Indriya&rsquo;s bridal temple jewellery collection, chosen for the
+              vratham.
             </p>
           </div>
           <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-8 lg:grid-cols-4">

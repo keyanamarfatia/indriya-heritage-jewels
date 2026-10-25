@@ -73,7 +73,7 @@ function Index() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3 sm:gap-4">
               <Link to="/temple-jewellery/varalakshmi-vratham" className="btn-lux-gold">
-                Shop the Varalakshmi Vratham Edit
+                Shop for Varalakshmi Vratham
               </Link>
               <Link to="/temple-jewellery" className="btn-lux-ghost">
                 Explore the Collection

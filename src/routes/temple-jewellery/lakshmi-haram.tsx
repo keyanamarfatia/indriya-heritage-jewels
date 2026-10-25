@@ -95,7 +95,7 @@ function HaramPage() {
                 Find a Store Near You
               </Link>
               <Link to="/temple-jewellery/varalakshmi-vratham" className="btn-lux-outline">
-                See the Varalakshmi collection
+                Jewellery for Varalakshmi Vratham
               </Link>
             </div>
           </div>
