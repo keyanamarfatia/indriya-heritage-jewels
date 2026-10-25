@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import { ExternalLink, MapPin, Menu, X } from "lucide-react";
 import { OFFICIAL_URL } from "@/lib/site";
+import logo from "@/assets/indriya-logo-ivory.png";
 
 const NAV = [
   { to: "/temple-jewellery", label: "Collection" },
@@ -33,10 +34,14 @@ export function SiteShell({ children }: { children: ReactNode }) {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
           <Link
             to="/"
-            className="font-display text-2xl tracking-wide"
+            className="flex items-center gap-3"
+            aria-label="Indriya Temple Jewellery, home"
             onClick={() => setOpen(false)}
           >
-            Indriya <span className="text-gold">Temple Jewellery</span>
+            <img src={logo} alt="Indriya" width={274} height={79} className="h-9 w-auto sm:h-10" />
+            <span className="hidden border-l border-gold/50 pl-3 font-display text-lg text-gold sm:inline">
+              Temple Jewellery
+            </span>
           </Link>
           <nav aria-label="Main" className="hidden gap-6 text-sm lg:flex">
             {NAV.map((item) => (
@@ -82,7 +87,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <footer className="bg-maroon px-6 pb-24 pt-10 text-ivory sm:px-12 lg:pb-10">
         <div className="mx-auto grid max-w-6xl gap-8 sm:grid-cols-2">
           <div>
-            <p className="font-display text-2xl">Indriya Temple Jewellery</p>
+            <img src={logo} alt="Indriya" width={274} height={79} className="h-10 w-auto" />
+            <p className="mt-3 font-display text-xl text-gold">Temple Jewellery</p>
             <p className="mt-2 text-sm text-ivory/75">Every Jewel Tells a Story.</p>
           </div>
           <ul className="grid grid-cols-2 gap-2 text-sm text-ivory/85">
