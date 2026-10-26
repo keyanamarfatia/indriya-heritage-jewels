@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { OffsiteLink } from "@/components/offsite";
 import { SiteShell } from "@/components/site-shell";
+import { AnimatedLogo } from "@/components/animated-logo";
 import { KolamDivider, ProductCard, PromiseIcon, ScriptHeading } from "@/components/brand";
 import { OFFICIAL_URL, SITE_NAME, absoluteUrl, jsonLd, pageHead } from "@/lib/site";
 import { ANANTARA_URL, PRODUCTS, productBySlug, productSrcSet } from "@/lib/products";
@@ -87,14 +88,7 @@ function Index() {
 
         <div className="relative mx-auto -mt-20 flex max-w-7xl px-5 pb-24 sm:px-8 md:mt-0 md:min-h-[640px] md:items-center md:py-20 lg:min-h-[78vh]">
           <div className="max-w-xl">
-            <img
-              src={logoLight}
-              alt=""
-              aria-hidden="true"
-              width={274}
-              height={79}
-              className="h-10 w-auto opacity-90 sm:h-12"
-            />
+            <AnimatedLogo light className="h-10 opacity-90 sm:h-12" />
             <p className="mt-6 flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.35em] text-[#d8b878]">
               <span className="h-px w-8 bg-[#d8b878]/70" /> Presents
             </p>

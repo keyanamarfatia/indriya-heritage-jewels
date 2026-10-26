@@ -3,8 +3,7 @@ import { useState, type ReactNode } from "react";
 import { ArrowUpRight, Heart, MapPin, Menu, Phone, Search, Sparkles, User, X } from "lucide-react";
 import { OFFICIAL_URL } from "@/lib/site";
 import { ANANTARA_URL, PRODUCTS } from "@/lib/products";
-import logo from "@/assets/indriya-logo.png";
-import logoLight from "@/assets/indriya-logo-light.png";
+import { AnimatedLogo } from "@/components/animated-logo";
 import { GoldRateWidget } from "@/components/gold-rate";
 import { OffsiteLink } from "@/components/offsite";
 
@@ -148,7 +147,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             onClick={() => setOpen(false)}
             className="shrink-0"
           >
-            <img src={logo} alt="Indriya" width={274} height={79} className="h-9 w-auto sm:h-11" />
+            <AnimatedLogo className="h-9 sm:h-11" />
           </Link>
           <SearchBox className="mx-auto hidden w-full max-w-xl md:block" />
           <nav
@@ -288,7 +287,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <footer className="bg-maroon px-6 pb-28 pt-16 text-ivory/85 sm:px-12 lg:pb-12">
         <div className="mx-auto grid max-w-7xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <img src={logoLight} alt="Indriya" width={274} height={79} className="h-10 w-auto" />
+            <AnimatedLogo light className="h-10" />
             <p className="mt-4 font-display text-2xl italic text-[#e2c48f]">
               Every Jewel Tells a Story
             </p>
