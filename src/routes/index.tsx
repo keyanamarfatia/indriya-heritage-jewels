@@ -8,6 +8,7 @@ import { ANANTARA_URL, PRODUCTS, productBySlug, productSrcSet } from "@/lib/prod
 import bannerImage from "@/assets/anantara/anantara-banner.webp";
 import banner640 from "@/assets/anantara/anantara-banner-640.webp";
 import banner960 from "@/assets/anantara/anantara-banner-960.webp";
+import banner1280 from "@/assets/anantara/anantara-banner-1280.webp";
 import logoLight from "@/assets/indriya-logo-light.png";
 import rcity from "@/assets/stores/r-city-mall-mumbai-1.webp";
 
@@ -28,7 +29,7 @@ export const Route = createFileRoute("/")({
           rel: "preload",
           as: "image",
           href: bannerImage,
-          imageSrcSet: `${banner640} 640w, ${banner960} 960w, ${bannerImage} 1353w`,
+          imageSrcSet: `${banner640} 640w, ${banner960} 960w, ${banner1280} 1280w, ${bannerImage} 1920w`,
           imageSizes: "(min-width: 768px) 72vw, 100vw",
           fetchPriority: "high",
         },
@@ -68,11 +69,11 @@ function Index() {
       <section className="relative isolate overflow-hidden bg-maroon text-ivory">
         <img
           src={bannerImage}
-          srcSet={`${banner640} 640w, ${banner960} 960w, ${bannerImage} 1353w`}
+          srcSet={`${banner640} 640w, ${banner960} 960w, ${banner1280} 1280w, ${bannerImage} 1920w`}
           sizes="(min-width: 768px) 72vw, 100vw"
           alt="A South Indian bride in a cream silk saree wearing Indriya Anantara gold temple jewellery, leaning on a carved wooden pillar"
-          width={1353}
-          height={926}
+          width={1920}
+          height={1315}
           fetchPriority="high"
           className="relative -z-10 block h-[52vh] min-h-80 w-full object-cover object-[58%_12%] md:absolute md:inset-y-0 md:right-0 md:h-full md:min-h-0 md:w-[72%] md:object-[40%_20%]"
         />

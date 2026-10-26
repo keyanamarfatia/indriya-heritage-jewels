@@ -467,3 +467,23 @@
     display: none;
   }
 }
+
+/* Smooth FAQ open/close where supported (Chrome/Edge); instant elsewhere */
+.faq-item {
+  interpolate-size: allow-keywords;
+}
+.faq-item::details-content {
+  height: 0;
+  overflow: clip;
+  transition:
+    height 0.35s ease,
+    content-visibility 0.35s allow-discrete;
+}
+.faq-item[open]::details-content {
+  height: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq-item::details-content {
+    transition: none;
+  }
+}

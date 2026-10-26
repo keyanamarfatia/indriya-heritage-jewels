@@ -9,7 +9,8 @@ import {
   ScriptHeading,
 } from "@/components/brand";
 import { breadcrumbLd, jsonLd, pageHead, absoluteUrl } from "@/lib/site";
-import { TEMPLE_FAQS, faqPageLd } from "@/lib/faqs";
+import { faqPageLd } from "@/lib/faqs";
+import { FaqSection } from "@/components/faq-section";
 import { ANANTARA_URL, productBySlug } from "@/lib/products";
 import heroImage from "@/assets/anantara/ganesha-large.webp";
 import hero480 from "@/assets/anantara/ganesha-large-480.webp";
@@ -275,35 +276,8 @@ function VaralakshmiPage() {
           </ul>
         </section>
 
-        {/* FAQ (AEO) — native <details> keeps every answer in the server-rendered HTML */}
-        <section id="faq" className="border-t border-border py-16">
-          <div className="text-center">
-            <ScriptHeading before="Frequently Asked" script="Questions" />
-          </div>
-          <div className="mt-10 divide-y divide-border rounded-2xl border border-border bg-card">
-            {TEMPLE_FAQS.map((f, i) => (
-              <details key={f.q} className="group px-6 py-5" open={i === 0}>
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
-                  <h3 className="font-sans text-lg font-medium text-ink">{f.q}</h3>
-                  <span
-                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sand text-xl text-maroon transition-transform group-open:rotate-45"
-                    aria-hidden="true"
-                  >
-                    +
-                  </span>
-                </summary>
-                <p className="mt-3 leading-relaxed text-muted-foreground">{f.a}</p>
-              </details>
-            ))}
-          </div>
-          <p className="mt-6 text-sm">
-            Want the full story behind these designs? Read our{" "}
-            <Link to="/temple-jewellery-guide" className={link}>
-              Temple Jewellery Guide
-            </Link>
-            .
-          </p>
-        </section>
+        {/* FAQ (AEO) */}
+        <FaqSection />
 
         {/* Visit */}
         <section className="mb-16 overflow-hidden rounded-t-[200px] bg-sand px-6 pb-12 pt-16 text-center sm:px-12">
