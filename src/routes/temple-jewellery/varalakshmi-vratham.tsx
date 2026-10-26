@@ -19,7 +19,7 @@ import nakshiImage from "@/assets/anantara/vishnu-haar.webp";
 const PATH = "/temple-jewellery/varalakshmi-vratham";
 const TITLE = "Temple Jewellery for Varalakshmi Vratham | Indriya";
 const DESCRIPTION =
-  "Celebrate Varalakshmi Vratham with Indriya's temple jewellery: nakshi Lakshmi harams, kasu malas and antique gold. BIS Hallmark gold, lifetime exchange.";
+  "Celebrate Varalakshmi Vratham with Indriya's temple jewellery: nakshi Lakshmi harams, kasu malas and antique gold. BIS Hallmark, lifetime exchange.";
 
 const FEATURED = [
   "heirloom-ganesha-gold-bridal-necklace",

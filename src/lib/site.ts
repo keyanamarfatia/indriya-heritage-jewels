@@ -56,6 +56,7 @@ export const pageHead = ({
     { property: "og:title", content: title },
     { property: "og:description", content: description },
     { property: "og:type", content: "website" },
+    { property: "og:site_name", content: SITE_NAME },
     { property: "og:url", content: absoluteUrl(path) },
     ...(image ? [{ property: "og:image", content: image }] : []),
     { name: "twitter:card", content: "summary_large_image" },
