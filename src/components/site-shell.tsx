@@ -78,7 +78,7 @@ const NAV: NavItem[] = [
         title: "Our promises",
         links: [
           { label: "Lifetime Exchange", href: "/lifetime-exchange" },
-          { label: "Temple Jewellery FAQ", href: "/temple-jewellery/varalakshmi-vratham#faq" },
+          { label: "FAQ & Ask Indriya", href: "/faq" },
           { label: "Store Locator", href: "/store-locator" },
         ],
       },
@@ -336,10 +336,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 </a>
               </li>
               <li>
-                <a
-                  href="/temple-jewellery/varalakshmi-vratham#faq"
-                  className="hover:text-[#e2c48f]"
-                >
+                <a href="/faq" className="hover:text-[#e2c48f]">
                   FAQ
                 </a>
               </li>

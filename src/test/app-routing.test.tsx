@@ -13,6 +13,7 @@ const PATHS = [
   "/temple-jewellery/lakshmi-haram",
   "/temple-jewellery-guide",
   "/lifetime-exchange",
+  "/faq",
   "/store-locator",
   "/jewellery/heirloom-ganesha-gold-bridal-necklace",
   "/store-locator/borivali-w-mumbai",

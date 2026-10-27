@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { BookOpen, MapPin, Phone } from "lucide-react";
+import { BookOpen, MapPin, Phone, Sparkles } from "lucide-react";
 import { TEMPLE_FAQS } from "@/lib/faqs";
 
 const CARE_PHONE = "18002108383";
@@ -38,8 +38,14 @@ export function FaqSection({ id = "faq" }: { id?: string }) {
               </a>
             </div>
             <Link
+              to="/faq"
+              className="mt-4 flex w-fit items-center gap-1.5 text-sm text-maroon underline decoration-gold underline-offset-4 hover:text-gold-deep"
+            >
+              <Sparkles className="h-4 w-4" aria-hidden="true" /> More questions? Ask Indriya
+            </Link>
+            <Link
               to="/store-locator"
-              className="mt-4 inline-flex items-center gap-1.5 text-sm text-maroon underline decoration-gold underline-offset-4 hover:text-gold-deep"
+              className="mt-3 inline-flex items-center gap-1.5 text-sm text-maroon underline decoration-gold underline-offset-4 hover:text-gold-deep"
             >
               <MapPin className="h-4 w-4" aria-hidden="true" /> Or ask in a store near you
             </Link>

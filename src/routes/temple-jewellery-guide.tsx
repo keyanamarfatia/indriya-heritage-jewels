@@ -536,7 +536,7 @@ function GuidePage() {
                   Bureau of Indian Standards
                 </a>
                 , or see our{" "}
-                <a href="/temple-jewellery/varalakshmi-vratham#faq" className={link}>
+                <a href="/faq" className={link}>
                   temple jewellery FAQ
                 </a>
                 .
