@@ -14,6 +14,7 @@ const PATHS = [
   "/temple-jewellery-guide",
   "/lifetime-exchange",
   "/faq",
+  "/about",
   "/store-locator",
   "/jewellery/heirloom-ganesha-gold-bridal-necklace",
   "/store-locator/borivali-w-mumbai",

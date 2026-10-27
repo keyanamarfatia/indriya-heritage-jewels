@@ -16,6 +16,27 @@ export const GUIDE_AUTHOR = {
 
 export const GUIDE_PUBLISHED = "2026-10-25";
 
+/** When the site went live and when it was last reviewed (shown on the homepage and About page). */
+export const SITE_PUBLISHED = "2026-10-25";
+export const SITE_UPDATED = "2026-10-27";
+
+export const formatDate = (iso: string) =>
+  new Date(iso).toLocaleDateString("en-IN", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+
+/** Who made the site, for author/publisher in schema. */
+export const authorLd = () => ({
+  "@type": "Organization",
+  name: GUIDE_AUTHOR.name,
+  description: GUIDE_AUTHOR.role,
+  url: `${SITE_URL}/about`,
+  parentOrganization: { "@type": "CollegeOrUniversity", name: "Atlas SkillTech University" },
+});
+
 export const absoluteUrl = (path: string) => `${SITE_URL}${path === "/" ? "/" : path}`;
 
 /** A JSON-LD <script> for a route's head(). Rendered on the server, so crawlers see it without JavaScript. */

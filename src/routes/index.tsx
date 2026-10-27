@@ -3,7 +3,20 @@ import { OffsiteLink } from "@/components/offsite";
 import { SiteShell } from "@/components/site-shell";
 import { AnimatedLogo } from "@/components/animated-logo";
 import { KolamDivider, ProductCard, PromiseIcon, ScriptHeading } from "@/components/brand";
-import { OFFICIAL_URL, SITE_NAME, absoluteUrl, breadcrumbLd, jsonLd, pageHead } from "@/lib/site";
+import {
+  GUIDE_AUTHOR,
+  OFFICIAL_URL,
+  SITE_NAME,
+  SITE_PUBLISHED,
+  SITE_UPDATED,
+  absoluteUrl,
+  authorLd,
+  breadcrumbLd,
+  formatDate,
+  jsonLd,
+  pageHead,
+} from "@/lib/site";
+import { BIS_URL, CARE_PHONE } from "@/lib/knowledge";
 import {
   ANANTARA_URL,
   PRODUCTS,
@@ -33,6 +46,12 @@ export const Route = createFileRoute("/")({
     });
     return {
       ...base,
+      meta: [
+        ...base.meta,
+        { name: "author", content: `${GUIDE_AUTHOR.name}, ${GUIDE_AUTHOR.role}` },
+        { property: "article:published_time", content: SITE_PUBLISHED },
+        { property: "article:modified_time", content: SITE_UPDATED },
+      ],
       // Preload the hero banner so the largest image starts downloading immediately
       links: [
         ...base.links,
@@ -65,9 +84,21 @@ export const Route = createFileRoute("/")({
           sameAs: [OFFICIAL_URL],
         }),
         jsonLd({
+          "@type": "WebPage",
+          name: "Indriya Temple Jewellery — Every Jewel Tells a Story",
+          url: absoluteUrl("/"),
+          datePublished: SITE_PUBLISHED,
+          dateModified: SITE_UPDATED,
+          author: authorLd(),
+          publisher: authorLd(),
+          citation: [OFFICIAL_URL, BIS_URL],
+        }),
+        jsonLd({
           "@type": "WebSite",
           name: SITE_NAME,
           url: absoluteUrl("/"),
+          author: authorLd(),
+          publisher: authorLd(),
           potentialAction: {
             "@type": "SearchAction",
             target: `${absoluteUrl("/temple-jewellery")}?q={search_term_string}`,
@@ -311,6 +342,61 @@ function Index() {
             >
               Find a store
             </Link>
+          </div>
+        </div>
+      </section>
+      {/* About this site: who made it, when, and where the facts come from (E-E-A-T) */}
+      <section className="border-t border-border bg-sand/50">
+        <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:px-8 md:grid-cols-[1.4fr_1fr] md:items-center">
+          <div>
+            <p className="eyebrow">About this site</p>
+            <p className="mt-3 font-display text-2xl leading-snug text-ink">
+              Curated by{" "}
+              <a
+                href="/about"
+                rel="author"
+                className="text-maroon underline decoration-gold underline-offset-4"
+              >
+                {GUIDE_AUTHOR.name}
+              </a>
+              , {GUIDE_AUTHOR.role}.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-ink/85">
+              We researched what people ask Google about temple jewellery and built this site to
+              answer it. Product details and prices are sourced from indriya.com; according to the
+              Bureau of Indian Standards, every hallmarked piece carries a BIS logo, purity grade
+              and HUID code. Indriya&rsquo;s six Mumbai stores are rated 4.8 to 5.0 stars on Google.
+            </p>
+            <p className="mt-3 text-xs text-muted-foreground">
+              Published <time dateTime={SITE_PUBLISHED}>{formatDate(SITE_PUBLISHED)}</time> · Last
+              updated <time dateTime={SITE_UPDATED}>{formatDate(SITE_UPDATED)}</time> ·{" "}
+              <a href="/about#sources" className="underline underline-offset-4 hover:text-maroon">
+                Sources
+              </a>{" "}
+              ·{" "}
+              <a href="/about#privacy" className="underline underline-offset-4 hover:text-maroon">
+                Privacy policy
+              </a>
+            </p>
+          </div>
+          <div className="rounded-3xl border border-border bg-card p-6 text-sm">
+            <p className="eyebrow">Contact Indriya</p>
+            <a
+              href={`tel:${CARE_PHONE.replace(/-/g, "")}`}
+              className="mt-3 block font-display text-2xl text-maroon lining-nums hover:text-gold-deep"
+            >
+              {CARE_PHONE}
+            </a>
+            <p className="text-muted-foreground">Customer care, toll free</p>
+            <address className="mt-3 not-italic leading-relaxed text-ink/85">
+              One International Centre, Dadar West, Mumbai 400012
+            </address>
+            <a
+              href="/about"
+              className="mt-4 inline-block text-maroon underline decoration-gold underline-offset-4"
+            >
+              About this project
+            </a>
           </div>
         </div>
       </section>

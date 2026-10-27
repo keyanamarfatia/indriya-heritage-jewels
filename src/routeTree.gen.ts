@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as LifetimeExchangeRouteImport } from './routes/lifetime-exchange'
 import { Route as LlmsFullDottxtRouteImport } from './routes/llms-full[.]txt'
@@ -24,6 +25,11 @@ import { Route as TempleJewelleryVaralakshmiVrathamRouteImport } from './routes/
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FaqRoute = FaqRouteImport.update({
@@ -81,6 +87,7 @@ const TempleJewelleryVaralakshmiVrathamRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/faq': typeof FaqRoute
   '/lifetime-exchange': typeof LifetimeExchangeRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
@@ -94,6 +101,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/faq': typeof FaqRoute
   '/lifetime-exchange': typeof LifetimeExchangeRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
@@ -108,6 +116,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/faq': typeof FaqRoute
   '/lifetime-exchange': typeof LifetimeExchangeRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
@@ -123,6 +132,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/faq'
     | '/lifetime-exchange'
     | '/llms-full.txt'
@@ -136,6 +146,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/faq'
     | '/lifetime-exchange'
     | '/llms-full.txt'
@@ -149,6 +160,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/faq'
     | '/lifetime-exchange'
     | '/llms-full.txt'
@@ -163,6 +175,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   FaqRoute: typeof FaqRoute
   LifetimeExchangeRoute: typeof LifetimeExchangeRoute
   LlmsFullDottxtRoute: typeof LlmsFullDottxtRoute
@@ -182,6 +195,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faq': {
@@ -259,6 +279,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   FaqRoute: FaqRoute,
   LifetimeExchangeRoute: LifetimeExchangeRoute,
   LlmsFullDottxtRoute: LlmsFullDottxtRoute,
