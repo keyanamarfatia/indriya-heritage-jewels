@@ -461,7 +461,9 @@ function Index() {
             <p className="mt-3 text-sm leading-relaxed text-ink/85">
               Indriya Temple Jewellery is a student project by BBA Marketing students at Atlas
               SkillTech University, Mumbai, built for a Digital Marketing course on SEO, AEO and
-              GEO. Our credentials and research:
+              GEO. We researched what people ask Google about temple jewellery, compared
+              Indriya&rsquo;s listings and store ratings ourselves, and built every page to answer
+              those questions. Our credentials and research:
             </p>
             <ul className="mt-3 list-disc space-y-1 pl-5 text-sm leading-relaxed text-ink/85">
               <li>
