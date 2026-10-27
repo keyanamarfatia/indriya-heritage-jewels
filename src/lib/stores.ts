@@ -88,7 +88,7 @@ export const STORES: Store[] = [
     hours: "11:00 AM – 9:00 PM",
     phone: "08071500067",
     rating: 4.8,
-    reviews: 270,
+    reviews: 272,
     services: ["In-house stylist", "Bridal Studio", "Design Customization"],
     cover: 1,
     gallery: [
@@ -115,7 +115,7 @@ export const STORES: Store[] = [
     hours: "11:00 AM – 9:30 PM",
     phone: "08037241114",
     rating: 4.8,
-    reviews: 946,
+    reviews: 949,
     services: ["In-house stylist", "Design Customization"],
     cover: 0,
     gallery: [

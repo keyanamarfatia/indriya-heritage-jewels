@@ -56,6 +56,8 @@ import {
 import { STORES, storeRatingLd } from "@/lib/stores";
 import { Rating } from "@/components/store-card";
 import { HomeAnswers } from "@/components/home-answers";
+import { GoogleReviewsPanel } from "@/components/google-reviews";
+import { GOOGLE_REVIEWS } from "@/lib/reviews";
 import bannerImage from "@/assets/anantara/anantara-banner.webp";
 import banner640 from "@/assets/anantara/anantara-banner-640.webp";
 import banner960 from "@/assets/anantara/anantara-banner-960.webp";
@@ -152,6 +154,9 @@ export const Route = createFileRoute("/")({
 });
 
 const FEATURED = PRODUCTS.slice(0, 8);
+const reviewStore = STORES.find((s) => s.slug === "andheri-w-mumbai")!;
+const designs = GOOGLE_REVIEWS["andheri-w-mumbai"]?.topics.find((t) => t.label === "designs");
+const polite = GOOGLE_REVIEWS["andheri-w-mumbai"]?.topics.find((t) => t.label === "polite staff");
 const TOTAL_REVIEWS = STORES.reduce((n, s) => n + s.reviews, 0);
 const FEATURED_PRICED = FEATURED.filter((p) => p.listing);
 const necklaces = PRODUCTS.filter((p) => p.type === "necklace");
@@ -437,6 +442,33 @@ function Index() {
           </div>
         </div>
       </section>
+      {/* Real Google reviews */}
+      <section className="border-t border-border bg-sand/40 py-16">
+        <div className="mx-auto grid max-w-6xl gap-10 px-5 sm:px-8 lg:grid-cols-[1fr_1.3fr] lg:items-start">
+          <div>
+            <p className="eyebrow">Google reviews</p>
+            <h2 className="mt-3 font-display text-4xl font-light leading-tight text-ink">
+              What do customers say about Indriya?
+            </h2>
+            <p className="mt-4 leading-relaxed text-ink/85">
+              Customers rate Indriya&rsquo;s {shortName(reviewStore.name)} store{" "}
+              {reviewStore.rating.toFixed(1)} out of 5 across {reviewStore.reviews} Google reviews.
+              Our research of Google&rsquo;s review topics found that &ldquo;designs&rdquo; comes up
+              in {designs?.count} reviews ({pct(designs?.count ?? 0, reviewStore.reviews)}) and
+              &ldquo;polite staff&rdquo; in {polite?.count} reviews (
+              {pct(polite?.count ?? 0, reviewStore.reviews)}).
+            </p>
+            <p className="mt-3 leading-relaxed text-ink/85">
+              Across all {STORES.length} Mumbai stores, Indriya averages {avgRating.toFixed(1)}{" "}
+              stars from {reviewTotal.toLocaleString("en-IN")} Google reviews. Every store page on
+              this site links to its Google reviews, and the Borivali West and Seawoods stores are
+              also reviewed on Justdial.
+            </p>
+          </div>
+          <GoogleReviewsPanel store={reviewStore} />
+        </div>
+      </section>
+
       <HomeAnswers />
 
       {/* About this site: who made it, when, and where the facts come from (E-E-A-T) */}

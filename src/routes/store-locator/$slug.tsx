@@ -14,6 +14,7 @@ import {
 import { Breadcrumbs, SiteShell } from "@/components/site-shell";
 import { ScriptHeading } from "@/components/brand";
 import { Rating, StoreCard } from "@/components/store-card";
+import { GoogleReviewsPanel } from "@/components/google-reviews";
 import { absoluteUrl, breadcrumbLd, jsonLd, pageHead } from "@/lib/site";
 import {
   STORES,
@@ -210,6 +211,20 @@ function StorePage() {
             )}
           </section>
         )}
+
+        {/* Reviews */}
+        <section className="border-t border-border py-14">
+          <h2 className="font-display text-4xl font-light text-ink">
+            What do customers say about Indriya {store.name.replace(", Mumbai", "")}?
+          </h2>
+          <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
+            Indriya {store.name} is rated {store.rating.toFixed(1)} out of 5 from{" "}
+            {store.reviews.toLocaleString("en-IN")} Google reviews.
+          </p>
+          <div className="mt-8">
+            <GoogleReviewsPanel store={store} />
+          </div>
+        </section>
 
         {/* Other stores */}
         <section className="border-t border-border py-14">
