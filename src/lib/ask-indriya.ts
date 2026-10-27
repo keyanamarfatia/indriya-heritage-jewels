@@ -48,8 +48,8 @@ const SYSTEM_PROMPT = `You are "Ask Indriya", the assistant on a student-project
 Rules:
 1. Answer ONLY from the KNOWLEDGE below. If the answer is not there, say you don't know and suggest calling Indriya customer care on ${CARE_PHONE} or visiting a store. Never invent policies, offers, discounts, weights or stock.
 2. Never state a price, gold rate or making-charge figure. For prices, say gold rates change daily and point to the gold rate button on this site, or to indriya.com.
-3. Only discuss Indriya, jewellery, gold and this site. Politely decline anything else in one sentence.
-4. Keep answers to 2-4 short sentences in plain text, warm and polished, like a jewellery expert in a store. No markdown, no lists, no emojis.
+3. Only discuss Indriya, jewellery, gold and this site. Politely decline anything else (including rude or inappropriate questions) by replying with exactly: I can only help with questions about Indriya.
+4. Keep answers to 2-4 short, complete sentences in plain text, warm and polished, like a jewellery expert in a store. No markdown, no lists, no emojis.
 5. If asked, be clear that this is a student project and not Indriya's official website or support.
 6. End with one final line exactly in this form, listing 1-2 source ids from the knowledge that support your answer: SOURCES: id1, id2
 
@@ -104,9 +104,26 @@ function splitSources(text: string): { answer: string; sources: Source[] } {
     .map((id) => sourceById(id.replace(/[^a-z-]/gi, "").toLowerCase()))
     .filter((s): s is Source => !!s)
     .slice(0, 2);
-  const answer = (match ? text.slice(0, match.index) : text).replace(/[*#_`]/g, "").trim();
+  const answer = (match ? text.slice(0, match.index) : text)
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1") // markdown links -> their text
+    .replace(/[*#_`]/g, "")
+    .trim();
   return { answer, sources };
 }
+
+/**
+ * Never show a half-finished sentence: keep only complete sentences. Returns "" when not even one
+ * complete sentence is left, so the caller can fall back to the written FAQ.
+ */
+export function completeSentences(text: string): string {
+  const t = text.trim();
+  if (/[.!?…)"”’]$/.test(t)) return t;
+  const lastEnd = Math.max(t.lastIndexOf(". "), t.lastIndexOf("! "), t.lastIndexOf("? "));
+  return lastEnd > 0 ? t.slice(0, lastEnd + 1).trim() : "";
+}
+
+/** Fixed, complete reply for off-topic or inappropriate questions (never sent to the AI). */
+export const OFF_TOPIC_REPLY = `I can only help with questions about Indriya, temple jewellery, gold and this site. For anything else, please ask elsewhere, or call Indriya customer care on ${CARE_PHONE} for help with jewellery.`;
 
 export const askIndriya = createServerFn({ method: "POST" })
   .inputValidator(parseInput)
@@ -119,24 +136,35 @@ export const askIndriya = createServerFn({ method: "POST" })
 
     for (const model of MODELS) {
       try {
-        const res = await fetch(env("ASK_GATEWAY_URL") ?? GATEWAY, {
-          method: "POST",
-          headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-          body: JSON.stringify({
-            model,
-            temperature: 0.2,
-            max_tokens: 400,
-            messages: [{ role: "system", content: SYSTEM_PROMPT }, ...data.messages],
-          }),
-        });
+        const call = (withReasoning: boolean) =>
+          fetch(env("ASK_GATEWAY_URL") ?? GATEWAY, {
+            method: "POST",
+            headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
+            body: JSON.stringify({
+              model,
+              temperature: 0.2,
+              // Room for the model's reasoning plus a short answer; reasoning kept low.
+              max_tokens: 2000,
+              ...(withReasoning ? { reasoning_effort: "low" } : {}),
+              messages: [{ role: "system", content: SYSTEM_PROMPT }, ...data.messages],
+            }),
+          });
+        let res = await call(true);
+        if (res.status === 400) res = await call(false); // model without a reasoning setting
         if (res.status === 429 || res.status === 402) return { ok: false, reason: "busy" };
         if (!res.ok) continue; // e.g. model not available: try the next one
         const json = (await res.json()) as {
-          choices?: { message?: { content?: string } }[];
+          choices?: { message?: { content?: string }; finish_reason?: string }[];
         };
-        const text = json.choices?.[0]?.message?.content?.trim();
+        const choice = json.choices?.[0];
+        const text = choice?.message?.content?.trim();
         if (!text) continue;
-        const { answer, sources } = splitSources(text);
+        const { answer: raw, sources } = splitSources(text);
+        // A reply cut off by the length limit is trimmed to its complete sentences.
+        if (/^(I (am|'m) only able|I can only (help|assist|answer)|Sorry, I can only)/i.test(raw)) {
+          return { ok: true, answer: OFF_TOPIC_REPLY, sources: [] };
+        }
+        const answer = completeSentences(raw);
         if (!answer) continue;
         return { ok: true, answer, sources };
       } catch {
