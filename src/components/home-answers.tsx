@@ -1,6 +1,25 @@
 import { Link } from "@tanstack/react-router";
-import { PRODUCTS, formatINR, pricesAsOfLabel, type Product } from "@/lib/products";
+import { PRODUCTS, pricesAsOfLabel } from "@/lib/products";
 import { STORES } from "@/lib/stores";
+import {
+  all,
+  avgPerGram,
+  avgRating,
+  bridalStores,
+  deityNamed,
+  earringCount,
+  earrings,
+  g,
+  listJoin,
+  mostReviewed,
+  necklaceCount,
+  necklaces,
+  perGram,
+  rupee,
+  shortName,
+  topRated,
+  totalReviews,
+} from "@/lib/anantara-stats";
 import { INDRIYA_RATE } from "@/lib/live-gold";
 import { CARE_PHONE } from "@/lib/knowledge";
 
@@ -10,47 +29,6 @@ import { CARE_PHONE } from "@/lib/knowledge";
  * The price, weight and rating figures are computed from the site's own data, so they stay true
  * when prices are updated.
  */
-
-type Priced = Product & { listing: NonNullable<Product["listing"]> };
-const priced = PRODUCTS.filter((p): p is Priced => !!p.listing);
-const byType = (t: Product["type"]) => priced.filter((p) => p.type === t);
-
-function rangeOf(list: Priced[]) {
-  const byPrice = [...list].sort((a, b) => a.listing.price - b.listing.price);
-  const lo = byPrice[0]!;
-  const hi = byPrice[byPrice.length - 1]!;
-  const weights = list.map((p) => p.listing.grossWeightG);
-  return {
-    count: list.length,
-    lo,
-    hi,
-    minW: Math.min(...weights),
-    maxW: Math.max(...weights),
-  };
-}
-
-const necklaces = rangeOf(byType("necklace"));
-const earrings = rangeOf(byType("earrings"));
-const all = rangeOf(priced);
-const perGram = priced.map((p) => p.listing.price / p.listing.grossWeightG);
-const avgPerGram =
-  priced.reduce((n, p) => n + p.listing.price, 0) /
-  priced.reduce((n, p) => n + p.listing.grossWeightG, 0);
-
-const totalReviews = STORES.reduce((n, s) => n + s.reviews, 0);
-const avgRating = STORES.reduce((n, s) => n + s.rating * s.reviews, 0) / totalReviews;
-const mostReviewed = [...STORES].sort((a, b) => b.reviews - a.reviews)[0]!;
-const topRated = [...STORES].sort((a, b) => b.rating - a.rating || b.reviews - a.reviews);
-const bridalStores = STORES.filter((s) => s.services.includes("Bridal Studio"));
-
-const necklaceCount = PRODUCTS.filter((p) => p.type === "necklace").length;
-const earringCount = PRODUCTS.filter((p) => p.type === "earrings").length;
-
-const g = (n: number) => `${Number(n.toFixed(2))} g`;
-const rupee = (n: number) => formatINR(Math.round(n));
-const shortName = (name: string) => name.replace(/, Mumbai$/, "");
-const listJoin = (xs: string[]) =>
-  xs.length < 2 ? (xs[0] ?? "") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`;
 
 const link = "text-maroon underline decoration-gold underline-offset-4 hover:text-gold-deep";
 
@@ -64,11 +42,15 @@ export function HomeAnswers() {
             id="answers-heading"
             className="mt-3 font-display text-4xl font-light text-ink sm:text-5xl"
           >
-            What shoppers ask about Anantara
+            What do shoppers ask about Anantara?
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-            Short, sourced answers from our research, with figures from indriya.com, the Bureau of
-            Indian Standards and the Aditya Birla Group.
+          <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-muted-foreground">
+            Shoppers most often ask what Anantara is, what temple jewellery means, what Anantara
+            costs and where to buy it. We answered those 4 questions with our own analysis of{" "}
+            {all.count} indriya.com product listings checked on {pricesAsOfLabel}, the Google
+            ratings of Indriya&rsquo;s {STORES.length} Mumbai stores (
+            {totalReviews.toLocaleString("en-IN")} reviews), the Bureau of Indian Standards&rsquo;
+            hallmarking rules and press coverage from Indian Jeweller and Medianews4u.
           </p>
         </div>
 
@@ -117,7 +99,9 @@ export function HomeAnswers() {
               The three classic temple jewellery motifs are Goddess Lakshmi for prosperity, the
               peacock for grace and the lotus for purity. According to the Bureau of Indian
               Standards, real gold temple jewellery carries three hallmark marks: the BIS logo, a
-              purity grade such as 22K916 and a unique 6-character HUID code. Read more in our{" "}
+              purity grade such as 22K916 and a unique 6-character HUID code. We found that{" "}
+              {deityNamed.length} of the {PRODUCTS.length} Anantara pieces on this site are named
+              after a Hindu deity. Read more in our{" "}
               <Link to="/temple-jewellery-guide" className={link}>
                 Temple Jewellery Guide
               </Link>
@@ -199,9 +183,10 @@ export function HomeAnswers() {
               Every Indriya store in Mumbai opens at 11:00 AM and closes between 9:00 PM and 11:00
               PM, depending on the store. The {listJoin(bridalStores.map((s) => shortName(s.name)))}{" "}
               stores offer a bridal studio, in-house stylists and design customisation, which suits
-              brides choosing a temple jewellery set. Indriya stores also handle lifetime exchange,
-              valuing Indriya gold at the current gold rate. Indriya customer care is available toll
-              free on {CARE_PHONE}, and every store has its own page in our{" "}
+              brides choosing a temple jewellery set. In our count, {bridalStores.length} of the{" "}
+              {STORES.length} Mumbai stores list a bridal studio. Indriya stores also handle
+              lifetime exchange, valuing Indriya gold at the current gold rate. Indriya customer
+              care is available toll free on {CARE_PHONE}, and every store has its own page in our{" "}
               <Link to="/store-locator" className={link}>
                 store locator
               </Link>

@@ -13,7 +13,7 @@ export function ScriptHeading({
   after,
   className = "",
 }: {
-  as?: "h1" | "h2" | "h3";
+  as?: "h1" | "h2" | "h3" | "p";
   before?: string;
   script: string;
   after?: string;
@@ -113,9 +113,13 @@ export function HeroArch({
 export function ProductCard({
   product,
   headingLevel = "h3",
+  compact = false,
 }: {
   product: Product;
-  headingLevel?: "h2" | "h3";
+  /** Hide the one-line description (used where the grid sits inside a longer text passage). */
+  compact?: boolean;
+  /** "p" keeps product names out of the heading outline, e.g. in a grid inside a section. */
+  headingLevel?: "h2" | "h3" | "p";
 }) {
   const H = headingLevel;
   return (
@@ -149,9 +153,11 @@ export function ProductCard({
           <span className="font-normal text-muted-foreground"> approx.</span>
         </p>
       )}
-      <p className="mx-auto mt-1 hidden max-w-[16rem] flex-1 text-[13px] leading-relaxed text-muted-foreground sm:block">
-        {product.description}
-      </p>
+      {!compact && (
+        <p className="mx-auto mt-1 hidden max-w-[16rem] flex-1 text-[13px] leading-relaxed text-muted-foreground sm:block">
+          {product.description}
+        </p>
+      )}
       <div className="mx-auto mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:mt-4">
         <Link
           to="/jewellery/$slug"
@@ -206,5 +212,22 @@ export function PromiseIcon({ kind }: { kind: "certified" | "pricing" | "exchang
       <ellipse cx="31" cy="26" rx="10" ry="6" transform="rotate(-30 31 26)" />
       <path d="M44 14l4-1-1 4M12 42l-4 1 1-4" />
     </svg>
+  );
+}
+
+/** A question heading under a decorative script title: the section's real h2, for answer engines. */
+export function SectionQuestion({
+  children,
+  className = "",
+}: {
+  children: string;
+  className?: string;
+}) {
+  return (
+    <h2
+      className={`mt-3 font-display text-xl italic leading-snug text-ink/75 sm:text-2xl ${className}`}
+    >
+      {children}
+    </h2>
   );
 }

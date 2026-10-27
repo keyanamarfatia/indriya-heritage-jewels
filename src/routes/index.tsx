@@ -2,7 +2,25 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { OffsiteLink } from "@/components/offsite";
 import { SiteShell } from "@/components/site-shell";
 import { AnimatedLogo } from "@/components/animated-logo";
-import { KolamDivider, ProductCard, PromiseIcon, ScriptHeading } from "@/components/brand";
+import {
+  KolamDivider,
+  ProductCard,
+  PromiseIcon,
+  ScriptHeading,
+  SectionQuestion,
+} from "@/components/brand";
+import {
+  all as allStats,
+  avgRating,
+  deityNamed,
+  earrings as earringStats,
+  g,
+  lightestEarrings,
+  listJoin,
+  necklaces as necklaceStats,
+  rupee,
+  totalReviews as reviewTotal,
+} from "@/lib/anantara-stats";
 import {
   GUIDE_AUTHOR,
   OFFICIAL_URL,
@@ -167,8 +185,9 @@ function Index() {
               Every Jewel Tells a Story
             </h1>
             <p className="mt-4 max-w-md text-base font-light leading-relaxed text-ivory/80 sm:text-lg">
-              Be the bride of your dreams, adorned in divine heritage: hand-finished temple gold
-              with Lakshmi, Ganesha and Garuda motifs.
+              Be the bride of your dreams, adorned in divine heritage. Anantara is Indriya&rsquo;s
+              bridal temple jewellery collection, unveiled in May 2025: 22 karat gold necklaces and
+              jhumkas with Lakshmi, Ganesha and Garuda motifs.
             </p>
             <div className="mt-8 flex flex-wrap gap-3 sm:gap-4">
               <Link to="/temple-jewellery/varalakshmi-vratham" className="btn-lux-gold">
@@ -184,7 +203,18 @@ function Index() {
 
       {/* Shop by category */}
       <section className="mx-auto max-w-6xl px-5 py-16 text-center sm:px-8">
-        <ScriptHeading before="Shop by" script="Category" />
+        <ScriptHeading as="p" before="Shop by" script="Category" />
+        <SectionQuestion>What can you shop in the Anantara collection?</SectionQuestion>
+        <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-muted-foreground">
+          The Anantara collection on this site has {necklaces.length} temple necklaces and{" "}
+          {earrings.length} pairs of temple earrings, all in 22 karat gold (91.6% pure). Anantara
+          necklaces weigh {g(necklaceStats.minW)} to {g(necklaceStats.maxW)} and cost{" "}
+          {rupee(necklaceStats.lo.listing.price)} to {rupee(necklaceStats.hi.listing.price)};
+          Anantara earrings weigh {g(earringStats.minW)} to {g(earringStats.maxW)} and cost{" "}
+          {rupee(earringStats.lo.listing.price)} to {rupee(earringStats.hi.listing.price)},
+          according to our analysis of indriya.com listings on {pricesAsOfLabel} (prices exclude
+          taxes).
+        </p>
         <KolamDivider className="mt-6" />
         <div className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-4 sm:gap-8">
           {[
@@ -225,15 +255,22 @@ function Index() {
       <section className="bg-sand/60 py-16">
         <div className="mx-auto max-w-6xl px-5 sm:px-8">
           <div className="text-center">
-            <ScriptHeading before="Temple" script="Treasures" />
-            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              A first look at the Anantara collection. Tap any piece to see it, and its price, on
-              Indriya.
+            <ScriptHeading as="p" before="Temple" script="Treasures" />
+            <SectionQuestion>Which Anantara pieces stand out?</SectionQuestion>
+            <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-muted-foreground">
+              Temple Treasures is our selection of {FEATURED.length} Anantara pieces. We found that{" "}
+              {deityNamed.length} of the {PRODUCTS.length} Anantara pieces on this site are named
+              after a Hindu deity: Lord Ganesha (also called Vinayaka), Goddess Lakshmi, Lord Vishnu
+              or Garuda. The {allStats.hi.name} is the heaviest and most expensive piece at{" "}
+              {g(allStats.hi.listing.grossWeightG)} and {rupee(allStats.hi.listing.price)}, while
+              the {lightestEarrings?.name} are the lightest piece with a listed weight, at{" "}
+              {lightestEarrings ? g(lightestEarrings.listing.grossWeightG) : ""}. Tap any piece to
+              see its details and its page on indriya.com.
             </p>
           </div>
           <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-8 sm:gap-y-12 lg:grid-cols-4">
             {FEATURED.map((p) => (
-              <ProductCard key={p.slug} product={p} />
+              <ProductCard key={p.slug} product={p} headingLevel="p" compact />
             ))}
           </div>
           <p className="mt-8 text-center text-xs text-muted-foreground">
@@ -253,11 +290,15 @@ function Index() {
       {/* Promises */}
       <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
         <div className="text-center">
-          <ScriptHeading before="The Indriya" script="Promise" />
-          <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-            The Indriya promise covers every gold piece with three guarantees: BIS Hallmark
-            certified purity, a bill that shows the gold rate, making charges and taxes separately,
-            and lifetime exchange at any Indriya store.
+          <ScriptHeading as="p" before="The Indriya" script="Promise" />
+          <SectionQuestion>What does the Indriya promise include?</SectionQuestion>
+          <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-muted-foreground">
+            The Indriya promise is three guarantees on every gold piece: BIS Hallmark certified
+            purity, a bill that shows the gold rate, making charges and taxes separately, and
+            lifetime exchange at any Indriya store. According to the Bureau of Indian Standards,
+            hallmarking of gold jewellery has been mandatory in India since 16 June 2021, and every
+            hallmark carries a 6-character HUID code. A 22K916 hallmark means the gold is 91.6%
+            pure. In India, gold jewellery also carries 3% GST, which Indriya lists on the bill.
           </p>
         </div>
         <ul className="mt-10 grid gap-8 md:grid-cols-3">
@@ -281,7 +322,7 @@ function Index() {
             <li key={x.title} className="flex gap-4">
               <PromiseIcon kind={x.kind} />
               <div>
-                <h3 className="font-sans text-lg font-semibold text-maroon">{x.title}</h3>
+                <p className="font-sans text-lg font-semibold text-maroon">{x.title}</p>
                 <p className="mt-1 text-sm leading-relaxed">{x.text}</p>
               </div>
             </li>
@@ -306,11 +347,16 @@ function Index() {
             />
           </div>
           <div className="p-8">
-            <p className="eyebrow">Read</p>
-            <h2 className="mt-3 font-display text-3xl text-ink">The Temple Jewellery Guide</h2>
-            <p className="mt-3 text-muted-foreground">
-              Where temple jewellery comes from, what Lakshmi, peacock and lotus motifs mean, and
-              how to care for it.
+            <p className="eyebrow">Read the Temple Jewellery Guide</p>
+            <h2 className="mt-3 font-display text-3xl text-ink">
+              What does the Temple Jewellery Guide cover?
+            </h2>
+            <p className="mt-3 leading-relaxed text-muted-foreground">
+              The Temple Jewellery Guide is a 6-minute read on the history, designs and care of
+              temple jewellery. The guide traces temple jewellery to Tamil Nadu under the Chola and
+              Pandya dynasties (9th to 13th centuries), explains 6 motifs from Goddess Lakshmi to
+              the peacock and the lotus, sets out 6 care steps, and shows the 3 marks of a BIS
+              hallmark. The guide was published on {formatDateLong(SITE_PUBLISHED)}.
             </p>
             <span className="mt-5 inline-block text-maroon underline decoration-gold underline-offset-4">
               Read the guide
@@ -329,13 +375,17 @@ function Index() {
             />
           </Link>
           <div className="p-8 pt-6">
-            <h2 className="font-display text-3xl text-ink">
+            <p className="eyebrow">Visit a store</p>
+            <h2 className="mt-3 font-display text-3xl text-ink">
               <Link to="/store-locator" className="hover:text-maroon">
-                Visit a store
+                Where are Indriya&rsquo;s stores in Mumbai?
               </Link>
             </h2>
-            <p className="mt-2 text-muted-foreground">
-              Six stores in Mumbai, plus Hyderabad, Vijayawada and more.
+            <p className="mt-3 leading-relaxed text-muted-foreground">
+              Indriya has {STORES.length} stores in Mumbai: {listJoin(STORES.map((s) => s.area))}.
+              Together, Indriya&rsquo;s Mumbai stores average {avgRating.toFixed(1)} stars from{" "}
+              {reviewTotal.toLocaleString("en-IN")} Google reviews, by our count of the ratings
+              shown on indriya.com in October 2026. Every Mumbai store opens at 11:00 AM.
             </p>
             <ul className="mt-5 divide-y divide-border border-y border-border">
               {STORES.map((s) => (
@@ -375,8 +425,11 @@ function Index() {
         <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:px-8 md:grid-cols-[1.4fr_1fr] md:items-center">
           <div>
             <p className="eyebrow">About this site</p>
-            <p className="mt-3 font-display text-2xl leading-snug text-ink">
-              Curated by{" "}
+            <h2 className="mt-3 font-display text-3xl leading-snug text-ink">
+              Who made this site?
+            </h2>
+            <p className="mt-3 font-display text-xl leading-snug text-ink">
+              This site is curated by{" "}
               <a
                 href="/about"
                 rel="author"
