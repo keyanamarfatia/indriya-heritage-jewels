@@ -92,8 +92,9 @@ export function HomeAnswers() {
               geru tone and set with pearls, rubies and green stones. Every Anantara piece is BIS
               Hallmarked with a 6-character HUID code. This site features {PRODUCTS.length} Anantara
               pieces, {necklaceCount} necklaces and {earringCount} pairs of earrings, each linked to
-              its page on indriya.com. Anantara is designed for South Indian weddings and for
-              festivals such as Varalakshmi Vratham, when Lakshmi motifs are traditionally worn.
+              its page on indriya.com. Indriya unveiled Anantara in May 2025 for brides in Andhra
+              Pradesh, Telangana and Karnataka, with designs drawn from the Hoysala-era temples at
+              Somanathapura, according to Indian Jeweller and Medianews4u.
             </p>
           </article>
 

@@ -51,6 +51,7 @@ export const BRAND_FACTS = [
   "Indriya has stores in cities including Mumbai, New Delhi, Hyderabad, Pune, Ahmedabad, Jaipur, Patna, Indore, Surat, Lucknow, Vijayawada and Bhubaneswar. [abg]",
   "Indriya's head office is at One International Centre, Dadar West, Mumbai. [abg]",
   "Anantara is Indriya's bridal temple jewellery collection: necklaces, harams and jhumkas with Lakshmi, Ganesha, Garuda and Vishnu motifs, pearls and ruby-red and green stones. Its tagline is 'Be the bride of your dreams, adorned in divine heritage.' [anantara]",
+  "Indriya unveiled Anantara in May 2025 (Indian Jeweller, 28 May 2025). Anantara is one of four regional bridal collections and is designed for brides in Andhra Pradesh, Telangana and Karnataka; its designs draw on the Hoysala-era Chennakeshava and Keshava temples at Somanathapura (Medianews4u, 18 November 2025). [press]",
   "Indriya's brand line is 'Every Jewel Tells a Story'. [indriya]",
   `Indriya customer care: ${CARE_PHONE} (toll free). [indriya]`,
   "Gold prices change every day, so this site shows today's gold rate in a pop-up (the gold bar button) instead of fixed prices. [indriya]",
@@ -124,7 +125,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
     items: [
       {
         q: "What is the Anantara collection?",
-        a: "Anantara is Indriya's bridal temple jewellery collection. It includes harams, short necklaces and jhumkas with Lakshmi, Ganesha, Garuda and Vishnu motifs, finished in antique gold with pearls and coloured stones.",
+        a: "Anantara is Indriya's bridal temple jewellery collection, unveiled in May 2025 for brides in Andhra Pradesh, Telangana and Karnataka. It includes harams, short necklaces and jhumkas with Lakshmi, Ganesha, Garuda and Vishnu motifs, inspired by the Hoysala-era temples at Somanathapura and finished in antique gold with pearls and coloured stones.",
         source: "anantara",
       },
       {

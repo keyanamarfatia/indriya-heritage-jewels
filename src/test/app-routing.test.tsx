@@ -17,6 +17,7 @@ const PATHS = [
   "/about",
   "/privacy-policy",
   "/terms",
+  "/press",
   "/store-locator",
   "/jewellery/heirloom-ganesha-gold-bridal-necklace",
   "/store-locator/borivali-w-mumbai",

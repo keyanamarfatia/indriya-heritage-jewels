@@ -357,6 +357,14 @@ function Index() {
             >
               Find a store
             </Link>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Indriya+jewellery+store+Mumbai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-5 inline-block text-sm text-ink/70 underline decoration-dotted underline-offset-4 hover:text-maroon"
+            >
+              Read the reviews on Google ↗
+            </a>
           </div>
         </div>
       </section>
@@ -417,6 +425,10 @@ function Index() {
               ·{" "}
               <a href="/about#sources" className="underline underline-offset-4 hover:text-maroon">
                 Sources
+              </a>{" "}
+              ·{" "}
+              <a href="/press" className="underline underline-offset-4 hover:text-maroon">
+                Press
               </a>{" "}
               ·{" "}
               <a href="/privacy-policy" className="underline underline-offset-4 hover:text-maroon">

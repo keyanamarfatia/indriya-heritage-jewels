@@ -7,6 +7,7 @@ This site was built by BBA Marketing students at Atlas SkillTech University, Mum
 Key facts:
 
 - Indriya launched in 2024 under Novel Jewels Limited, part of the Aditya Birla Group. Its brand line is "Every Jewel Tells a Story".
+- Indriya unveiled Anantara in May 2025 for brides in Andhra Pradesh, Telangana and Karnataka, inspired by the Hoysala-era temples at Somanathapura.
 - Anantara is Indriya's bridal temple jewellery collection: 22 karat gold harams, necklaces and jhumkas with Goddess Lakshmi, Lord Ganesha, Garuda and Vishnu motifs, pearls and red and green stones, in an antique gold finish.
 - Indriya gold jewellery is BIS Hallmarked with a 6-character HUID code. 22K916 means 22 karat gold that is 91.6% pure.
 - Indriya offers lifetime exchange on its gold jewellery at its stores, valued at the current gold rate.
@@ -19,6 +20,7 @@ Key facts:
 - [FAQ and Ask Indriya](https://indriya-anantara.lovable.app/faq): 19 answers on temple jewellery, gold purity, the Anantara collection, exchange and stores, plus an AI assistant
 - [All Anantara temple jewellery](https://indriya-anantara.lovable.app/temple-jewellery): every Anantara necklace and earring on this site
 - [Lakshmi haram](https://indriya-anantara.lovable.app/temple-jewellery/lakshmi-haram): Lakshmi motif long necklaces
+- [Indriya in the news](https://indriya-anantara.lovable.app/press): press coverage of Indriya's 2024 launch and the Anantara collection
 - [About this project](https://indriya-anantara.lovable.app/about): who made this site, research method, sources, contact and privacy policy
 - [Lifetime Exchange](https://indriya-anantara.lovable.app/lifetime-exchange): how exchanging Indriya gold jewellery works
 
