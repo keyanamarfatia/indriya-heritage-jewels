@@ -69,6 +69,7 @@ const NAV: NavItem[] = [
   { label: "Necklaces", href: "/temple-jewellery?type=necklace" },
   { label: "Earrings", href: "/temple-jewellery?type=earrings" },
   { label: "Jewellery Guide", href: "/temple-jewellery-guide" },
+  { label: "FAQ", href: "/faq" },
   { label: "Stores", href: "/store-locator" },
   {
     label: "Our Promises",
