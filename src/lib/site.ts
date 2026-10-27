@@ -21,7 +21,10 @@ export const SOCIAL_LINKS = [
  */
 export const PROJECT_LINKS: { name: string; href: string }[] = [
   { name: "GitHub", href: "https://github.com/keyanamarfatia/indriya-heritage-jewels" },
-  { name: "LinkedIn", href: "" },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/feed/update/urn:li:share:7520890028881883136/",
+  },
   { name: "Reddit", href: "" },
   { name: "TikTok", href: "" },
   { name: "Product Hunt", href: "" },
