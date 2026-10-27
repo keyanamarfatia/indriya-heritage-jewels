@@ -223,6 +223,35 @@ export const mapEmbedUrl = (s: Store) =>
 
 export const officialStoreUrl = (s: Store) => `${STORES_URL}/mumbai/${s.slug}`;
 
+/**
+ * JewelryStore schema. The rating is the store's Google rating as shown on indriya.com, and it is
+ * displayed wherever this schema is used (store cards, store pages, the homepage store list).
+ */
+export const storeLd = (s: Store, url: string, images: string[] = []) => ({
+  "@type": "JewelryStore",
+  name: `Indriya – ${s.name}`,
+  ...(images.length ? { image: images } : {}),
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: s.address,
+    addressLocality: "Mumbai",
+    addressRegion: "Maharashtra",
+    addressCountry: "IN",
+  },
+  telephone: s.phone,
+  openingHours: s.hours,
+  url,
+  sameAs: officialStoreUrl(s),
+  brand: { "@type": "Brand", name: "Indriya" },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: s.rating,
+    reviewCount: s.reviews,
+    bestRating: 5,
+    worstRating: 1,
+  },
+});
+
 // 480px versions of store photos for cards and phones (matched by source path, hash-safe).
 const STORE_IMAGES = import.meta.glob("@/assets/stores/*.webp", {
   eager: true,

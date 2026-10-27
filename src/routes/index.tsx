@@ -3,14 +3,25 @@ import { OffsiteLink } from "@/components/offsite";
 import { SiteShell } from "@/components/site-shell";
 import { AnimatedLogo } from "@/components/animated-logo";
 import { KolamDivider, ProductCard, PromiseIcon, ScriptHeading } from "@/components/brand";
-import { OFFICIAL_URL, SITE_NAME, absoluteUrl, jsonLd, pageHead } from "@/lib/site";
-import { ANANTARA_URL, PRODUCTS, productBySlug, productSrcSet } from "@/lib/products";
+import { OFFICIAL_URL, SITE_NAME, absoluteUrl, breadcrumbLd, jsonLd, pageHead } from "@/lib/site";
+import {
+  ANANTARA_URL,
+  PRODUCTS,
+  pricesAsOfLabel,
+  productBySlug,
+  productOfferLd,
+  productPath,
+  productSrcSet,
+} from "@/lib/products";
+import { STORES, storeLd } from "@/lib/stores";
+import { Rating } from "@/components/store-card";
 import bannerImage from "@/assets/anantara/anantara-banner.webp";
 import banner640 from "@/assets/anantara/anantara-banner-640.webp";
 import banner960 from "@/assets/anantara/anantara-banner-960.webp";
 import banner1280 from "@/assets/anantara/anantara-banner-1280.webp";
 import logoLight from "@/assets/indriya-logo-light.png";
 import rcity from "@/assets/stores/r-city-mall-mumbai-1.webp";
+import guide800 from "@/assets/anantara/ganesha-large-800.webp";
 
 export const Route = createFileRoute("/")({
   head: () => {
@@ -35,6 +46,37 @@ export const Route = createFileRoute("/")({
         },
       ],
       scripts: [
+        breadcrumbLd([{ name: "Home", path: "/" }]),
+        // The priced pieces shown in "Temple Treasures" below, with indriya.com's listed price.
+        jsonLd({
+          "@type": "ItemList",
+          name: "Anantara temple jewellery",
+          itemListElement: FEATURED_PRICED.map((p, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            item: {
+              "@type": "Product",
+              name: p.name,
+              description: p.description,
+              image: absoluteUrl(p.image),
+              url: absoluteUrl(productPath(p)),
+              brand: { "@type": "Brand", name: "Indriya" },
+              material: "22 karat BIS Hallmark gold",
+              category: "Temple jewellery",
+              ...productOfferLd(p),
+            },
+          })),
+        }),
+        // The Mumbai stores listed in "Visit a store", with their Google ratings (shown there).
+        jsonLd({
+          "@type": "ItemList",
+          name: "Indriya stores in Mumbai",
+          itemListElement: STORES.map((s, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            item: storeLd(s, absoluteUrl(`/store-locator/${s.slug}`)),
+          })),
+        }),
         jsonLd({
           "@type": "Organization",
           name: "Indriya",
@@ -59,6 +101,8 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const FEATURED = PRODUCTS.slice(0, 8);
+const FEATURED_PRICED = FEATURED.filter((p) => p.listing);
 const necklaces = PRODUCTS.filter((p) => p.type === "necklace");
 const earrings = PRODUCTS.filter((p) => p.type === "earrings");
 
@@ -168,10 +212,13 @@ function Index() {
             </p>
           </div>
           <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-8 sm:gap-y-12 lg:grid-cols-4">
-            {PRODUCTS.slice(0, 8).map((p) => (
+            {FEATURED.map((p) => (
               <ProductCard key={p.slug} product={p} />
             ))}
           </div>
+          <p className="mt-8 text-center text-xs text-muted-foreground">
+            Approximate prices excluding taxes, as listed on indriya.com on {pricesAsOfLabel}.
+          </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Link to="/temple-jewellery" className="btn-lux">
               View all 12 pieces
@@ -219,39 +266,74 @@ function Index() {
 
       {/* Guide + stores */}
       <section className="mx-auto grid max-w-6xl gap-8 px-5 pb-20 sm:px-8 md:grid-cols-2">
-        <Link to="/temple-jewellery-guide" className="group rounded-2xl bg-sand p-8">
-          <p className="eyebrow">Read</p>
-          <h2 className="mt-3 font-display text-3xl text-ink">The Temple Jewellery Guide</h2>
-          <p className="mt-3 text-muted-foreground">
-            Where temple jewellery comes from, what Lakshmi, peacock and lotus motifs mean, and how
-            to care for it.
-          </p>
-          <span className="mt-5 inline-block text-maroon underline decoration-gold underline-offset-4">
-            Read the guide
-          </span>
-        </Link>
         <Link
-          to="/store-locator"
-          className="group overflow-hidden rounded-2xl border border-border bg-card"
+          to="/temple-jewellery-guide"
+          className="group flex flex-col overflow-hidden rounded-2xl bg-sand"
         >
-          <img
-            src={rcity}
-            alt="Inside the Indriya jewellery store at R City Mall, Mumbai, with its blue deer sculpture"
-            width={710}
-            height={543}
-            loading="lazy"
-            className="aspect-[16/9] w-full object-cover"
-          />
-          <div className="p-8 pt-6">
-            <h2 className="font-display text-3xl text-ink">Visit a store</h2>
-            <p className="mt-2 text-muted-foreground">
-              Six stores in Mumbai, plus Hyderabad, Vijayawada and more.
+          <div className="relative min-h-64 flex-1 overflow-hidden">
+            <img
+              src={guide800}
+              alt="Heirloom Ganesha gold temple necklace from the Anantara collection"
+              width={800}
+              height={800}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+            />
+          </div>
+          <div className="p-8">
+            <p className="eyebrow">Read</p>
+            <h2 className="mt-3 font-display text-3xl text-ink">The Temple Jewellery Guide</h2>
+            <p className="mt-3 text-muted-foreground">
+              Where temple jewellery comes from, what Lakshmi, peacock and lotus motifs mean, and
+              how to care for it.
             </p>
-            <span className="mt-4 inline-block text-maroon underline decoration-gold underline-offset-4">
-              Find a store
+            <span className="mt-5 inline-block text-maroon underline decoration-gold underline-offset-4">
+              Read the guide
             </span>
           </div>
         </Link>
+        <div className="overflow-hidden rounded-2xl border border-border bg-card">
+          <Link to="/store-locator" className="block">
+            <img
+              src={rcity}
+              alt="Inside the Indriya jewellery store at R City Mall, Mumbai, with its blue deer sculpture"
+              width={710}
+              height={543}
+              loading="lazy"
+              className="aspect-[16/9] w-full object-cover"
+            />
+          </Link>
+          <div className="p-8 pt-6">
+            <h2 className="font-display text-3xl text-ink">
+              <Link to="/store-locator" className="hover:text-maroon">
+                Visit a store
+              </Link>
+            </h2>
+            <p className="mt-2 text-muted-foreground">
+              Six stores in Mumbai, plus Hyderabad, Vijayawada and more.
+            </p>
+            <ul className="mt-5 divide-y divide-border border-y border-border">
+              {STORES.map((s) => (
+                <li key={s.slug}>
+                  <Link
+                    to="/store-locator/$slug"
+                    params={{ slug: s.slug }}
+                    className="flex items-center justify-between gap-3 py-2.5 text-sm text-ink hover:text-maroon"
+                  >
+                    <span className="min-w-0">{s.name.replace(", Mumbai", "")}</span>
+                    <Rating store={s} className="shrink-0 !text-xs" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Link
+              to="/store-locator"
+              className="mt-5 inline-block text-maroon underline decoration-gold underline-offset-4"
+            >
+              Find a store
+            </Link>
+          </div>
+        </div>
       </section>
     </SiteShell>
   );

@@ -23,6 +23,7 @@ import {
   mapEmbedUrl,
   officialStoreUrl,
   storeBySlug,
+  storeLd,
   telHref,
   type Store,
 } from "@/lib/stores";
@@ -56,22 +57,13 @@ export const Route = createFileRoute("/store-locator/$slug")({
           { name: "Store Locator", path: "/store-locator" },
           { name: store.name, path },
         ]),
-        jsonLd({
-          "@type": "JewelryStore",
-          name: `Indriya – ${store.name}`,
-          image: store.gallery.map((g) => absoluteUrl(g.src)),
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: store.address,
-            addressRegion: "Maharashtra",
-            addressCountry: "IN",
-          },
-          telephone: store.phone,
-          openingHours: store.hours,
-          url: absoluteUrl(path),
-          sameAs: officialStoreUrl(store),
-          brand: { "@type": "Brand", name: "Indriya" },
-        }),
+        jsonLd(
+          storeLd(
+            store,
+            absoluteUrl(path),
+            store.gallery.map((g) => absoluteUrl(g.src)),
+          ),
+        ),
       ],
     };
   },
