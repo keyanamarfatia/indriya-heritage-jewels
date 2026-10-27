@@ -25,7 +25,7 @@ export const PROJECT_LINKS: { name: string; href: string }[] = [
     name: "LinkedIn",
     href: "https://www.linkedin.com/feed/update/urn:li:share:7520890028881883136/",
   },
-  { name: "Reddit", href: "" },
+  { name: "Reddit", href: "https://www.reddit.com/r/GEO_optimization/s/URtmaIy2s8" },
   { name: "TikTok", href: "" },
   { name: "Product Hunt", href: "https://www.producthunt.com/products/ask-indriya" },
   { name: "Crunchbase", href: "" },
