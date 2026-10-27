@@ -20,7 +20,7 @@ export const SOCIAL_LINKS = [
  * profile exists; empty ones are hidden everywhere.
  */
 export const PROJECT_LINKS: { name: string; href: string }[] = [
-  { name: "GitHub", href: "" },
+  { name: "GitHub", href: "https://github.com/keyanamarfatia/indriya-heritage-jewels" },
   { name: "LinkedIn", href: "" },
   { name: "Reddit", href: "" },
   { name: "TikTok", href: "" },

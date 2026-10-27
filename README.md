@@ -1,6 +1,26 @@
-# Indriya Heritage Jewels
+# Indriya Temple Jewellery: SEO, AEO and GEO case study
 
-Create a website called "Indriya Temple Jewellery", a student project for a digital marketing class. Luxury South Indian heritage style: deep maroon (#4A1420), ivory (#FAF6EE) and antique gold (#B8862B), with Cormorant Garamond headings and DM Sans body text. For now, just make a simple homepage with a hero banner that says "Every Jewel Tells a Story" and a footer that says "Student project for Atlas SkillTech University – not affiliated with Indriya / Aditya Birla Group".
+**Live site:** https://indriya-anantara.lovable.app
+
+A student project by **Keyana Marfatia, Adnan Gilitwala and Aadhyan Rao** (BBA Marketing, Atlas SkillTech University, Mumbai) for a Digital Marketing course. The site presents Indriya's Anantara bridal temple jewellery collection (Aditya Birla Group) for the Varalakshmi Vratham festival, and was built to practise on-page SEO, answer engine optimisation (AEO) and generative engine optimisation (GEO).
+
+> Not affiliated with Indriya or the Aditya Birla Group. Indriya's name, logo and product images belong to Indriya / Aditya Birla Group and are used for academic purposes only. The official website is https://www.indriya.com/.
+
+## What's inside
+
+- **Landing page** for "temple jewellery for Varalakshmi Vratham", with FAQPage, CollectionPage, Product and Offer schema
+- **Temple Jewellery Guide** with Article schema, named authors and dates
+- **FAQ page** with 19 answers and **Ask Indriya**, an AI assistant that answers only from a sourced knowledge pack
+- **llms.txt, llms-full.txt, sitemap.xml** and a robots.txt that allows AI crawlers
+- About, Press, Privacy and Terms pages for E-E-A-T
+
+## Results
+
+- ClayHog GEO audit: **34 (F) → 88 (A)**, with crawlers, llms.txt, schema, technical SEO and E-E-A-T at 100
+- Google Rich Results Test: 9 valid items, 0 errors
+- PageSpeed Insights: 98 mobile, 99 desktop
+
+Built with TanStack Start, React and Tailwind CSS on Lovable.
 
 This project was built with [Lovable](https://lovable.dev).
 
