@@ -19,6 +19,7 @@ import {
   OFFICIAL_URL,
   SITE_PUBLISHED,
   SITE_UPDATED,
+  SOCIAL_LINKS,
   absoluteUrl,
   authorLd,
   breadcrumbLd,
@@ -62,7 +63,12 @@ export const Route = createFileRoute("/about")({
         dateModified: SITE_UPDATED,
         author: authorLd(),
         publisher: authorLd(),
-        about: { "@type": "Organization", name: "Indriya", url: OFFICIAL_URL },
+        about: {
+          "@type": "Organization",
+          name: "Indriya",
+          url: OFFICIAL_URL,
+          sameAs: SOCIAL_LINKS.map((l) => l.href),
+        },
         citation: [OFFICIAL_URL, ANANTARA_URL, BIS_URL, ABG_INDRIYA_URL],
       }),
     ],
@@ -251,6 +257,17 @@ function AboutPage() {
               </Link>
             </li>
           </ul>
+          <p className="mt-6 text-sm text-ink/85">
+            Follow Indriya on{" "}
+            {SOCIAL_LINKS.map((l, i) => (
+              <span key={l.name}>
+                <a href={l.href} target="_blank" rel="noopener noreferrer" className={link}>
+                  {l.name}
+                </a>
+                {i < SOCIAL_LINKS.length - 2 ? ", " : i === SOCIAL_LINKS.length - 2 ? " and " : "."}
+              </span>
+            ))}
+          </p>
         </section>
 
         {/* Privacy */}

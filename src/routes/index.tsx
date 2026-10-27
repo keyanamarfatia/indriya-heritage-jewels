@@ -9,6 +9,7 @@ import {
   SITE_NAME,
   SITE_PUBLISHED,
   SITE_UPDATED,
+  SOCIAL_LINKS,
   absoluteUrl,
   authorLd,
   breadcrumbLd,
@@ -81,7 +82,11 @@ export const Route = createFileRoute("/")({
           url: OFFICIAL_URL,
           logo: absoluteUrl(logoLight),
           parentOrganization: { "@type": "Organization", name: "Aditya Birla Group" },
-          sameAs: [OFFICIAL_URL],
+          sameAs: [
+            OFFICIAL_URL,
+            ...SOCIAL_LINKS.map((l) => l.href),
+            "https://www.adityabirla.com/businesses/companies/indriya/",
+          ],
         }),
         jsonLd({
           "@type": "WebPage",

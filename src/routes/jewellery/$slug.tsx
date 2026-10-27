@@ -10,6 +10,7 @@ import {
   findProduct,
   formatINR,
   pricesAsOfLabel,
+  productId,
   productOfferLd,
   productPath,
   relatedTo,
@@ -41,19 +42,25 @@ export const Route = createFileRoute("/jewellery/$slug")({
           { name: "Temple Jewellery", path: "/temple-jewellery" },
           { name: p.name, path },
         ]),
-        // indriya.com's listed price where we have it (shown on the page with its date).
-        jsonLd({
-          "@type": "Product",
-          name: p.name,
-          description,
-          image: absoluteUrl(p.image),
-          url: absoluteUrl(path),
-          sameAs: p.indriyaUrl,
-          brand: { "@type": "Brand", name: "Indriya" },
-          material: "22 karat BIS Hallmark gold",
-          category: `Temple jewellery > ${TYPE_LABEL[p.type]}`,
-          ...productOfferLd(p),
-        }),
+        // Product schema only when we have indriya.com's listed price (shown on the page with its
+        // date): Google treats a Product without a price, review or rating as invalid.
+        ...(p.listing
+          ? [
+              jsonLd({
+                "@type": "Product",
+                "@id": productId(p),
+                name: p.name,
+                description,
+                image: absoluteUrl(p.image),
+                url: absoluteUrl(path),
+                sameAs: p.indriyaUrl,
+                brand: { "@type": "Brand", name: "Indriya" },
+                material: "22 karat BIS Hallmark gold",
+                category: `Temple jewellery > ${TYPE_LABEL[p.type]}`,
+                ...productOfferLd(p),
+              }),
+            ]
+          : []),
       ],
     };
   },

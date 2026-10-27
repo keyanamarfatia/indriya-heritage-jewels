@@ -209,6 +209,7 @@ export const PRODUCTS: Product[] = [
     alt: "Udaya long gold bridal necklace with sculpted crescent motifs and red stones",
     description: "A long haram of sculpted crescent motifs set with red stones.",
     indriyaUrl: ANANTARA_URL,
+    listing: { price: 1334065, grossWeightG: 94.103, sku: "JTKYA20-DINA884", size: "55.9 cm" },
   },
   {
     slug: "vinayaka-gold-bridal-drop-earrings",
@@ -218,6 +219,7 @@ export const PRODUCTS: Product[] = [
     alt: "Vinayaka gold chandbali drop earrings with a deity motif, pearls and green stones",
     description: "Chandbali-style drops with a deity motif, pearls and green stones.",
     indriyaUrl: ANANTARA_URL,
+    listing: { price: 298653, grossWeightG: 22.737, sku: "JTYYB20-DIEA883" },
   },
   {
     slug: "heirloom-ganesha-gold-bridal-drop-earrings",
@@ -227,6 +229,7 @@ export const PRODUCTS: Product[] = [
     alt: "Heirloom Ganesha gold temple jhumkas with ruby-set round studs, pearls and ruby drops",
     description: "Round ruby-set studs over temple jhumkas, pearls and ruby drops.",
     indriyaUrl: ANANTARA_URL,
+    listing: { price: 220827, grossWeightG: 15.839, sku: "JTYYB20-DIEA886" },
   },
   {
     slug: "vinayaka-gold-bridal-necklace",
@@ -236,6 +239,7 @@ export const PRODUCTS: Product[] = [
     alt: "Vinayaka gold bridal necklace with green bead strands and a cluster of temple jhumka drops",
     description: "Green bead strands carrying a cluster of temple jhumka drops.",
     indriyaUrl: ANANTARA_URL,
+    listing: { price: 1710340, grossWeightG: 159.2, sku: "JTLYA20-DINA883", size: "61 cm" },
   },
   {
     slug: "vishnu-haar-gold-short-necklace",
@@ -245,6 +249,7 @@ export const PRODUCTS: Product[] = [
     alt: "Vishnu Haar short gold necklace with red stone links and a deity pendant with pearl drops",
     description: "Red stone links leading to a deity pendant with a pearl fringe.",
     indriyaUrl: ANANTARA_URL,
+    listing: { price: 1139690, grossWeightG: 78.95, sku: "JTIYA20-DINA848", size: "30.5 cm" },
   },
   {
     slug: "garuda-haar-gold-short-necklace",
@@ -254,6 +259,7 @@ export const PRODUCTS: Product[] = [
     alt: "Garuda Haar gold short necklace with twin Garuda heads, ruby setting and ruby drops",
     description: "A collar of twin Garuda heads set with rubies and drops.",
     indriyaUrl: ANANTARA_URL,
+    listing: { price: 3429544, grossWeightG: 259.813, sku: "JTYYA20-DINA847", size: "Free size" },
   },
   {
     slug: "udaya-gold-bridal-drop-earrings",
@@ -263,6 +269,7 @@ export const PRODUCTS: Product[] = [
     alt: "Udaya gold bridal drop earrings with coral flower studs and crescent coin motifs",
     description: "Coral flower studs above crescent coin drops.",
     indriyaUrl: ANANTARA_URL,
+    listing: { price: 195327, grossWeightG: 13.492, sku: "JTYYB20-DIEA884" },
   },
 ];
 

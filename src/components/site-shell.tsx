@@ -4,6 +4,8 @@ import {
   ArrowUpRight,
   BookOpen,
   ChevronDown,
+  Facebook,
+  Instagram,
   Flower2,
   Gem,
   Heart,
@@ -16,9 +18,16 @@ import {
   Sparkles,
   User,
   X,
+  Youtube,
   type LucideIcon,
 } from "lucide-react";
-import { OFFICIAL_URL } from "@/lib/site";
+
+const SOCIAL_ICONS: Record<(typeof SOCIAL_LINKS)[number]["name"], LucideIcon> = {
+  Instagram,
+  Facebook,
+  YouTube: Youtube,
+};
+import { OFFICIAL_URL, SOCIAL_LINKS } from "@/lib/site";
 import { ANANTARA_URL, PRODUCTS } from "@/lib/products";
 import { AnimatedLogo } from "@/components/animated-logo";
 import { GoldRateWidget } from "@/components/gold-rate";
@@ -400,7 +409,26 @@ export function SiteShell({ children }: { children: ReactNode }) {
                   Customer care {CARE_PHONE}
                 </a>
               </li>
-              <li>Stores open 11:00 AM – 8:30 PM</li>
+              <li>Stores open from 11:00 AM; hours vary by store</li>
+            </ul>
+            <p className="mt-6 text-xs uppercase tracking-[0.2em] text-[#d8b878]">Follow Indriya</p>
+            <ul className="mt-3 flex gap-3" aria-label="Indriya on social media">
+              {SOCIAL_LINKS.map(({ name, href }) => {
+                const Icon = SOCIAL_ICONS[name];
+                return (
+                  <li key={name}>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer me"
+                      aria-label={`Indriya on ${name} (opens in a new tab)`}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-ivory/25 text-ivory/85 transition-colors hover:border-[#e2c48f] hover:text-[#e2c48f]"
+                    >
+                      <Icon className="h-4 w-4" aria-hidden="true" />
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>

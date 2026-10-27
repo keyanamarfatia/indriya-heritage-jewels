@@ -8,6 +8,13 @@ export const SITE_NAME = "Indriya Temple Jewellery";
 /** The real brand's website, linked from the student-project banner. */
 export const OFFICIAL_URL = "https://www.indriya.com/";
 
+/** Indriya's official social profiles (as linked by the brand). */
+export const SOCIAL_LINKS = [
+  { name: "Instagram", href: "https://www.instagram.com/indriyajewels/" },
+  { name: "Facebook", href: "https://www.facebook.com/p/Indriya-Jewels-61560479585835/" },
+  { name: "YouTube", href: "https://www.youtube.com/@indriyajewels" },
+] as const;
+
 /** Author shown on the Temple Jewellery Guide (E-E-A-T). */
 export const GUIDE_AUTHOR = {
   name: "Indriya Project Team",
