@@ -1,3 +1,13 @@
+/**
+ * Indriya's own store rate, as shown on indriya.com's "Today's gold rate" pop-up.
+ * Indriya publishes no feed, so this is a dated snapshot — update both values from indriya.com.
+ */
+export const INDRIYA_RATE = {
+  perGram22kt: 13070,
+  updated: "25 October 2026, 4:00 PM",
+  updatedLabel: "25 October 2026",
+};
+
 // Live, indicative gold price in rupees, from free public sources (no API key).
 //
 // Primary:  Gold API (international spot, USD per troy ounce) × ExchangeRate-API (USD → INR).

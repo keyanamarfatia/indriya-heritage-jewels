@@ -2,16 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { X } from "lucide-react";
 import { OffsiteLink } from "@/components/offsite";
 import { OFFICIAL_URL } from "@/lib/site";
-import { fetchLiveGold, type LiveGold } from "@/lib/live-gold";
-
-/**
- * Indriya's own store rate, as shown on indriya.com's "Today's gold rate" pop-up.
- * Indriya publishes no feed, so this is a dated snapshot — update both values from indriya.com.
- */
-const INDRIYA_RATE = {
-  perGram22kt: 13070,
-  updated: "25 October 2026, 4:00 PM",
-};
+import { INDRIYA_RATE, fetchLiveGold, type LiveGold } from "@/lib/live-gold";
 
 const inr = new Intl.NumberFormat("en-IN", {
   style: "currency",

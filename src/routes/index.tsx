@@ -29,6 +29,7 @@ import {
 } from "@/lib/products";
 import { STORES, storeRatingLd } from "@/lib/stores";
 import { Rating } from "@/components/store-card";
+import { HomeAnswers } from "@/components/home-answers";
 import bannerImage from "@/assets/anantara/anantara-banner.webp";
 import banner640 from "@/assets/anantara/anantara-banner-640.webp";
 import banner960 from "@/assets/anantara/anantara-banner-960.webp";
@@ -253,6 +254,11 @@ function Index() {
       <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
         <div className="text-center">
           <ScriptHeading before="The Indriya" script="Promise" />
+          <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+            The Indriya promise covers every gold piece with three guarantees: BIS Hallmark
+            certified purity, a bill that shows the gold rate, making charges and taxes separately,
+            and lifetime exchange at any Indriya store.
+          </p>
         </div>
         <ul className="mt-10 grid gap-8 md:grid-cols-3">
           {[
@@ -354,6 +360,8 @@ function Index() {
           </div>
         </div>
       </section>
+      <HomeAnswers />
+
       {/* About this site: who made it, when, and where the facts come from (E-E-A-T) */}
       <section className="border-t border-border bg-sand/50">
         <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:px-8 md:grid-cols-[1.4fr_1fr] md:items-center">
