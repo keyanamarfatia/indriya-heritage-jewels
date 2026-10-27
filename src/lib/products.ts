@@ -46,7 +46,48 @@ export type Product = {
   description: string;
   /** Where "View on Indriya" goes: the exact product page when known, else the Anantara collection. */
   indriyaUrl: string;
+  /** Price and details as listed on indriya.com on PRICES_AS_OF. Prices move with the gold rate. */
+  listing?: { price: number; grossWeightG: number; sku: string; size?: string };
 };
+
+/** The day the listed prices were copied from indriya.com. Update with the prices. */
+export const PRICES_AS_OF = "2026-10-27";
+
+export const pricesAsOfLabel = new Date(PRICES_AS_OF).toLocaleDateString("en-IN", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
+/** ₹8,61,544 (Indian digit grouping). */
+export const formatINR = (n: number) =>
+  `₹${n.toLocaleString("en-IN", { maximumFractionDigits: 0 })}`;
+
+/**
+ * Offer + details for Product schema. Prices are indriya.com's approximate prices excluding taxes,
+ * shown on the page beside the same date so the schema matches what visitors see.
+ */
+export const productOfferLd = (p: Product) =>
+  p.listing
+    ? {
+        sku: p.listing.sku,
+        weight: { "@type": "QuantitativeValue", value: p.listing.grossWeightG, unitCode: "GRM" },
+        offers: {
+          "@type": "Offer",
+          url: p.indriyaUrl,
+          price: p.listing.price.toFixed(2),
+          priceCurrency: "INR",
+          priceSpecification: {
+            "@type": "UnitPriceSpecification",
+            price: p.listing.price.toFixed(2),
+            priceCurrency: "INR",
+            valueAddedTaxIncluded: false,
+          },
+          seller: { "@type": "Organization", name: "Indriya" },
+        },
+      }
+    : {};
 
 /** Matching piece that completes a set, where Anantara has one. */
 export const PAIRS: Record<string, string> = {
@@ -83,6 +124,7 @@ export const PRODUCTS: Product[] = [
       "A sculpted 22 karat gold necklace with a Ganesha pendant, ruby drops and a pearl fringe.",
     indriyaUrl:
       "https://www.indriya.com/jewellery-products/heirloom-ganesha-gold-bridal-necklace-jtyya20-dina886",
+    listing: { price: 861544, grossWeightG: 56.09, sku: "JTYYA20-DINA886" },
   },
   {
     slug: "lakshmi-grace-gold-bridal-necklace",
@@ -91,16 +133,20 @@ export const PRODUCTS: Product[] = [
     image: lakshmiGraceNecklace,
     alt: "Lakshmi Grace gold bridal necklace with pearl and green bead strands and a Goddess Lakshmi pendant",
     description: "Pearl and green bead strands meeting at a Goddess Lakshmi pendant in gold.",
-    indriyaUrl: ANANTARA_URL,
+    indriyaUrl:
+      "https://www.indriya.com/jewellery-products/lakshmi-grace-gold-bridal-necklace-jtlya20-dina885",
+    listing: { price: 1338967, grossWeightG: 125.4, sku: "JTLYA20-DINA885", size: "61 cm" },
   },
   {
     slug: "swarn-gajika-gold-bridal-drop-earrings",
     name: "Swarn Gajika Gold Bridal Drop Earrings",
     type: "earrings",
     image: swarnGajikaEarrings,
-    alt: "Swarn Gajika gold temple jhumkas with Goddess Lakshmi studs, pearl drops and green stones",
-    description: "Temple jhumkas with Lakshmi studs, a pearl fringe and green drops.",
-    indriyaUrl: ANANTARA_URL,
+    alt: "Swarn Gajika gold temple jhumkas with deity studs, pearl drops and green stones",
+    description: "Temple jhumkas with Ganesha motifs, a pearl fringe and green drops.",
+    indriyaUrl:
+      "https://www.indriya.com/jewellery-products/swarn-gajika-gold-bridal-drop-earrings-jtyyb20-diea885",
+    listing: { price: 312801, grossWeightG: 21.2, sku: "JTYYB20-DIEA885" },
   },
   {
     slug: "lakshmi-bottu-mala-gold-long-necklace",
@@ -109,7 +155,9 @@ export const PRODUCTS: Product[] = [
     image: lakshmiBottuMala,
     alt: "Lakshmi Bottu Mala long gold temple necklace with coin motifs, green drops and a Lakshmi pendant",
     description: "A long temple mala of Lakshmi coin motifs, finished with green drops.",
-    indriyaUrl: ANANTARA_URL,
+    indriyaUrl:
+      "https://www.indriya.com/jewellery-products/lakshmi-bottu-mala-gold-long-necklace-jtiya20-dina849",
+    listing: { price: 4667771, grossWeightG: 336.6, sku: "JTIYA20-DINA849", size: "48.3 cm" },
   },
   {
     slug: "haripriya-gold-drop-earrings",

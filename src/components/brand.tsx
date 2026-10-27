@@ -3,7 +3,7 @@
 import { Link } from "@tanstack/react-router";
 import { OffsiteLink } from "@/components/offsite";
 import type { ReactNode } from "react";
-import { productSrcSet, type Product } from "@/lib/products";
+import { formatINR, productSrcSet, type Product } from "@/lib/products";
 
 /** Heading with one word in script, e.g. "Temple <Treasures>". Renders as a normal heading for SEO. */
 export function ScriptHeading({
@@ -143,6 +143,12 @@ export function ProductCard({
           {product.name}
         </Link>
       </H>
+      {product.listing && (
+        <p className="mt-1.5 text-sm font-medium text-maroon">
+          {formatINR(product.listing.price)}
+          <span className="font-normal text-muted-foreground"> approx.</span>
+        </p>
+      )}
       <p className="mx-auto mt-1 hidden max-w-[16rem] flex-1 text-[13px] leading-relaxed text-muted-foreground sm:block">
         {product.description}
       </p>

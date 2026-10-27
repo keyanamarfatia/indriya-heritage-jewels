@@ -4,7 +4,16 @@ import { Breadcrumbs, SiteShell } from "@/components/site-shell";
 import { KolamDivider, ProductCard, PromiseIcon, ScriptHeading } from "@/components/brand";
 import { OffsiteLink } from "@/components/offsite";
 import { absoluteUrl, breadcrumbLd, jsonLd, pageHead } from "@/lib/site";
-import { ANANTARA_URL, PAIRS, findProduct, productPath, relatedTo } from "@/lib/products";
+import {
+  ANANTARA_URL,
+  PAIRS,
+  findProduct,
+  formatINR,
+  pricesAsOfLabel,
+  productOfferLd,
+  productPath,
+  relatedTo,
+} from "@/lib/products";
 
 const TYPE_LABEL = { necklace: "Necklace", earrings: "Earrings" } as const;
 
@@ -32,7 +41,7 @@ export const Route = createFileRoute("/jewellery/$slug")({
           { name: "Temple Jewellery", path: "/temple-jewellery" },
           { name: p.name, path },
         ]),
-        // Prices change daily with the gold rate, so price and availability are left out.
+        // indriya.com's listed price where we have it (shown on the page with its date).
         jsonLd({
           "@type": "Product",
           name: p.name,
@@ -43,6 +52,7 @@ export const Route = createFileRoute("/jewellery/$slug")({
           brand: { "@type": "Brand", name: "Indriya" },
           material: "22 karat BIS Hallmark gold",
           category: `Temple jewellery > ${TYPE_LABEL[p.type]}`,
+          ...productOfferLd(p),
         }),
       ],
     };
@@ -61,6 +71,13 @@ function ProductPage() {
     ["Metal", "22 karat gold, BIS Hallmarked with HUID"],
     ["Finish", "Antique gold, hand-finished"],
     ["Ideal for", "Weddings, Varalakshmi Vratham and festive pujas"],
+    ...(p.listing
+      ? ([
+          ["Gross weight", `${p.listing.grossWeightG} g`],
+          ...(p.listing.size ? [["Size", p.listing.size] as [string, string]] : []),
+          ["Product code", p.listing.sku],
+        ] as [string, string][])
+      : []),
   ];
 
   return (
@@ -101,10 +118,22 @@ function ProductPage() {
 
             <div className="my-7 h-px bg-gold/30" />
 
-            <p className="text-sm text-ink">
-              Price changes daily with the gold rate. See today&rsquo;s price, sizes and weight on
-              Indriya&rsquo;s own site.
-            </p>
+            {p.listing ? (
+              <div>
+                <p className="font-display text-4xl text-ink lining-nums">
+                  {formatINR(p.listing.price)}
+                </p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Approximate, excluding taxes, as listed on indriya.com on {pricesAsOfLabel}. Gold
+                  prices change daily, so check today&rsquo;s price before you buy.
+                </p>
+              </div>
+            ) : (
+              <p className="text-sm text-ink">
+                Price changes daily with the gold rate. See today&rsquo;s price, sizes and weight on
+                Indriya&rsquo;s own site.
+              </p>
+            )}
             <div className="mt-5 flex flex-wrap gap-3">
               <OffsiteLink href={p.indriyaUrl} variant="button">
                 View price on indriya.com

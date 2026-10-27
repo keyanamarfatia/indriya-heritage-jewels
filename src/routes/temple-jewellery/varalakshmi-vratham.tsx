@@ -11,7 +11,7 @@ import {
 import { breadcrumbLd, jsonLd, pageHead, absoluteUrl } from "@/lib/site";
 import { faqPageLd } from "@/lib/faqs";
 import { FaqSection } from "@/components/faq-section";
-import { ANANTARA_URL, productBySlug } from "@/lib/products";
+import { ANANTARA_URL, pricesAsOfLabel, productBySlug, productOfferLd } from "@/lib/products";
 import heroImage from "@/assets/anantara/ganesha-large.webp";
 import hero480 from "@/assets/anantara/ganesha-large-480.webp";
 import hero800 from "@/assets/anantara/ganesha-large-800.webp";
@@ -49,8 +49,7 @@ export const Route = createFileRoute("/temple-jewellery/varalakshmi-vratham")({
         name: "Temple Jewellery for Varalakshmi Vratham",
         description: DESCRIPTION,
         url: absoluteUrl(PATH),
-        // Product schema for each featured piece. Prices change daily with the gold rate, so
-        // price and availability are left out rather than copied.
+        // Product schema for each featured piece, with indriya.com's listed price (shown on the page).
         mainEntity: {
           "@type": "ItemList",
           itemListElement: FEATURED.map((p, i) => ({
@@ -65,6 +64,7 @@ export const Route = createFileRoute("/temple-jewellery/varalakshmi-vratham")({
               brand: { "@type": "Brand", name: "Indriya" },
               material: "22 karat BIS Hallmark gold",
               category: "Temple jewellery",
+              ...productOfferLd(p),
             },
           })),
         },
@@ -165,6 +165,10 @@ function VaralakshmiPage() {
               <ProductCard key={p.slug} product={p} />
             ))}
           </div>
+          <p className="mt-8 text-center text-xs text-muted-foreground">
+            Approximate prices excluding taxes, as listed on indriya.com on {pricesAsOfLabel}. Gold
+            prices change daily, so check today&rsquo;s price on indriya.com or in store.
+          </p>
         </section>
 
         {/* Craft */}
