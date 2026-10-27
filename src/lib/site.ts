@@ -15,6 +15,17 @@ export const SOCIAL_LINKS = [
   { name: "YouTube", href: "https://www.youtube.com/@indriyajewels" },
 ] as const;
 
+/** Official profiles of Indriya's parent company, the Aditya Birla Group (verified October 2026). */
+export const PARENT_LINKS = [
+  { name: "Aditya Birla Group website", short: "Website", href: "https://www.adityabirla.com/" },
+  {
+    name: "Aditya Birla Group on Wikipedia",
+    short: "Wikipedia",
+    href: "https://en.wikipedia.org/wiki/Aditya_Birla_Group",
+  },
+  { name: "Aditya Birla Group on X", short: "X (Twitter)", href: "https://x.com/AdityaBirlaGrp" },
+] as const;
+
 /** Author shown on the Temple Jewellery Guide (E-E-A-T). */
 export const GUIDE_AUTHOR = {
   name: "Indriya Project Team",

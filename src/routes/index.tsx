@@ -34,6 +34,7 @@ import {
   SITE_NAME,
   SITE_PUBLISHED,
   SITE_UPDATED,
+  PARENT_LINKS,
   SOCIAL_LINKS,
   absoluteUrl,
   authorLd,
@@ -110,7 +111,12 @@ export const Route = createFileRoute("/")({
           name: "Indriya",
           url: OFFICIAL_URL,
           logo: absoluteUrl(logoLight),
-          parentOrganization: { "@type": "Organization", name: "Aditya Birla Group" },
+          parentOrganization: {
+            "@type": "Organization",
+            name: "Aditya Birla Group",
+            url: "https://www.adityabirla.com/",
+            sameAs: PARENT_LINKS.map((l) => l.href),
+          },
           sameAs: [
             OFFICIAL_URL,
             ...SOCIAL_LINKS.map((l) => l.href),

@@ -19,6 +19,7 @@ import {
   OFFICIAL_URL,
   SITE_PUBLISHED,
   SITE_UPDATED,
+  PARENT_LINKS,
   SOCIAL_LINKS,
   absoluteUrl,
   authorLd,
@@ -265,6 +266,17 @@ function AboutPage() {
                   {l.name}
                 </a>
                 {i < SOCIAL_LINKS.length - 2 ? ", " : i === SOCIAL_LINKS.length - 2 ? " and " : "."}
+              </span>
+            ))}
+          </p>
+          <p className="mt-3 text-sm text-ink/85">
+            Indriya&rsquo;s parent company, the Aditya Birla Group:{" "}
+            {PARENT_LINKS.map((l, i) => (
+              <span key={l.href}>
+                <a href={l.href} target="_blank" rel="noopener noreferrer" className={link}>
+                  {l.short}
+                </a>
+                {i < PARENT_LINKS.length - 1 ? " · " : ""}
               </span>
             ))}
           </p>
