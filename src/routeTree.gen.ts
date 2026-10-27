@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as LifetimeExchangeRouteImport } from './routes/lifetime-exchange'
+import { Route as LlmsFullDottxtRouteImport } from './routes/llms-full[.]txt'
 import { Route as TempleJewelleryGuideRouteImport } from './routes/temple-jewellery-guide'
 import { Route as JewellerySlugRouteImport } from './routes/jewellery/$slug'
 import { Route as StoreLocatorIndexRouteImport } from './routes/store-locator/index'
@@ -33,6 +34,11 @@ const FaqRoute = FaqRouteImport.update({
 const LifetimeExchangeRoute = LifetimeExchangeRouteImport.update({
   id: '/lifetime-exchange',
   path: '/lifetime-exchange',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LlmsFullDottxtRoute = LlmsFullDottxtRouteImport.update({
+  id: '/llms-full.txt',
+  path: '/llms-full.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TempleJewelleryGuideRoute = TempleJewelleryGuideRouteImport.update({
@@ -77,6 +83,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/faq': typeof FaqRoute
   '/lifetime-exchange': typeof LifetimeExchangeRoute
+  '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/temple-jewellery-guide': typeof TempleJewelleryGuideRoute
   '/jewellery/$slug': typeof JewellerySlugRoute
   '/store-locator/$slug': typeof StoreLocatorSlugRoute
@@ -89,6 +96,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/faq': typeof FaqRoute
   '/lifetime-exchange': typeof LifetimeExchangeRoute
+  '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/temple-jewellery-guide': typeof TempleJewelleryGuideRoute
   '/jewellery/$slug': typeof JewellerySlugRoute
   '/store-locator/$slug': typeof StoreLocatorSlugRoute
@@ -102,6 +110,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/faq': typeof FaqRoute
   '/lifetime-exchange': typeof LifetimeExchangeRoute
+  '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/temple-jewellery-guide': typeof TempleJewelleryGuideRoute
   '/jewellery/$slug': typeof JewellerySlugRoute
   '/store-locator/$slug': typeof StoreLocatorSlugRoute
@@ -116,6 +125,7 @@ export interface FileRouteTypes {
     | '/'
     | '/faq'
     | '/lifetime-exchange'
+    | '/llms-full.txt'
     | '/temple-jewellery-guide'
     | '/jewellery/$slug'
     | '/store-locator/$slug'
@@ -128,6 +138,7 @@ export interface FileRouteTypes {
     | '/'
     | '/faq'
     | '/lifetime-exchange'
+    | '/llms-full.txt'
     | '/temple-jewellery-guide'
     | '/jewellery/$slug'
     | '/store-locator/$slug'
@@ -140,6 +151,7 @@ export interface FileRouteTypes {
     | '/'
     | '/faq'
     | '/lifetime-exchange'
+    | '/llms-full.txt'
     | '/temple-jewellery-guide'
     | '/jewellery/$slug'
     | '/store-locator/$slug'
@@ -153,6 +165,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   FaqRoute: typeof FaqRoute
   LifetimeExchangeRoute: typeof LifetimeExchangeRoute
+  LlmsFullDottxtRoute: typeof LlmsFullDottxtRoute
   TempleJewelleryGuideRoute: typeof TempleJewelleryGuideRoute
   JewellerySlugRoute: typeof JewellerySlugRoute
   StoreLocatorSlugRoute: typeof StoreLocatorSlugRoute
@@ -183,6 +196,13 @@ declare module '@tanstack/react-router' {
       path: '/lifetime-exchange'
       fullPath: '/lifetime-exchange'
       preLoaderRoute: typeof LifetimeExchangeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/llms-full.txt': {
+      id: '/llms-full.txt'
+      path: '/llms-full.txt'
+      fullPath: '/llms-full.txt'
+      preLoaderRoute: typeof LlmsFullDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/temple-jewellery-guide': {
@@ -241,6 +261,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FaqRoute: FaqRoute,
   LifetimeExchangeRoute: LifetimeExchangeRoute,
+  LlmsFullDottxtRoute: LlmsFullDottxtRoute,
   TempleJewelleryGuideRoute: TempleJewelleryGuideRoute,
   JewellerySlugRoute: JewellerySlugRoute,
   StoreLocatorSlugRoute: StoreLocatorSlugRoute,
