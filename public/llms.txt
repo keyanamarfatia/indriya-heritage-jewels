@@ -57,5 +57,6 @@ Key facts:
 
 ## Optional
 
+- [Sitemap](https://indriya-anantara.lovable.app/sitemap.xml): every page on this site
 - [Full reference (llms-full.txt)](https://indriya-anantara.lovable.app/llms-full.txt): every FAQ answer, the full temple jewellery guide, all Anantara pieces with prices, weights and product codes, and every Mumbai store's address, hours and phone
 - [Home](https://indriya-anantara.lovable.app/): introduction to the Anantara collection

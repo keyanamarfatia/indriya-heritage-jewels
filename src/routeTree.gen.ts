@@ -16,6 +16,7 @@ import { Route as LifetimeExchangeRouteImport } from './routes/lifetime-exchange
 import { Route as LlmsFullDottxtRouteImport } from './routes/llms-full[.]txt'
 import { Route as PressRouteImport } from './routes/press'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TempleJewelleryGuideRouteImport } from './routes/temple-jewellery-guide'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as JewellerySlugRouteImport } from './routes/jewellery/$slug'
@@ -58,6 +59,11 @@ const PressRoute = PressRouteImport.update({
 const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
   id: '/privacy-policy',
   path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TempleJewelleryGuideRoute = TempleJewelleryGuideRouteImport.update({
@@ -111,6 +117,7 @@ export interface FileRoutesByFullPath {
   '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/press': typeof PressRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/temple-jewellery-guide': typeof TempleJewelleryGuideRoute
   '/terms': typeof TermsRoute
   '/jewellery/$slug': typeof JewellerySlugRoute
@@ -128,6 +135,7 @@ export interface FileRoutesByTo {
   '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/press': typeof PressRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/temple-jewellery-guide': typeof TempleJewelleryGuideRoute
   '/terms': typeof TermsRoute
   '/jewellery/$slug': typeof JewellerySlugRoute
@@ -146,6 +154,7 @@ export interface FileRoutesById {
   '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/press': typeof PressRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/temple-jewellery-guide': typeof TempleJewelleryGuideRoute
   '/terms': typeof TermsRoute
   '/jewellery/$slug': typeof JewellerySlugRoute
@@ -165,6 +174,7 @@ export interface FileRouteTypes {
     | '/llms-full.txt'
     | '/press'
     | '/privacy-policy'
+    | '/sitemap.xml'
     | '/temple-jewellery-guide'
     | '/terms'
     | '/jewellery/$slug'
@@ -182,6 +192,7 @@ export interface FileRouteTypes {
     | '/llms-full.txt'
     | '/press'
     | '/privacy-policy'
+    | '/sitemap.xml'
     | '/temple-jewellery-guide'
     | '/terms'
     | '/jewellery/$slug'
@@ -199,6 +210,7 @@ export interface FileRouteTypes {
     | '/llms-full.txt'
     | '/press'
     | '/privacy-policy'
+    | '/sitemap.xml'
     | '/temple-jewellery-guide'
     | '/terms'
     | '/jewellery/$slug'
@@ -217,6 +229,7 @@ export interface RootRouteChildren {
   LlmsFullDottxtRoute: typeof LlmsFullDottxtRoute
   PressRoute: typeof PressRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TempleJewelleryGuideRoute: typeof TempleJewelleryGuideRoute
   TermsRoute: typeof TermsRoute
   JewellerySlugRoute: typeof JewellerySlugRoute
@@ -276,6 +289,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy-policy'
       fullPath: '/privacy-policy'
       preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/temple-jewellery-guide': {
@@ -345,6 +365,7 @@ const rootRouteChildren: RootRouteChildren = {
   LlmsFullDottxtRoute: LlmsFullDottxtRoute,
   PressRoute: PressRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TempleJewelleryGuideRoute: TempleJewelleryGuideRoute,
   TermsRoute: TermsRoute,
   JewellerySlugRoute: JewellerySlugRoute,
