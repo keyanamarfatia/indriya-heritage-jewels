@@ -13,7 +13,7 @@ import {
   absoluteUrl,
   authorLd,
   breadcrumbLd,
-  formatDate,
+  formatDateLong,
   jsonLd,
   pageHead,
 } from "@/lib/site";
@@ -50,8 +50,11 @@ export const Route = createFileRoute("/")({
       meta: [
         ...base.meta,
         { name: "author", content: `${GUIDE_AUTHOR.name}, ${GUIDE_AUTHOR.role}` },
-        { property: "article:published_time", content: SITE_PUBLISHED },
-        { property: "article:modified_time", content: SITE_UPDATED },
+        { property: "article:published_time", content: `${SITE_PUBLISHED}T10:00:00+05:30` },
+        { property: "article:modified_time", content: `${SITE_UPDATED}T17:00:00+05:30` },
+        { property: "og:updated_time", content: `${SITE_UPDATED}T17:00:00+05:30` },
+        { name: "date", content: SITE_PUBLISHED },
+        { name: "last-modified", content: SITE_UPDATED },
       ],
       // Preload the hero banner so the largest image starts downloading immediately
       links: [
@@ -117,6 +120,7 @@ export const Route = createFileRoute("/")({
 });
 
 const FEATURED = PRODUCTS.slice(0, 8);
+const TOTAL_REVIEWS = STORES.reduce((n, s) => n + s.reviews, 0);
 const FEATURED_PRICED = FEATURED.filter((p) => p.listing);
 const necklaces = PRODUCTS.filter((p) => p.type === "necklace");
 const earrings = PRODUCTS.filter((p) => p.type === "earrings");
@@ -367,20 +371,52 @@ function Index() {
               , {GUIDE_AUTHOR.role}.
             </p>
             <p className="mt-3 text-sm leading-relaxed text-ink/85">
-              We researched what people ask Google about temple jewellery and built this site to
+              Our credentials: we are BBA Marketing students at Atlas SkillTech University, Mumbai,
+              and built this site for our Digital Marketing course on SEO, AEO and GEO. We
+              researched what people ask Google about temple jewellery and wrote every page to
               answer it. Product details and prices are sourced from indriya.com; according to the
               Bureau of Indian Standards, every hallmarked piece carries a BIS logo, purity grade
-              and HUID code. Indriya&rsquo;s six Mumbai stores are rated 4.8 to 5.0 stars on Google.
+              and HUID code.
             </p>
-            <p className="mt-3 text-xs text-muted-foreground">
-              Published <time dateTime={SITE_PUBLISHED}>{formatDate(SITE_PUBLISHED)}</time> · Last
-              updated <time dateTime={SITE_UPDATED}>{formatDate(SITE_UPDATED)}</time> ·{" "}
+            <ul
+              className="mt-4 flex flex-wrap gap-2 text-xs"
+              aria-label="Why shoppers trust Indriya"
+            >
+              <li className="rounded-full border border-gold/40 bg-card px-3 py-1.5">
+                ★ 4.8 average from {TOTAL_REVIEWS.toLocaleString("en-IN")} Google reviews
+              </li>
+              <li className="rounded-full border border-gold/40 bg-card px-3 py-1.5">
+                BIS Hallmark certified gold
+              </li>
+              <li className="rounded-full border border-gold/40 bg-card px-3 py-1.5">
+                <a href="/lifetime-exchange" className="hover:text-maroon">
+                  Lifetime exchange policy
+                </a>
+              </li>
+              <li className="rounded-full border border-gold/40 bg-card px-3 py-1.5">
+                Backed by the Aditya Birla Group
+              </li>
+            </ul>
+            <p className="mt-4 text-xs text-muted-foreground">
+              Published:{" "}
+              <time dateTime={`${SITE_PUBLISHED}T10:00:00+05:30`}>
+                {formatDateLong(SITE_PUBLISHED)}
+              </time>{" "}
+              · Last updated:{" "}
+              <time dateTime={`${SITE_UPDATED}T17:00:00+05:30`}>
+                {formatDateLong(SITE_UPDATED)}
+              </time>{" "}
+              ·{" "}
               <a href="/about#sources" className="underline underline-offset-4 hover:text-maroon">
                 Sources
               </a>{" "}
               ·{" "}
-              <a href="/about#privacy" className="underline underline-offset-4 hover:text-maroon">
+              <a href="/privacy-policy" className="underline underline-offset-4 hover:text-maroon">
                 Privacy policy
+              </a>{" "}
+              ·{" "}
+              <a href="/terms" className="underline underline-offset-4 hover:text-maroon">
+                Terms of use
               </a>
             </p>
           </div>

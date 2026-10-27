@@ -15,6 +15,8 @@ const PATHS = [
   "/lifetime-exchange",
   "/faq",
   "/about",
+  "/privacy-policy",
+  "/terms",
   "/store-locator",
   "/jewellery/heirloom-ganesha-gold-bridal-necklace",
   "/store-locator/borivali-w-mumbai",

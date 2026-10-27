@@ -390,8 +390,13 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 </a>
               </li>
               <li>
-                <a href="/about#privacy" className="hover:text-[#e2c48f]">
+                <a href="/privacy-policy" className="hover:text-[#e2c48f]">
                   Privacy policy
+                </a>
+              </li>
+              <li>
+                <a href="/terms" className="hover:text-[#e2c48f]">
+                  Terms of use
                 </a>
               </li>
             </ul>

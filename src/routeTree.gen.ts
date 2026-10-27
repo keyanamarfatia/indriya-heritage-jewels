@@ -14,7 +14,9 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as LifetimeExchangeRouteImport } from './routes/lifetime-exchange'
 import { Route as LlmsFullDottxtRouteImport } from './routes/llms-full[.]txt'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as TempleJewelleryGuideRouteImport } from './routes/temple-jewellery-guide'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as JewellerySlugRouteImport } from './routes/jewellery/$slug'
 import { Route as StoreLocatorIndexRouteImport } from './routes/store-locator/index'
 import { Route as StoreLocatorSlugRouteImport } from './routes/store-locator/$slug'
@@ -47,9 +49,19 @@ const LlmsFullDottxtRoute = LlmsFullDottxtRouteImport.update({
   path: '/llms-full.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TempleJewelleryGuideRoute = TempleJewelleryGuideRouteImport.update({
   id: '/temple-jewellery-guide',
   path: '/temple-jewellery-guide',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JewellerySlugRoute = JewellerySlugRouteImport.update({
@@ -91,7 +103,9 @@ export interface FileRoutesByFullPath {
   '/faq': typeof FaqRoute
   '/lifetime-exchange': typeof LifetimeExchangeRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/temple-jewellery-guide': typeof TempleJewelleryGuideRoute
+  '/terms': typeof TermsRoute
   '/jewellery/$slug': typeof JewellerySlugRoute
   '/store-locator/$slug': typeof StoreLocatorSlugRoute
   '/temple-jewellery/lakshmi-haram': typeof TempleJewelleryLakshmiHaramRoute
@@ -105,7 +119,9 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/lifetime-exchange': typeof LifetimeExchangeRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/temple-jewellery-guide': typeof TempleJewelleryGuideRoute
+  '/terms': typeof TermsRoute
   '/jewellery/$slug': typeof JewellerySlugRoute
   '/store-locator/$slug': typeof StoreLocatorSlugRoute
   '/temple-jewellery/lakshmi-haram': typeof TempleJewelleryLakshmiHaramRoute
@@ -120,7 +136,9 @@ export interface FileRoutesById {
   '/faq': typeof FaqRoute
   '/lifetime-exchange': typeof LifetimeExchangeRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/temple-jewellery-guide': typeof TempleJewelleryGuideRoute
+  '/terms': typeof TermsRoute
   '/jewellery/$slug': typeof JewellerySlugRoute
   '/store-locator/$slug': typeof StoreLocatorSlugRoute
   '/temple-jewellery/lakshmi-haram': typeof TempleJewelleryLakshmiHaramRoute
@@ -136,7 +154,9 @@ export interface FileRouteTypes {
     | '/faq'
     | '/lifetime-exchange'
     | '/llms-full.txt'
+    | '/privacy-policy'
     | '/temple-jewellery-guide'
+    | '/terms'
     | '/jewellery/$slug'
     | '/store-locator/$slug'
     | '/temple-jewellery/lakshmi-haram'
@@ -150,7 +170,9 @@ export interface FileRouteTypes {
     | '/faq'
     | '/lifetime-exchange'
     | '/llms-full.txt'
+    | '/privacy-policy'
     | '/temple-jewellery-guide'
+    | '/terms'
     | '/jewellery/$slug'
     | '/store-locator/$slug'
     | '/temple-jewellery/lakshmi-haram'
@@ -164,7 +186,9 @@ export interface FileRouteTypes {
     | '/faq'
     | '/lifetime-exchange'
     | '/llms-full.txt'
+    | '/privacy-policy'
     | '/temple-jewellery-guide'
+    | '/terms'
     | '/jewellery/$slug'
     | '/store-locator/$slug'
     | '/temple-jewellery/lakshmi-haram'
@@ -179,7 +203,9 @@ export interface RootRouteChildren {
   FaqRoute: typeof FaqRoute
   LifetimeExchangeRoute: typeof LifetimeExchangeRoute
   LlmsFullDottxtRoute: typeof LlmsFullDottxtRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   TempleJewelleryGuideRoute: typeof TempleJewelleryGuideRoute
+  TermsRoute: typeof TermsRoute
   JewellerySlugRoute: typeof JewellerySlugRoute
   StoreLocatorSlugRoute: typeof StoreLocatorSlugRoute
   TempleJewelleryLakshmiHaramRoute: typeof TempleJewelleryLakshmiHaramRoute
@@ -225,11 +251,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LlmsFullDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/temple-jewellery-guide': {
       id: '/temple-jewellery-guide'
       path: '/temple-jewellery-guide'
       fullPath: '/temple-jewellery-guide'
       preLoaderRoute: typeof TempleJewelleryGuideRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/jewellery/$slug': {
@@ -283,7 +323,9 @@ const rootRouteChildren: RootRouteChildren = {
   FaqRoute: FaqRoute,
   LifetimeExchangeRoute: LifetimeExchangeRoute,
   LlmsFullDottxtRoute: LlmsFullDottxtRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
   TempleJewelleryGuideRoute: TempleJewelleryGuideRoute,
+  TermsRoute: TermsRoute,
   JewellerySlugRoute: JewellerySlugRoute,
   StoreLocatorSlugRoute: StoreLocatorSlugRoute,
   TempleJewelleryLakshmiHaramRoute: TempleJewelleryLakshmiHaramRoute,

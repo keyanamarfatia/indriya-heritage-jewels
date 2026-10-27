@@ -280,7 +280,15 @@ function AboutPage() {
               FAQ page
             </Link>
             , the question you type is saved anonymously, with no name or contact details, so we can
-            improve our answers. Please don&rsquo;t type personal details into it.
+            improve our answers. Please don&rsquo;t type personal details into it. Read the full{" "}
+            <a href="/privacy-policy" className={link}>
+              privacy policy
+            </a>{" "}
+            and{" "}
+            <a href="/terms" className={link}>
+              terms of use
+            </a>
+            .
           </p>
         </section>
 
