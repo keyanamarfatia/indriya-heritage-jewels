@@ -27,7 +27,7 @@ const SOCIAL_ICONS: Record<(typeof SOCIAL_LINKS)[number]["name"], LucideIcon> = 
   Facebook,
   YouTube: Youtube,
 };
-import { OFFICIAL_URL, PARENT_LINKS, SOCIAL_LINKS } from "@/lib/site";
+import { OFFICIAL_URL, PARENT_LINKS, PROJECT_LINKS, SOCIAL_LINKS } from "@/lib/site";
 import { ANANTARA_URL, PRODUCTS } from "@/lib/products";
 import { AnimatedLogo } from "@/components/animated-logo";
 import { GoldRateWidget } from "@/components/gold-rate";
@@ -440,6 +440,30 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 );
               })}
             </ul>
+            {PROJECT_LINKS.length > 0 && (
+              <>
+                <p className="mt-6 text-xs uppercase tracking-[0.2em] text-[#d8b878]">
+                  This student project on
+                </p>
+                <ul
+                  className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm"
+                  aria-label="This project"
+                >
+                  {PROJECT_LINKS.map((l) => (
+                    <li key={l.href}>
+                      <a
+                        href={l.href}
+                        target="_blank"
+                        rel="noopener noreferrer me"
+                        className="hover:text-[#e2c48f]"
+                      >
+                        {l.name} ↗
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
             <p className="mt-6 text-xs uppercase tracking-[0.2em] text-[#d8b878]">
               Parent company: Aditya Birla Group
             </p>

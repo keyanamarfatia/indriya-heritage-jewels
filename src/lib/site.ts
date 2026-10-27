@@ -15,6 +15,19 @@ export const SOCIAL_LINKS = [
   { name: "YouTube", href: "https://www.youtube.com/@indriyajewels" },
 ] as const;
 
+/**
+ * This student project's own profiles (made by the team, not by Indriya). Paste each URL once the
+ * profile exists; empty ones are hidden everywhere.
+ */
+export const PROJECT_LINKS: { name: string; href: string }[] = [
+  { name: "GitHub", href: "" },
+  { name: "LinkedIn", href: "" },
+  { name: "Reddit", href: "" },
+  { name: "TikTok", href: "" },
+  { name: "Product Hunt", href: "" },
+  { name: "Crunchbase", href: "" },
+].filter((l) => l.href);
+
 /** Official profiles of Indriya's parent company, the Aditya Birla Group (verified October 2026). */
 export const PARENT_LINKS = [
   { name: "Aditya Birla Group website", short: "Website", href: "https://www.adityabirla.com/" },
@@ -54,6 +67,7 @@ export const authorLd = () => ({
   url: `${SITE_URL}/about`,
   parentOrganization: { "@type": "CollegeOrUniversity", name: "Atlas SkillTech University" },
   knowsAbout: ["Digital marketing", "Search engine optimisation", "Temple jewellery"],
+  ...(PROJECT_LINKS.length ? { sameAs: PROJECT_LINKS.map((l) => l.href) } : {}),
 });
 
 /** "October 27, 2026": the month-first form many date parsers expect. */
