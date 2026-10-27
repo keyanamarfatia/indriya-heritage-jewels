@@ -27,7 +27,7 @@ export const PROJECT_LINKS: { name: string; href: string }[] = [
   },
   { name: "Reddit", href: "" },
   { name: "TikTok", href: "" },
-  { name: "Product Hunt", href: "" },
+  { name: "Product Hunt", href: "https://www.producthunt.com/products/ask-indriya" },
   { name: "Crunchbase", href: "" },
 ].filter((l) => l.href);
 
