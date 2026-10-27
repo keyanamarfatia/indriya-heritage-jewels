@@ -93,6 +93,7 @@ const NAV: NavItem[] = [
       },
     ],
   },
+  { label: "Find Your Piece", href: "/styling-advisor", icon: Sparkles },
   { label: "Varalakshmi Vratham", href: "/temple-jewellery/varalakshmi-vratham", icon: Flower2 },
   { label: "Jewellery Guide", href: "/temple-jewellery-guide", icon: BookOpen },
   { label: "FAQ", href: "/faq", icon: MessageCircleQuestion },

@@ -17,6 +17,7 @@ import { Route as LlmsFullDottxtRouteImport } from './routes/llms-full[.]txt'
 import { Route as PressRouteImport } from './routes/press'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as StylingAdvisorRouteImport } from './routes/styling-advisor'
 import { Route as TempleJewelleryGuideRouteImport } from './routes/temple-jewellery-guide'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as JewellerySlugRouteImport } from './routes/jewellery/$slug'
@@ -64,6 +65,11 @@ const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StylingAdvisorRoute = StylingAdvisorRouteImport.update({
+  id: '/styling-advisor',
+  path: '/styling-advisor',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TempleJewelleryGuideRoute = TempleJewelleryGuideRouteImport.update({
@@ -118,6 +124,7 @@ export interface FileRoutesByFullPath {
   '/press': typeof PressRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/styling-advisor': typeof StylingAdvisorRoute
   '/temple-jewellery-guide': typeof TempleJewelleryGuideRoute
   '/terms': typeof TermsRoute
   '/jewellery/$slug': typeof JewellerySlugRoute
@@ -136,6 +143,7 @@ export interface FileRoutesByTo {
   '/press': typeof PressRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/styling-advisor': typeof StylingAdvisorRoute
   '/temple-jewellery-guide': typeof TempleJewelleryGuideRoute
   '/terms': typeof TermsRoute
   '/jewellery/$slug': typeof JewellerySlugRoute
@@ -155,6 +163,7 @@ export interface FileRoutesById {
   '/press': typeof PressRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/styling-advisor': typeof StylingAdvisorRoute
   '/temple-jewellery-guide': typeof TempleJewelleryGuideRoute
   '/terms': typeof TermsRoute
   '/jewellery/$slug': typeof JewellerySlugRoute
@@ -175,6 +184,7 @@ export interface FileRouteTypes {
     | '/press'
     | '/privacy-policy'
     | '/sitemap.xml'
+    | '/styling-advisor'
     | '/temple-jewellery-guide'
     | '/terms'
     | '/jewellery/$slug'
@@ -193,6 +203,7 @@ export interface FileRouteTypes {
     | '/press'
     | '/privacy-policy'
     | '/sitemap.xml'
+    | '/styling-advisor'
     | '/temple-jewellery-guide'
     | '/terms'
     | '/jewellery/$slug'
@@ -211,6 +222,7 @@ export interface FileRouteTypes {
     | '/press'
     | '/privacy-policy'
     | '/sitemap.xml'
+    | '/styling-advisor'
     | '/temple-jewellery-guide'
     | '/terms'
     | '/jewellery/$slug'
@@ -230,6 +242,7 @@ export interface RootRouteChildren {
   PressRoute: typeof PressRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  StylingAdvisorRoute: typeof StylingAdvisorRoute
   TempleJewelleryGuideRoute: typeof TempleJewelleryGuideRoute
   TermsRoute: typeof TermsRoute
   JewellerySlugRoute: typeof JewellerySlugRoute
@@ -296,6 +309,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/styling-advisor': {
+      id: '/styling-advisor'
+      path: '/styling-advisor'
+      fullPath: '/styling-advisor'
+      preLoaderRoute: typeof StylingAdvisorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/temple-jewellery-guide': {
@@ -366,6 +386,7 @@ const rootRouteChildren: RootRouteChildren = {
   PressRoute: PressRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  StylingAdvisorRoute: StylingAdvisorRoute,
   TempleJewelleryGuideRoute: TempleJewelleryGuideRoute,
   TermsRoute: TermsRoute,
   JewellerySlugRoute: JewellerySlugRoute,
