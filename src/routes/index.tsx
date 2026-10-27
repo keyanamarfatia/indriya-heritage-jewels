@@ -296,9 +296,10 @@ function Index() {
             The Indriya promise is three guarantees on every gold piece: BIS Hallmark certified
             purity, a bill that shows the gold rate, making charges and taxes separately, and
             lifetime exchange at any Indriya store. According to the Bureau of Indian Standards,
-            hallmarking of gold jewellery has been mandatory in India since 16 June 2021, and every
-            hallmark carries a 6-character HUID code. A 22K916 hallmark means the gold is 91.6%
-            pure. In India, gold jewellery also carries 3% GST, which Indriya lists on the bill.
+            hallmarking of gold jewellery became mandatory in India on 16 June 2021, starting in 256
+            districts, and every hallmark carries a 6-character HUID code. A 22K916 hallmark means
+            the gold is 91.6% pure. In India, gold jewellery also carries 3% GST, which Indriya
+            lists on the bill.
           </p>
         </div>
         <ul className="mt-10 grid gap-8 md:grid-cols-3">
