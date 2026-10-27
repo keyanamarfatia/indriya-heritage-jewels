@@ -119,18 +119,24 @@ export function HomeAnswers() {
               </strong>{" "}
               decorated with images of deities, temples and sacred symbols, first made to adorn the
               idols of Hindu temples. Temple jewellery grew in Tamil Nadu under the Chola and Pandya
-              dynasties, roughly between the 9th and 13th centuries, and Nagercoil in southern Tamil
-              Nadu remains a well-known centre of the craft. Bharatanatyam dancers later adopted
-              temple jewellery for the stage, and today temple jewellery is the signature jewellery
-              of South Indian brides.
+              dynasties, roughly between the 9th and 13th centuries. Nagercoil in southern Tamil
+              Nadu remains a well-known centre of temple jewellery craftsmanship, where artisans
+              continue the tradition passed down through generations. Bharatanatyam dancers adopted
+              temple jewellery for classical dance in the 20th century, and today temple jewellery
+              is the signature jewellery of South Indian brides, worn at weddings, religious
+              ceremonies and festivals.
             </p>
             <p className="mt-3 leading-relaxed text-ink/85">
               The three classic temple jewellery motifs are Goddess Lakshmi for prosperity, the
-              peacock for grace and the lotus for purity. According to the Bureau of Indian
-              Standards, real gold temple jewellery carries three hallmark marks: the BIS logo, a
-              purity grade such as 22K916 (91.6% pure gold) and a unique 6-character HUID code. Our
-              research found that {deityNamed.length} of the {PRODUCTS.length} Anantara pieces on
-              this site are named after a Hindu deity. Read more in our{" "}
+              peacock for grace and the lotus for purity. Indriya&rsquo;s Anantara collection draws
+              design inspiration from the Hoysala-era temples at Somanathapura in Karnataka, built
+              in the 12th century and known for intricate stone carvings of deities and floral
+              patterns. According to the Bureau of Indian Standards, real gold temple jewellery must
+              carry three hallmark marks: the BIS logo, a purity grade such as 22K916 (91.6% pure
+              gold) and a unique 6-character HUID code for traceability. Our research found that{" "}
+              {deityNamed.length} of the {PRODUCTS.length} Anantara pieces on this site (
+              {pct(deityNamed.length, PRODUCTS.length)}) are named after a Hindu deity, reflecting
+              the spiritual significance of these designs. Read more in our{" "}
               <Link to="/temple-jewellery-guide" className={link}>
                 Temple Jewellery Guide
               </Link>
