@@ -26,6 +26,7 @@ import {
   GUIDE_AUTHOR,
   GUIDE_PUBLISHED,
   SITE_NAME,
+  teamLd,
   absoluteUrl,
   breadcrumbLd,
   jsonLd,
@@ -79,7 +80,7 @@ export const Route = createFileRoute("/temple-jewellery-guide")({
         image: absoluteUrl(guideImage),
         datePublished: GUIDE_PUBLISHED,
         dateModified: GUIDE_PUBLISHED,
-        author: { "@type": "Person", name: GUIDE_AUTHOR.name, jobTitle: GUIDE_AUTHOR.role },
+        author: teamLd(),
         publisher: { "@type": "Organization", name: SITE_NAME, url: absoluteUrl("/") },
         mainEntityOfPage: absoluteUrl(PATH),
         about: ["Temple jewellery", "South Indian jewellery", "Nakshi work", "Anantara"],
@@ -231,11 +232,7 @@ const link = "text-maroon underline decoration-gold underline-offset-4 hover:tex
 /* ---------- page ---------- */
 
 function GuidePage() {
-  const initials = GUIDE_AUTHOR.name
-    .split(" ")
-    .map((w) => w[0])
-    .join("")
-    .slice(0, 2);
+  const initials = GUIDE_AUTHOR.initials;
 
   return (
     <SiteShell>

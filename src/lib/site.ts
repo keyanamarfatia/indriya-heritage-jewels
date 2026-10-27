@@ -40,10 +40,22 @@ export const PARENT_LINKS = [
 ] as const;
 
 /** Author shown on the Temple Jewellery Guide (E-E-A-T). */
+export const TEAM = ["Keyana Marfatia", "Adnan Gilitwala", "Aadhyan Rao"] as const;
+
 export const GUIDE_AUTHOR = {
-  name: "Indriya Project Team",
+  name: "Keyana Marfatia, Adnan Gilitwala and Aadhyan Rao",
   role: "BBA Marketing students, Atlas SkillTech University",
+  initials: "KA",
 };
+
+/** Each team member as a schema.org Person. */
+export const teamLd = () =>
+  TEAM.map((name) => ({
+    "@type": "Person",
+    name,
+    jobTitle: "BBA Marketing student",
+    affiliation: { "@type": "CollegeOrUniversity", name: "Atlas SkillTech University" },
+  }));
 
 export const GUIDE_PUBLISHED = "2026-10-25";
 
@@ -67,6 +79,7 @@ export const authorLd = () => ({
   url: `${SITE_URL}/about`,
   parentOrganization: { "@type": "CollegeOrUniversity", name: "Atlas SkillTech University" },
   knowsAbout: ["Digital marketing", "Search engine optimisation", "Temple jewellery"],
+  member: teamLd(),
   ...(PROJECT_LINKS.length ? { sameAs: PROJECT_LINKS.map((l) => l.href) } : {}),
 });
 
