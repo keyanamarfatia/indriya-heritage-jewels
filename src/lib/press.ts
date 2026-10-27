@@ -63,6 +63,12 @@ export const PRESS: PressItem[] = [
     summary: "Business coverage of Indriya's launch into India's jewellery retail market.",
   },
   {
+    outlet: "BusinessWorld",
+    headline: "Aditya Birla Group launches its jewellery business brand Indriya",
+    url: "https://businessworld.in/article/aditya-birla-group-launches-its-jewellery-business-brand-indriya-527397",
+    summary: "BusinessWorld's report on the launch of Indriya.",
+  },
+  {
     outlet: "GJEPC Solitaire",
     headline: "Aditya Birla Group Unveils Rs. 5,000 Crore Jewellery Brand 'Indriya'",
     url: "https://gjepc.org/solitaire/?p=27007",
@@ -73,5 +79,12 @@ export const PRESS: PressItem[] = [
     headline: "Indriya: A New Era of Elegance in Fine Jewellery",
     url: "https://www.adityabirla.com/media/stories/indriya-a-new-era-of-elegance-in-fine-jewellery",
     summary: "The Aditya Birla Group's own story on Indriya.",
+  },
+  {
+    outlet: "Harvard Business Publishing",
+    headline: "Novel Jewels Limited: Diversifying the Legacy of AB Group",
+    url: "https://store.hbr.org/product/novel-jewels-limited-diversifying-the-legacy-of-ab-group/W40606",
+    summary:
+      "A business-school case study on Novel Jewels Limited, the Aditya Birla Group company behind Indriya.",
   },
 ];
