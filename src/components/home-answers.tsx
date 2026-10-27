@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { PRODUCTS, pricesAsOfLabel } from "@/lib/products";
 import { STORES } from "@/lib/stores";
+import { PRESS } from "@/lib/press";
 import {
   all,
   avgPerGram,
@@ -12,11 +13,14 @@ import {
   g,
   listJoin,
   mostReviewed,
+  mostReviewedShare,
+  pct,
   necklaceCount,
   necklaces,
   perGram,
   rupee,
   shortName,
+  storesAtLeast48,
   topRated,
   totalReviews,
 } from "@/lib/anantara-stats";
@@ -32,6 +36,9 @@ import { CARE_PHONE } from "@/lib/knowledge";
 
 const link = "text-maroon underline decoration-gold underline-offset-4 hover:text-gold-deep";
 
+const diff = ((avgPerGram - INDRIYA_RATE.perGram22kt) / INDRIYA_RATE.perGram22kt) * 100;
+const pctDiff = `${Math.abs(diff).toFixed(1)}%`;
+
 export function HomeAnswers() {
   return (
     <section className="border-t border-border py-16" aria-labelledby="answers-heading">
@@ -45,12 +52,32 @@ export function HomeAnswers() {
             What do shoppers ask about Anantara?
           </h2>
           <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-muted-foreground">
-            Shoppers most often ask what Anantara is, what temple jewellery means, what Anantara
-            costs and where to buy it. We answered those 4 questions with our own analysis of{" "}
-            {all.count} indriya.com product listings checked on {pricesAsOfLabel}, the Google
-            ratings of Indriya&rsquo;s {STORES.length} Mumbai stores (
-            {totalReviews.toLocaleString("en-IN")} reviews), the Bureau of Indian Standards&rsquo;
-            hallmarking rules and press coverage from Indian Jeweller and Medianews4u.
+            Shoppers ask four main questions about Anantara, Indriya&rsquo;s bridal temple jewellery
+            collection. Our research answers each one with sourced figures:
+          </p>
+          <ul className="mx-auto mt-5 grid max-w-3xl gap-2 text-left text-sm text-ink/85 sm:grid-cols-2">
+            <li className="rounded-2xl border border-border bg-card px-4 py-3">
+              <strong className="font-medium text-ink">What is Anantara?</strong> {PRODUCTS.length}{" "}
+              pieces in 22 karat gold, 91.6% pure.
+            </li>
+            <li className="rounded-2xl border border-border bg-card px-4 py-3">
+              <strong className="font-medium text-ink">What is temple jewellery?</strong> A South
+              Indian craft from the 9th to 13th centuries.
+            </li>
+            <li className="rounded-2xl border border-border bg-card px-4 py-3">
+              <strong className="font-medium text-ink">What does Anantara cost?</strong>{" "}
+              {rupee(all.lo.listing.price)} to {rupee(all.hi.listing.price)} before taxes.
+            </li>
+            <li className="rounded-2xl border border-border bg-card px-4 py-3">
+              <strong className="font-medium text-ink">Where can you buy it?</strong> At{" "}
+              {STORES.length} Mumbai stores rated {avgRating.toFixed(1)} out of 5.
+            </li>
+          </ul>
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            Our research used {all.count} indriya.com listings checked on {pricesAsOfLabel},{" "}
+            {totalReviews.toLocaleString("en-IN")} Google reviews, the Bureau of Indian
+            Standards&rsquo; hallmarking rules and {PRESS.length} press articles, including Indian
+            Jeweller and Medianews4u.
           </p>
         </div>
 
@@ -73,8 +100,9 @@ export function HomeAnswers() {
               Anantara pieces are made in 22K916 gold, which is 91.6% pure, finished in an antique
               geru tone and set with pearls, rubies and green stones. Every Anantara piece is BIS
               Hallmarked with a 6-character HUID code. This site features {PRODUCTS.length} Anantara
-              pieces, {necklaceCount} necklaces and {earringCount} pairs of earrings, each linked to
-              its page on indriya.com. Indriya unveiled Anantara in May 2025 for brides in Andhra
+              pieces, {necklaceCount} necklaces ({pct(necklaceCount, PRODUCTS.length)}) and{" "}
+              {earringCount} pairs of earrings ({pct(earringCount, PRODUCTS.length)}), each linked
+              to its page on indriya.com. Indriya unveiled Anantara in May 2025 for brides in Andhra
               Pradesh, Telangana and Karnataka, with designs drawn from the Hoysala-era temples at
               Somanathapura, according to Indian Jeweller and Medianews4u.
             </p>
@@ -99,9 +127,9 @@ export function HomeAnswers() {
               The three classic temple jewellery motifs are Goddess Lakshmi for prosperity, the
               peacock for grace and the lotus for purity. According to the Bureau of Indian
               Standards, real gold temple jewellery carries three hallmark marks: the BIS logo, a
-              purity grade such as 22K916 and a unique 6-character HUID code. We found that{" "}
-              {deityNamed.length} of the {PRODUCTS.length} Anantara pieces on this site are named
-              after a Hindu deity. Read more in our{" "}
+              purity grade such as 22K916 (91.6% pure gold) and a unique 6-character HUID code. Our
+              research found that {deityNamed.length} of the {PRODUCTS.length} Anantara pieces on
+              this site are named after a Hindu deity. Read more in our{" "}
               <Link to="/temple-jewellery-guide" className={link}>
                 Temple Jewellery Guide
               </Link>
@@ -118,11 +146,11 @@ export function HomeAnswers() {
                 Anantara temple jewellery costs between {rupee(all.lo.listing.price)} and{" "}
                 {rupee(all.hi.listing.price)} before taxes
               </strong>
-              , based on our analysis of {all.count} Anantara pieces listed on indriya.com on{" "}
+              , based on our research into {all.count} Anantara pieces listed on indriya.com on{" "}
               {pricesAsOfLabel}. Across all {all.count} pieces, the average works out to{" "}
               {rupee(avgPerGram)} per gram of gross weight, close to Indriya&rsquo;s 22 karat store
-              rate of {rupee(INDRIYA_RATE.perGram22kt)} per gram on {INDRIYA_RATE.updatedLabel}.
-              Price per gram ranges from {rupee(Math.min(...perGram))} to{" "}
+              rate of {rupee(INDRIYA_RATE.perGram22kt)} per gram on {INDRIYA_RATE.updatedLabel}, a
+              difference of {pctDiff}. Price per gram ranges from {rupee(Math.min(...perGram))} to{" "}
               {rupee(Math.max(...perGram))}, because gross weight includes pearls and stones and
               making charges differ by design. The most expensive Anantara piece, the {all.hi.name},
               weighs {g(all.hi.listing.grossWeightG)}.
@@ -168,29 +196,34 @@ export function HomeAnswers() {
             </h2>
             <p className="mt-4 leading-relaxed text-ink/85">
               <strong className="font-medium text-ink">
-                Indriya&rsquo;s {STORES.length} Mumbai jewellery stores average{" "}
-                {avgRating.toFixed(1)} out of 5 on Google across{" "}
-                {totalReviews.toLocaleString("en-IN")} reviews
+                Indriya&rsquo;s Mumbai stores are rated {avgRating.toFixed(1)} out of 5 on Google
               </strong>
-              , based on our count of the ratings shown on indriya.com in October 2026. The{" "}
-              {shortName(mostReviewed.name)} store has the most reviews,{" "}
-              {mostReviewed.reviews.toLocaleString("en-IN")} at {mostReviewed.rating.toFixed(1)}{" "}
-              stars, while {shortName(topRated[0]!.name)} is rated {topRated[0]!.rating.toFixed(1)}{" "}
-              from {topRated[0]!.reviews} reviews and {shortName(topRated[1]!.name)} is rated{" "}
-              {topRated[1]!.rating.toFixed(1)} from {topRated[1]!.reviews} reviews.
+              , across {totalReviews.toLocaleString("en-IN")} reviews of {STORES.length} stores,
+              according to our research on indriya.com in October 2026.{" "}
+              {storesAtLeast48 === STORES.length ? "All" : storesAtLeast48} {STORES.length} stores (
+              {pct(storesAtLeast48, STORES.length)}) are rated 4.8 or higher.
             </p>
+            <ul className="mt-3 list-disc space-y-1 pl-5 text-ink/85">
+              <li>
+                {shortName(mostReviewed.name)}: {mostReviewed.rating.toFixed(1)} stars,{" "}
+                {mostReviewed.reviews.toLocaleString("en-IN")} reviews ({mostReviewedShare} of all
+                reviews)
+              </li>
+              <li>
+                {shortName(topRated[1]!.name)}: {topRated[1]!.rating.toFixed(1)} stars,{" "}
+                {topRated[1]!.reviews} reviews
+              </li>
+              <li>
+                {shortName(topRated[0]!.name)}: {topRated[0]!.rating.toFixed(1)} stars,{" "}
+                {topRated[0]!.reviews} reviews
+              </li>
+            </ul>
             <p className="mt-3 leading-relaxed text-ink/85">
               Every Indriya store in Mumbai opens at 11:00 AM and closes between 9:00 PM and 11:00
-              PM, depending on the store. The {listJoin(bridalStores.map((s) => shortName(s.name)))}{" "}
-              stores offer a bridal studio, in-house stylists and design customisation, which suits
-              brides choosing a temple jewellery set. In our count, {bridalStores.length} of the{" "}
-              {STORES.length} Mumbai stores list a bridal studio. Indriya stores also handle
-              lifetime exchange, valuing Indriya gold at the current gold rate. Indriya customer
-              care is available toll free on {CARE_PHONE}, and every store has its own page in our{" "}
-              <Link to="/store-locator" className={link}>
-                store locator
-              </Link>
-              .
+              PM. Our research found that {bridalStores.length} of the {STORES.length} stores (
+              {pct(bridalStores.length, STORES.length)}) offer a bridal studio:{" "}
+              {listJoin(bridalStores.map((s) => shortName(s.name)))}. Indriya customer care is toll
+              free on {CARE_PHONE}.
             </p>
           </article>
         </div>

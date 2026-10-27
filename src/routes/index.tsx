@@ -9,6 +9,7 @@ import {
   ScriptHeading,
   SectionQuestion,
 } from "@/components/brand";
+import { PRESS } from "@/lib/press";
 import {
   all as allStats,
   avgRating,
@@ -18,6 +19,12 @@ import {
   lightestEarrings,
   listJoin,
   necklaces as necklaceStats,
+  mostReviewed,
+  mostReviewedShare,
+  pct,
+  priced,
+  shortName,
+  storesAtLeast48,
   rupee,
   totalReviews as reviewTotal,
 } from "@/lib/anantara-stats";
@@ -185,9 +192,10 @@ function Index() {
               Every Jewel Tells a Story
             </h1>
             <p className="mt-4 max-w-md text-base font-light leading-relaxed text-ivory/80 sm:text-lg">
-              Be the bride of your dreams, adorned in divine heritage. Anantara is Indriya&rsquo;s
-              bridal temple jewellery collection, unveiled in May 2025: 22 karat gold necklaces and
-              jhumkas with Lakshmi, Ganesha and Garuda motifs.
+              Anantara is Indriya&rsquo;s bridal temple jewellery collection, unveiled in May 2025
+              for brides in Andhra Pradesh, Telangana and Karnataka. Every piece is 22 karat gold,
+              91.6% pure, with Lakshmi, Ganesha and Garuda motifs. Be the bride of your dreams,
+              adorned in divine heritage.
             </p>
             <div className="mt-8 flex flex-wrap gap-3 sm:gap-4">
               <Link to="/temple-jewellery/varalakshmi-vratham" className="btn-lux-gold">
@@ -212,7 +220,7 @@ function Index() {
           {rupee(necklaceStats.lo.listing.price)} to {rupee(necklaceStats.hi.listing.price)};
           Anantara earrings weigh {g(earringStats.minW)} to {g(earringStats.maxW)} and cost{" "}
           {rupee(earringStats.lo.listing.price)} to {rupee(earringStats.hi.listing.price)},
-          according to our analysis of indriya.com listings on {pricesAsOfLabel} (prices exclude
+          according to our research of indriya.com listings on {pricesAsOfLabel} (prices exclude
           taxes).
         </p>
         <KolamDivider className="mt-6" />
@@ -258,12 +266,13 @@ function Index() {
             <ScriptHeading as="p" before="Temple" script="Treasures" />
             <SectionQuestion>Which Anantara pieces stand out?</SectionQuestion>
             <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-muted-foreground">
-              Temple Treasures is our selection of {FEATURED.length} Anantara pieces. We found that{" "}
-              {deityNamed.length} of the {PRODUCTS.length} Anantara pieces on this site are named
-              after a Hindu deity: Lord Ganesha (also called Vinayaka), Goddess Lakshmi, Lord Vishnu
-              or Garuda. The {allStats.hi.name} is the heaviest and most expensive piece at{" "}
-              {g(allStats.hi.listing.grossWeightG)} and {rupee(allStats.hi.listing.price)}, while
-              the {lightestEarrings?.name} are the lightest piece with a listed weight, at{" "}
+              Temple Treasures is our selection of {FEATURED.length} Anantara pieces. Our research
+              found that {deityNamed.length} of the {PRODUCTS.length} Anantara pieces on this site (
+              {pct(deityNamed.length, PRODUCTS.length)}) are named after a Hindu deity: Lord Ganesha
+              (also called Vinayaka), Goddess Lakshmi, Lord Vishnu or Garuda. The {allStats.hi.name}{" "}
+              is the heaviest and most expensive piece at {g(allStats.hi.listing.grossWeightG)} and{" "}
+              {rupee(allStats.hi.listing.price)}, while the {lightestEarrings?.name} are the
+              lightest piece with a listed weight, at{" "}
               {lightestEarrings ? g(lightestEarrings.listing.grossWeightG) : ""}. Tap any piece to
               see its details and its page on indriya.com.
             </p>
@@ -383,10 +392,13 @@ function Index() {
               </Link>
             </h2>
             <p className="mt-3 leading-relaxed text-muted-foreground">
-              Indriya has {STORES.length} stores in Mumbai: {listJoin(STORES.map((s) => s.area))}.
-              Together, Indriya&rsquo;s Mumbai stores average {avgRating.toFixed(1)} stars from{" "}
-              {reviewTotal.toLocaleString("en-IN")} Google reviews, by our count of the ratings
-              shown on indriya.com in October 2026. Every Mumbai store opens at 11:00 AM.
+              Indriya&rsquo;s stores in Mumbai are in {STORES.length} neighbourhoods:{" "}
+              {listJoin(STORES.map((s) => s.area.replace(", Navi Mumbai", " (Navi Mumbai)")))}. Our
+              research found that all {STORES.length} Mumbai stores (
+              {pct(storesAtLeast48, STORES.length)}) are rated 4.8 stars or higher on Google, from{" "}
+              {reviewTotal.toLocaleString("en-IN")} reviews in total. The{" "}
+              {shortName(mostReviewed.name)} store alone holds {mostReviewedShare} of those reviews.
+              Every Mumbai store opens at 11:00 AM.
             </p>
             <ul className="mt-5 divide-y divide-border border-y border-border">
               {STORES.map((s) => (
@@ -441,13 +453,23 @@ function Index() {
               , {GUIDE_AUTHOR.role}.
             </p>
             <p className="mt-3 text-sm leading-relaxed text-ink/85">
-              Our credentials: we are BBA Marketing students at Atlas SkillTech University, Mumbai,
-              and built this site for our Digital Marketing course on SEO, AEO and GEO. We
-              researched what people ask Google about temple jewellery and wrote every page to
-              answer it. Product details and prices are sourced from indriya.com; according to the
-              Bureau of Indian Standards, every hallmarked piece carries a BIS logo, purity grade
-              and HUID code.
+              Indriya Temple Jewellery is a student project by BBA Marketing students at Atlas
+              SkillTech University, Mumbai, built for a Digital Marketing course on SEO, AEO and
+              GEO. Our credentials and research:
             </p>
+            <ul className="mt-3 list-disc space-y-1 pl-5 text-sm leading-relaxed text-ink/85">
+              <li>
+                Our research covered {PRODUCTS.length} Anantara pieces, {STORES.length} stores and{" "}
+                {PRESS.length} press articles.
+              </li>
+              <li>
+                {priced.length} of {PRODUCTS.length} pieces ({pct(priced.length, PRODUCTS.length)})
+                carry a price checked on indriya.com on {pricesAsOfLabel}.
+              </li>
+              <li>
+                Purity facts follow the Bureau of Indian Standards: 22K916 gold is 91.6% pure.
+              </li>
+            </ul>
             <ul
               className="mt-4 flex flex-wrap gap-2 text-xs"
               aria-label="Why shoppers trust Indriya"

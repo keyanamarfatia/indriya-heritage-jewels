@@ -52,3 +52,9 @@ export const deityNamed = PRODUCTS.filter((p) =>
 export const lightestEarrings = [...byType("earrings")].sort(
   (a, b) => a.listing.grossWeightG - b.listing.grossWeightG,
 )[0];
+
+/** Whole-number percentage, e.g. pct(8, 12) → "67%". */
+export const pct = (part: number, whole: number) => `${Math.round((part / whole) * 100)}%`;
+export const mostReviewedShare = pct(mostReviewed.reviews, totalReviews);
+export const storesAtLeast48 = STORES.filter((s) => s.rating >= 4.8).length;
+export const priceSpread = Math.round(all.hi.listing.price / all.lo.listing.price);
