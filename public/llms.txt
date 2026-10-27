@@ -1,0 +1,54 @@
+# Indriya Temple Jewellery
+
+> A student project website about Indriya's Anantara bridal temple jewellery collection, presented for the Varalakshmi Vratham festival. Indriya is the jewellery brand of the Aditya Birla Group. This site is NOT the official Indriya website and does not sell jewellery; the official website is https://www.indriya.com/ and purchases happen there or in Indriya stores.
+
+This site was built by BBA Marketing students at Atlas SkillTech University, Mumbai, as a digital marketing (SEO, AEO and GEO) assignment. Product names, photos and prices come from indriya.com; prices are approximate, exclude taxes, and change daily with the gold rate.
+
+Key facts:
+
+- Indriya launched in 2024 under Novel Jewels Limited, part of the Aditya Birla Group. Its brand line is "Every Jewel Tells a Story".
+- Anantara is Indriya's bridal temple jewellery collection: 22 karat gold harams, necklaces and jhumkas with Goddess Lakshmi, Lord Ganesha, Garuda and Vishnu motifs, pearls and red and green stones, in an antique gold finish.
+- Indriya gold jewellery is BIS Hallmarked with a 6-character HUID code. 22K916 means 22 karat gold that is 91.6% pure.
+- Indriya offers lifetime exchange on its gold jewellery at its stores, valued at the current gold rate.
+- Indriya customer care: 1800-210-8383 (toll free).
+
+## Main pages
+
+- [Temple Jewellery for Varalakshmi Vratham](https://indriya-anantara.lovable.app/temple-jewellery/varalakshmi-vratham): Anantara pieces chosen for Varalakshmi Vratham, with a 5-question temple jewellery FAQ
+- [Temple Jewellery Guide: History, Designs and Care](https://indriya-anantara.lovable.app/temple-jewellery-guide): what temple jewellery is, its origins in Tamil Nadu under the Chola and Pandya dynasties, what Lakshmi, peacock and lotus motifs mean, how to clean and store it, and how to check a BIS hallmark
+- [FAQ and Ask Indriya](https://indriya-anantara.lovable.app/faq): 19 answers on temple jewellery, gold purity, the Anantara collection, exchange and stores, plus an AI assistant
+- [All Anantara temple jewellery](https://indriya-anantara.lovable.app/temple-jewellery): every Anantara necklace and earring on this site
+- [Lakshmi haram](https://indriya-anantara.lovable.app/temple-jewellery/lakshmi-haram): Lakshmi motif long necklaces
+- [Lifetime Exchange](https://indriya-anantara.lovable.app/lifetime-exchange): how exchanging Indriya gold jewellery works
+
+## Anantara pieces
+
+- [Heirloom Ganesha Gold Bridal Necklace](https://indriya-anantara.lovable.app/jewellery/heirloom-ganesha-gold-bridal-necklace): 22K gold, Ganesha pendant, ruby drops and pearl fringe
+- [Lakshmi Grace Gold Bridal Necklace](https://indriya-anantara.lovable.app/jewellery/lakshmi-grace-gold-bridal-necklace): pearl and green bead strands with a Goddess Lakshmi pendant
+- [Lakshmi Bottu Mala Gold Long Necklace](https://indriya-anantara.lovable.app/jewellery/lakshmi-bottu-mala-gold-long-necklace): long temple mala of Lakshmi coin motifs
+- [Swarn Gajika Gold Bridal Drop Earrings](https://indriya-anantara.lovable.app/jewellery/swarn-gajika-gold-bridal-drop-earrings): temple jhumkas with Ganesha motifs and a pearl fringe
+- [Heirloom Ganesha Gold Bridal Drop Earrings](https://indriya-anantara.lovable.app/jewellery/heirloom-ganesha-gold-bridal-drop-earrings): the matching earrings for the Heirloom Ganesha necklace
+- [Udaya Gold Bridal Necklace](https://indriya-anantara.lovable.app/jewellery/udaya-gold-bridal-necklace): long haram of crescent motifs with red stones
+- [Vishnu Haar Gold Short Necklace](https://indriya-anantara.lovable.app/jewellery/vishnu-haar-gold-short-necklace): deity pendant with a pearl fringe
+- [Garuda Haar Gold Short Necklace](https://indriya-anantara.lovable.app/jewellery/garuda-haar-gold-short-necklace): collar of twin Garuda heads set with rubies
+
+## Indriya stores in Mumbai
+
+- [Store locator](https://indriya-anantara.lovable.app/store-locator): all six Mumbai stores with addresses, hours and maps
+- [Borivali West](https://indriya-anantara.lovable.app/store-locator/borivali-w-mumbai)
+- [Andheri West](https://indriya-anantara.lovable.app/store-locator/andheri-w-mumbai)
+- [R City Mall, Ghatkopar](https://indriya-anantara.lovable.app/store-locator/r-city-mall-mumbai)
+- [Sky City Mall, Borivali East](https://indriya-anantara.lovable.app/store-locator/sky-city-mall-mumbai)
+- [Nexus Seawoods Mall, Navi Mumbai](https://indriya-anantara.lovable.app/store-locator/nexus-seawoods-mall-mumbai)
+- [Phoenix Marketcity, Kurla](https://indriya-anantara.lovable.app/store-locator/phoenix-marketcity-kurla)
+
+## Official sources
+
+- [indriya.com](https://www.indriya.com/): Indriya's official website, for prices, purchases and policies
+- [Anantara on indriya.com](https://www.indriya.com/anantara/anantara-collection?collection_name=936): the official Anantara collection
+- [Aditya Birla Group: Indriya](https://www.adityabirla.com/businesses/companies/indriya/): company background
+- [Bureau of Indian Standards](https://www.bis.gov.in/): gold hallmarking
+
+## Optional
+
+- [Home](https://indriya-anantara.lovable.app/): introduction to the Anantara collection
