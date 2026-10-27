@@ -1,6 +1,23 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
-import { ArrowUpRight, Heart, MapPin, Menu, Phone, Search, Sparkles, User, X } from "lucide-react";
+import {
+  ArrowUpRight,
+  BookOpen,
+  ChevronDown,
+  Flower2,
+  Gem,
+  Heart,
+  MapPin,
+  Menu,
+  MessageCircleQuestion,
+  Phone,
+  Search,
+  ShieldCheck,
+  Sparkles,
+  User,
+  X,
+  type LucideIcon,
+} from "lucide-react";
 import { OFFICIAL_URL } from "@/lib/site";
 import { ANANTARA_URL, PRODUCTS } from "@/lib/products";
 import { AnimatedLogo } from "@/components/animated-logo";
@@ -14,6 +31,7 @@ type MenuLink = { label: string; href: string; external?: boolean };
 type NavItem = {
   label: string;
   href: string;
+  icon: LucideIcon;
   columns?: { title: string; links: MenuLink[] }[];
   images?: { src: string; alt: string; label: string; href: string }[];
 };
@@ -25,6 +43,7 @@ const NAV: NavItem[] = [
   {
     label: "Temple Jewellery",
     href: "/temple-jewellery",
+    icon: Gem,
     columns: [
       {
         title: "By category",
@@ -65,15 +84,14 @@ const NAV: NavItem[] = [
       },
     ],
   },
-  { label: "Varalakshmi Vratham", href: "/temple-jewellery/varalakshmi-vratham" },
-  { label: "Necklaces", href: "/temple-jewellery?type=necklace" },
-  { label: "Earrings", href: "/temple-jewellery?type=earrings" },
-  { label: "Jewellery Guide", href: "/temple-jewellery-guide" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Stores", href: "/store-locator" },
+  { label: "Varalakshmi Vratham", href: "/temple-jewellery/varalakshmi-vratham", icon: Flower2 },
+  { label: "Jewellery Guide", href: "/temple-jewellery-guide", icon: BookOpen },
+  { label: "FAQ", href: "/faq", icon: MessageCircleQuestion },
+  { label: "Stores", href: "/store-locator", icon: MapPin },
   {
     label: "Our Promises",
     href: "/lifetime-exchange",
+    icon: ShieldCheck,
     columns: [
       {
         title: "Our promises",
@@ -205,14 +223,25 @@ export function SiteShell({ children }: { children: ReactNode }) {
 
         {/* Row 2: category nav with dropdown panels (desktop) */}
         <nav aria-label="Main" className="hidden lg:block">
-          <ul className="mx-auto flex max-w-7xl justify-center gap-6 px-8 xl:gap-10">
+          <ul className="mx-auto flex max-w-7xl justify-center gap-8 px-8 xl:gap-12">
             {NAV.map((item) => (
               <li key={item.label} className="group">
                 <a
                   href={item.href}
-                  className="inline-block whitespace-nowrap border-b border-transparent py-3.5 text-[11px] font-medium uppercase tracking-[0.22em] text-maroon transition-colors hover:border-gold group-focus-within:border-gold"
+                  className="inline-flex items-center gap-2 whitespace-nowrap border-b border-transparent py-3.5 text-[11px] font-medium uppercase tracking-[0.22em] text-maroon transition-colors hover:border-gold group-focus-within:border-gold"
                 >
+                  <item.icon
+                    className="h-4 w-4 text-gold-deep transition-transform group-hover:-translate-y-0.5"
+                    strokeWidth={1.5}
+                    aria-hidden="true"
+                  />
                   {item.label}
+                  {item.columns && (
+                    <ChevronDown
+                      className="-ml-0.5 h-3 w-3 text-maroon/60 transition-transform group-hover:rotate-180"
+                      aria-hidden="true"
+                    />
+                  )}
                 </a>
                 {item.columns && (
                   <div className="invisible absolute inset-x-0 top-full border-t border-border bg-sand opacity-0 shadow-lg transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
@@ -266,9 +295,14 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 <li key={item.label}>
                   <a
                     href={item.href}
-                    className="block py-3 text-base text-maroon"
+                    className="flex items-center gap-3 py-3 text-base text-maroon"
                     onClick={() => setOpen(false)}
                   >
+                    <item.icon
+                      className="h-5 w-5 text-gold-deep"
+                      strokeWidth={1.5}
+                      aria-hidden="true"
+                    />
                     {item.label}
                   </a>
                 </li>
