@@ -77,7 +77,8 @@ export function HomeAnswers() {
             Our research used {all.count} indriya.com listings checked on {pricesAsOfLabel},{" "}
             {totalReviews.toLocaleString("en-IN")} Google reviews, the Bureau of Indian
             Standards&rsquo; hallmarking rules and {PRESS.length} press articles, including Indian
-            Jeweller and Medianews4u.
+            Jeweller and Medianews4u. We found that {deityNamed.length} of the {PRODUCTS.length}{" "}
+            pieces ({pct(deityNamed.length, PRODUCTS.length)}) are named after a Hindu deity.
           </p>
         </div>
 

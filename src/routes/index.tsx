@@ -208,6 +208,20 @@ function Index() {
               91.6% pure, with Lakshmi, Ganesha and Garuda motifs. Be the bride of your dreams,
               adorned in divine heritage.
             </p>
+            <ul
+              className="mt-5 flex flex-wrap gap-2 text-xs text-ivory/85"
+              aria-label="Anantara at a glance"
+            >
+              <li className="rounded-full border border-ivory/25 px-3 py-1">
+                22K gold · 91.6% pure
+              </li>
+              <li className="rounded-full border border-ivory/25 px-3 py-1">
+                {PRODUCTS.length} pieces · {necklaces.length} necklaces, {earrings.length} earrings
+              </li>
+              <li className="rounded-full border border-ivory/25 px-3 py-1">
+                {STORES.length} Mumbai stores · {avgRating.toFixed(1)}★ on Google
+              </li>
+            </ul>
             <div className="mt-8 flex flex-wrap gap-3 sm:gap-4">
               <Link to="/temple-jewellery/varalakshmi-vratham" className="btn-lux-gold">
                 Shop for Varalakshmi Vratham
@@ -225,14 +239,34 @@ function Index() {
         <ScriptHeading as="p" before="Shop by" script="Category" />
         <SectionQuestion>What can you shop in the Anantara collection?</SectionQuestion>
         <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-muted-foreground">
-          The Anantara collection on this site has {necklaces.length} temple necklaces and{" "}
-          {earrings.length} pairs of temple earrings, all in 22 karat gold (91.6% pure). Anantara
-          necklaces weigh {g(necklaceStats.minW)} to {g(necklaceStats.maxW)} and cost{" "}
-          {rupee(necklaceStats.lo.listing.price)} to {rupee(necklaceStats.hi.listing.price)};
-          Anantara earrings weigh {g(earringStats.minW)} to {g(earringStats.maxW)} and cost{" "}
-          {rupee(earringStats.lo.listing.price)} to {rupee(earringStats.hi.listing.price)},
-          according to our research of indriya.com listings on {pricesAsOfLabel} (prices exclude
-          taxes).
+          <strong className="font-medium text-ink">
+            The Anantara collection on this site has {PRODUCTS.length} pieces: {necklaces.length}{" "}
+            temple necklaces and {earrings.length} pairs of temple earrings.
+          </strong>{" "}
+          Every piece is 22 karat gold, which is 91.6% pure. Indriya unveiled Anantara in May 2025
+          for brides in Andhra Pradesh, Telangana and Karnataka.
+        </p>
+        <ul className="mx-auto mt-5 grid max-w-3xl gap-3 text-left text-sm text-ink/85 sm:grid-cols-3">
+          <li className="rounded-2xl border border-border bg-card px-4 py-3">
+            <strong className="font-medium text-ink">Necklaces:</strong> {necklaces.length} pieces (
+            {pct(necklaces.length, PRODUCTS.length)}), {g(necklaceStats.minW)} to{" "}
+            {g(necklaceStats.maxW)}, {rupee(necklaceStats.lo.listing.price)} to{" "}
+            {rupee(necklaceStats.hi.listing.price)}.
+          </li>
+          <li className="rounded-2xl border border-border bg-card px-4 py-3">
+            <strong className="font-medium text-ink">Earrings:</strong> {earrings.length} pairs (
+            {pct(earrings.length, PRODUCTS.length)}), {g(earringStats.minW)} to{" "}
+            {g(earringStats.maxW)}, {rupee(earringStats.lo.listing.price)} to{" "}
+            {rupee(earringStats.hi.listing.price)}.
+          </li>
+          <li className="rounded-2xl border border-border bg-card px-4 py-3">
+            <strong className="font-medium text-ink">Prices:</strong> {priced.length} of{" "}
+            {PRODUCTS.length} pieces ({pct(priced.length, PRODUCTS.length)}) listed, before 3% GST.
+          </li>
+        </ul>
+        <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+          Our research checked every price on indriya.com on {pricesAsOfLabel}. Gold prices change
+          daily, so confirm today&rsquo;s price on indriya.com before you buy.
         </p>
         <KolamDivider className="mt-6" />
         <div className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-4 sm:gap-8">
@@ -373,11 +407,21 @@ function Index() {
               What does the Temple Jewellery Guide cover?
             </h2>
             <p className="mt-3 leading-relaxed text-muted-foreground">
-              The Temple Jewellery Guide is a 6-minute read on the history, designs and care of
-              temple jewellery. The guide traces temple jewellery to Tamil Nadu under the Chola and
-              Pandya dynasties (9th to 13th centuries), explains 6 motifs from Goddess Lakshmi to
-              the peacock and the lotus, sets out 6 care steps, and shows the 3 marks of a BIS
-              hallmark. The guide was published on {formatDateLong(SITE_PUBLISHED)}.
+              <strong className="font-medium text-ink">
+                The Temple Jewellery Guide is a 6-minute read on the history, designs and care of
+                temple jewellery.
+              </strong>{" "}
+              The guide answers 5 questions in 5 sections.
+            </p>
+            <ul className="mt-3 list-disc space-y-1 pl-5 text-sm leading-relaxed text-ink/80">
+              <li>History: the Chola and Pandya dynasties of Tamil Nadu, 9th to 13th centuries.</li>
+              <li>Designs: 6 motifs, from Goddess Lakshmi to the peacock and the lotus.</li>
+              <li>Care: 6 steps to clean and store temple jewellery.</li>
+              <li>Purity: the 3 marks of a BIS hallmark, such as 22K916 (91.6% pure gold).</li>
+            </ul>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              Our research for the guide drew on the Bureau of Indian Standards and indriya.com. The
+              guide was published on {formatDateLong(SITE_PUBLISHED)}.
             </p>
             <span className="mt-5 inline-block text-maroon underline decoration-gold underline-offset-4">
               Read the guide
@@ -403,12 +447,10 @@ function Index() {
               </Link>
             </h2>
             <p className="mt-3 leading-relaxed text-muted-foreground">
-              Indriya&rsquo;s stores in Mumbai are in {STORES.length} neighbourhoods:{" "}
-              {listJoin(STORES.map((s) => s.area.replace(", Navi Mumbai", " (Navi Mumbai)")))}. Our
-              research found that all {STORES.length} Mumbai stores (
-              {pct(storesAtLeast48, STORES.length)}) are rated 4.8 stars or higher on Google, from{" "}
-              {reviewTotal.toLocaleString("en-IN")} reviews in total. The{" "}
-              {shortName(mostReviewed.name)} store alone holds {mostReviewedShare} of those reviews.
+              <strong className="font-medium text-ink">
+                Indriya&rsquo;s stores in Mumbai are in {STORES.length} neighbourhoods
+              </strong>
+              : {listJoin(STORES.map((s) => s.area.replace(", Navi Mumbai", " (Navi Mumbai)")))}.
               Every Mumbai store opens at 11:00 AM.
             </p>
             <ul className="mt-5 divide-y divide-border border-y border-border">
@@ -425,6 +467,13 @@ function Index() {
                 </li>
               ))}
             </ul>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              Our research found that all {STORES.length} stores (
+              {pct(storesAtLeast48, STORES.length)}) are rated 4.8 stars or higher, from{" "}
+              {reviewTotal.toLocaleString("en-IN")} Google reviews. The{" "}
+              {shortName(mostReviewed.name)} store holds {mostReviewedShare} of those reviews, and 2
+              of the {STORES.length} stores (33%) offer a bridal studio.
+            </p>
             <Link
               to="/store-locator"
               className="mt-5 inline-block text-maroon underline decoration-gold underline-offset-4"
