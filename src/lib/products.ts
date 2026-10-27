@@ -1,3 +1,4 @@
+import { absoluteUrl } from "@/lib/site";
 // Pieces from Indriya's Anantara bridal temple jewellery collection.
 // Names are Indriya's own; photos are © Indriya / Aditya Birla Group, used for academic purposes.
 import heirloomGaneshaNecklace from "@/assets/anantara/heirloom-ganesha-necklace.webp";
@@ -68,26 +69,58 @@ export const formatINR = (n: number) =>
  * Offer + details for Product schema. Prices are indriya.com's approximate prices excluding taxes,
  * shown on the page beside the same date so the schema matches what visitors see.
  */
+const productUrl = (p: Product) => absoluteUrl(`/jewellery/${p.slug}`);
+export const productId = (p: Product) => `${productUrl(p)}#product`;
+const offerId = (p: Product) => `${productUrl(p)}#offer`;
+
+const offerBody = (p: Product, price: number) => ({
+  "@type": "Offer",
+  "@id": offerId(p),
+  url: p.indriyaUrl,
+  price: price.toFixed(2),
+  priceCurrency: "INR",
+  priceSpecification: {
+    "@type": "UnitPriceSpecification",
+    price: price.toFixed(2),
+    priceCurrency: "INR",
+    valueAddedTaxIncluded: false,
+  },
+  seller: { "@type": "Organization", name: "Indriya" },
+});
+
+/**
+ * Offer + details for Product schema. Prices are indriya.com's approximate prices excluding taxes,
+ * shown on the page beside the same date so the schema matches what visitors see.
+ */
 export const productOfferLd = (p: Product) =>
   p.listing
     ? {
         sku: p.listing.sku,
         weight: { "@type": "QuantitativeValue", value: p.listing.grossWeightG, unitCode: "GRM" },
-        offers: {
-          "@type": "Offer",
-          url: p.indriyaUrl,
-          price: p.listing.price.toFixed(2),
-          priceCurrency: "INR",
-          priceSpecification: {
-            "@type": "UnitPriceSpecification",
-            price: p.listing.price.toFixed(2),
-            priceCurrency: "INR",
-            valueAddedTaxIncluded: false,
-          },
-          seller: { "@type": "Organization", name: "Indriya" },
-        },
+        offers: offerBody(p, p.listing.price),
       }
     : {};
+
+/** A complete top-level Product (with its offer), linked by @id. */
+export const productLd = (p: Product) => ({
+  "@type": "Product",
+  "@id": productId(p),
+  name: p.name,
+  description: p.description,
+  image: absoluteUrl(p.image),
+  url: productUrl(p),
+  sameAs: p.indriyaUrl,
+  brand: { "@type": "Brand", name: "Indriya" },
+  material: "22 karat BIS Hallmark gold",
+  category: "Temple jewellery",
+  ...productOfferLd(p),
+});
+
+/** The same offer as its own top-level node, pointing back to its product by @id. */
+export const offerLd = (p: Product) =>
+  p.listing
+    ? { ...offerBody(p, p.listing.price), itemOffered: { "@id": productId(p) } }
+    : undefined;
 
 /** Matching piece that completes a set, where Anantara has one. */
 export const PAIRS: Record<string, string> = {

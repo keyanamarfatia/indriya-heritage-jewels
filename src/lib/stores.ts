@@ -229,6 +229,7 @@ export const officialStoreUrl = (s: Store) => `${STORES_URL}/mumbai/${s.slug}`;
  */
 export const storeLd = (s: Store, url: string, images: string[] = []) => ({
   "@type": "JewelryStore",
+  "@id": `${url}#store`,
   name: `Indriya – ${s.name}`,
   ...(images.length ? { image: images } : {}),
   address: {
@@ -245,6 +246,7 @@ export const storeLd = (s: Store, url: string, images: string[] = []) => ({
   brand: { "@type": "Brand", name: "Indriya" },
   aggregateRating: {
     "@type": "AggregateRating",
+    "@id": `${url}#rating`,
     ratingValue: s.rating,
     reviewCount: s.reviews,
     bestRating: 5,
@@ -267,3 +269,27 @@ export const storeSrcSet = (src: string) => {
   const small = SMALL_BY_FULL[src];
   return small ? `${small} 480w, ${src} ${STORE_PHOTO_SIZE.width}w` : undefined;
 };
+
+/** The store's Google rating as its own top-level node, with the store it rates. */
+export const storeRatingLd = (s: Store, url: string) => ({
+  "@type": "AggregateRating",
+  "@id": `${url}#rating`,
+  ratingValue: s.rating,
+  reviewCount: s.reviews,
+  bestRating: 5,
+  worstRating: 1,
+  itemReviewed: {
+    "@type": "JewelryStore",
+    "@id": `${url}#store`,
+    name: `Indriya – ${s.name}`,
+    url,
+    telephone: s.phone,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: s.address,
+      addressLocality: "Mumbai",
+      addressRegion: "Maharashtra",
+      addressCountry: "IN",
+    },
+  },
+});

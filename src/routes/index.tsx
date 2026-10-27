@@ -7,13 +7,13 @@ import { OFFICIAL_URL, SITE_NAME, absoluteUrl, breadcrumbLd, jsonLd, pageHead } 
 import {
   ANANTARA_URL,
   PRODUCTS,
+  offerLd,
   pricesAsOfLabel,
   productBySlug,
-  productOfferLd,
-  productPath,
+  productLd,
   productSrcSet,
 } from "@/lib/products";
-import { STORES, storeLd } from "@/lib/stores";
+import { STORES, storeRatingLd } from "@/lib/stores";
 import { Rating } from "@/components/store-card";
 import bannerImage from "@/assets/anantara/anantara-banner.webp";
 import banner640 from "@/assets/anantara/anantara-banner-640.webp";
@@ -47,36 +47,15 @@ export const Route = createFileRoute("/")({
       ],
       scripts: [
         breadcrumbLd([{ name: "Home", path: "/" }]),
-        // The priced pieces shown in "Temple Treasures" below, with indriya.com's listed price.
-        jsonLd({
-          "@type": "ItemList",
-          name: "Anantara temple jewellery",
-          itemListElement: FEATURED_PRICED.map((p, i) => ({
-            "@type": "ListItem",
-            position: i + 1,
-            item: {
-              "@type": "Product",
-              name: p.name,
-              description: p.description,
-              image: absoluteUrl(p.image),
-              url: absoluteUrl(productPath(p)),
-              brand: { "@type": "Brand", name: "Indriya" },
-              material: "22 karat BIS Hallmark gold",
-              category: "Temple jewellery",
-              ...productOfferLd(p),
-            },
-          })),
+        // The priced pieces shown in "Temple Treasures" below, each as its own Product and
+        // Offer node (linked by @id), and the Mumbai stores' Google ratings shown in "Visit a
+        // store". Top-level nodes so every crawler sees them, not only ones that read nested lists.
+        ...FEATURED_PRICED.map((p) => jsonLd(productLd(p))),
+        ...FEATURED_PRICED.flatMap((p) => {
+          const o = offerLd(p);
+          return o ? [jsonLd(o)] : [];
         }),
-        // The Mumbai stores listed in "Visit a store", with their Google ratings (shown there).
-        jsonLd({
-          "@type": "ItemList",
-          name: "Indriya stores in Mumbai",
-          itemListElement: STORES.map((s, i) => ({
-            "@type": "ListItem",
-            position: i + 1,
-            item: storeLd(s, absoluteUrl(`/store-locator/${s.slug}`)),
-          })),
-        }),
+        ...STORES.map((s) => jsonLd(storeRatingLd(s, absoluteUrl(`/store-locator/${s.slug}`)))),
         jsonLd({
           "@type": "Organization",
           name: "Indriya",
