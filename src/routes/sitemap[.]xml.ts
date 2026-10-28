@@ -10,6 +10,7 @@ const PAGES: { path: string; priority: string }[] = [
   { path: "/temple-jewellery", priority: "0.9" },
   { path: "/temple-jewellery-guide", priority: "0.8" },
   { path: "/faq", priority: "0.8" },
+  { path: "/styling-advisor", priority: "0.8" },
   { path: "/temple-jewellery/lakshmi-haram", priority: "0.7" },
   { path: "/store-locator", priority: "0.7" },
   { path: "/lifetime-exchange", priority: "0.6" },

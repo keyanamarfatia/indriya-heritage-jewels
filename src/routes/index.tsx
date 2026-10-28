@@ -202,11 +202,17 @@ function Index() {
             <h1 className="mt-8 font-display text-4xl font-light leading-[1.1] text-ivory sm:text-5xl">
               Every Jewel Tells a Story
             </h1>
-            <p className="mt-4 max-w-md text-base font-light leading-relaxed text-ivory/80 sm:text-lg">
-              Anantara is Indriya&rsquo;s bridal temple jewellery collection, unveiled in May 2025
-              for brides in Andhra Pradesh, Telangana and Karnataka. Every piece is 22 karat gold,
-              91.6% pure, with Lakshmi, Ganesha and Garuda motifs. Be the bride of your dreams,
-              adorned in divine heritage.
+            <p className="mt-3 font-display text-lg italic leading-snug text-[#e2c48f] sm:text-xl">
+              What is the Anantara collection?
+            </p>
+            <p className="mt-3 max-w-md text-base font-light leading-relaxed text-ivory/80 sm:text-lg">
+              Anantara is Indriya&rsquo;s bridal temple jewellery collection: {PRODUCTS.length}{" "}
+              pieces ({necklaces.length} necklaces and {earrings.length} pairs of earrings) in 22
+              karat gold that is 91.6% pure and BIS Hallmarked. Indriya unveiled Anantara in May
+              2025 for brides in Andhra Pradesh, Telangana and Karnataka, with designs drawn from
+              the Hoysala-era temples at Somanathapura. Pieces carry Lakshmi, Ganesha or Garuda
+              motifs in an antique gold finish, and list from about ₹2 lakhs to over ₹46 lakhs
+              depending on weight and design.
             </p>
             <ul
               className="mt-5 flex flex-wrap gap-2 text-xs text-ivory/85"
@@ -408,10 +414,13 @@ function Index() {
             </h2>
             <p className="mt-3 leading-relaxed text-muted-foreground">
               <strong className="font-medium text-ink">
-                The Temple Jewellery Guide is a 6-minute read on the history, designs and care of
-                temple jewellery.
+                The Temple Jewellery Guide is a 6-minute read answering 5 questions about South
+                Indian temple jewellery.
               </strong>{" "}
-              The guide answers 5 questions in 5 sections.
+              It covers what temple jewellery is, where it comes from (Tamil Nadu, under the Chola
+              and Pandya dynasties), what the Lakshmi, peacock, lotus and Ganesha motifs mean, a
+              6-step routine for cleaning and storing it, and how to tell real BIS Hallmarked gold
+              from plated fashion jewellery.
             </p>
             <ul className="mt-3 list-disc space-y-1 pl-5 text-sm leading-relaxed text-ink/80">
               <li>History: the Chola and Pandya dynasties of Tamil Nadu, 9th to 13th centuries.</li>
@@ -448,10 +457,14 @@ function Index() {
             </h2>
             <p className="mt-3 leading-relaxed text-muted-foreground">
               <strong className="font-medium text-ink">
-                Indriya&rsquo;s stores in Mumbai are in {STORES.length} neighbourhoods
+                Indriya has {STORES.length} stores in Mumbai, rated {avgRating.toFixed(1)} out of 5
+                on Google
               </strong>
-              : {listJoin(STORES.map((s) => s.area.replace(", Navi Mumbai", " (Navi Mumbai)")))}.
-              Every Mumbai store opens at 11:00 AM.
+              , in {listJoin(STORES.map((s) => s.area.replace(", Navi Mumbai", " (Navi Mumbai)")))}.
+              Every Mumbai store opens at 11:00 AM; closing time varies by store from 9:00 PM to
+              11:00 PM. Each store sells Indriya&rsquo;s full range, including the Anantara bridal
+              collection, and offers lifetime exchange on gold jewellery at the day&rsquo;s gold
+              rate.
             </p>
             <ul className="mt-5 divide-y divide-border border-y border-border">
               {STORES.map((s) => (

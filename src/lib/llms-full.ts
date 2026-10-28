@@ -79,6 +79,25 @@ export function buildLlmsFull(): string {
   }
 
   add(
+    "## Find Your Piece: the styling assistant",
+    "",
+    `Page: ${absoluteUrl("/styling-advisor")}`,
+    "",
+    "### What is Find Your Piece?",
+    "",
+    "Find Your Piece is an interactive quiz on this site that recommends specific Anantara pieces based on a visitor's occasion, budget and style preference, instead of asking them to browse all pieces.",
+    "",
+    "### How does the styling assistant work?",
+    "",
+    "The visitor answers three questions in order: the occasion (wedding, engagement, festival or temple visit, or a milestone celebration), a budget range (₹2–4 lakhs, ₹4–12 lakhs, ₹12–20 lakhs, or ₹20 lakhs and above), and a style preference (traditional or statement). The assistant then filters the Anantara collection by listed price and occasion fit, and returns up to three recommended pieces, each with a one-line reason it suits that occasion and a short styling tip, such as which jewellery to pair it with or how to wear it.",
+    "",
+    "### Why was it built?",
+    "",
+    "Most comparable websites only list products; Find Your Piece turns browsing into a guided, personal shopping experience using the same product and pricing data already published on this site, so recommendations stay accurate as prices change.",
+    "",
+  );
+
+  add(
     "## Anantara collection",
     "",
     `Anantara is Indriya's bridal temple jewellery collection. Official collection page: ${ANANTARA_URL}`,

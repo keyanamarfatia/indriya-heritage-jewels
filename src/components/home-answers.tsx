@@ -52,8 +52,10 @@ export function HomeAnswers() {
             What do shoppers ask about Anantara?
           </h2>
           <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-muted-foreground">
-            Shoppers ask four main questions about Anantara, Indriya&rsquo;s bridal temple jewellery
-            collection. Our research answers each one with sourced figures:
+            Shoppers researching Anantara, Indriya&rsquo;s {PRODUCTS.length}-piece bridal temple
+            jewellery collection, most often ask what Anantara is, what temple jewellery is, whether
+            the gold is real, and where to see it in person. Our research answers each question
+            below with sourced figures rather than generic marketing claims:
           </p>
           <ul className="mx-auto mt-5 grid max-w-3xl gap-2 text-left text-sm text-ink/85 sm:grid-cols-2">
             <li className="rounded-2xl border border-border bg-card px-4 py-3">
