@@ -35,6 +35,7 @@ import {
   SITE_PUBLISHED,
   SITE_UPDATED,
   PARENT_LINKS,
+  REVIEW_LINKS,
   SOCIAL_LINKS,
   absoluteUrl,
   authorLd,
@@ -122,6 +123,7 @@ export const Route = createFileRoute("/")({
           sameAs: [
             OFFICIAL_URL,
             ...SOCIAL_LINKS.map((l) => l.href),
+            ...REVIEW_LINKS.slice(1).map((l) => l.href),
             "https://www.adityabirla.com/businesses/companies/indriya/",
           ],
         }),
@@ -210,9 +212,9 @@ function Index() {
               pieces ({necklaces.length} necklaces and {earrings.length} pairs of earrings) in 22
               karat gold that is 91.6% pure and BIS Hallmarked. Indriya unveiled Anantara in May
               2025 for brides in Andhra Pradesh, Telangana and Karnataka, with designs drawn from
-              the Hoysala-era temples at Somanathapura. Pieces carry Lakshmi, Ganesha or Garuda
-              motifs in an antique gold finish, and list from about ₹2 lakhs to over ₹46 lakhs
-              depending on weight and design.
+              the Hoysala-era temples at Somanathapura. Our check of all {PRODUCTS.length} listings
+              on indriya.com in October 2026 found prices from about ₹2 lakhs to over ₹46 lakhs,
+              set by weight and design.
             </p>
             <ul
               className="mt-5 flex flex-wrap gap-2 text-xs text-ivory/85"
@@ -354,12 +356,10 @@ function Index() {
           <SectionQuestion>What does the Indriya promise include?</SectionQuestion>
           <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-muted-foreground">
             The Indriya promise is three guarantees on every gold piece: BIS Hallmark certified
-            purity, a bill that shows the gold rate, making charges and taxes separately, and
-            lifetime exchange at any Indriya store. According to the Bureau of Indian Standards,
-            hallmarking of gold jewellery became mandatory in India on 16 June 2021, starting in 256
-            districts, and every hallmark carries a 6-character HUID code. A 22K916 hallmark means
-            the gold is 91.6% pure. In India, gold jewellery also carries 3% GST, which Indriya
-            lists on the bill.
+            purity, a bill that lists the gold rate, making charges and 3% GST separately, and
+            lifetime exchange at any Indriya store. All {PRODUCTS.length} Anantara pieces on this
+            site carry the 22K916 hallmark, meaning 91.6% pure gold, plus a 6-character HUID code.
+            BIS hallmarking has been mandatory in India since 16 June 2021.
           </p>
         </div>
         <ul className="mt-10 grid gap-8 md:grid-cols-3">
@@ -461,10 +461,8 @@ function Index() {
                 on Google
               </strong>
               , in {listJoin(STORES.map((s) => s.area.replace(", Navi Mumbai", " (Navi Mumbai)")))}.
-              Every Mumbai store opens at 11:00 AM; closing time varies by store from 9:00 PM to
-              11:00 PM. Each store sells Indriya&rsquo;s full range, including the Anantara bridal
-              collection, and offers lifetime exchange on gold jewellery at the day&rsquo;s gold
-              rate.
+              We checked every store on Google on 27 October 2026. All open at 11:00 AM, close
+              between 9:00 PM and 11:00 PM, and stock the Anantara bridal collection.
             </p>
             <ul className="mt-5 divide-y divide-border border-y border-border">
               {STORES.map((s) => (

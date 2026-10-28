@@ -31,6 +31,22 @@ export const PROJECT_LINKS: { name: string; href: string }[] = [
   { name: "Crunchbase", href: "" },
 ].filter((l) => l.href);
 
+/** Review platforms where Indriya's Mumbai stores are listed (checked October 2026). */
+export const REVIEW_LINKS = [
+  {
+    name: "Google reviews",
+    href: "https://www.google.com/maps/search/?api=1&query=Indriya+jewellery+store+Mumbai",
+  },
+  {
+    name: "Justdial",
+    href: "https://www.justdial.com/Mumbai/Indriya-Aditya-Birla-Jewellery-Borivali-West-Borivali/022PXX22-XX22-241105200835-P2C2_BZDET",
+  },
+  {
+    name: "magicpin",
+    href: "https://magicpin.in/Mumbai/Thakkar-Shopping-Mall/Fashion/Indriya-Aditya-Birla-Jewellery-Borivali-West,-Mumbai/store/173a37a",
+  },
+] as const;
+
 /** Official profiles of Indriya's parent company, the Aditya Birla Group (verified October 2026). */
 export const PARENT_LINKS = [
   { name: "Aditya Birla Group website", short: "Website", href: "https://www.adityabirla.com/" },
