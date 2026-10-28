@@ -36,6 +36,10 @@ import { ANANTARA_URL, productBySlug, productSrcSet } from "@/lib/products";
 import guideImage from "@/assets/anantara/ganesha-large.webp";
 import guide480 from "@/assets/anantara/ganesha-large-480.webp";
 import guide800 from "@/assets/anantara/ganesha-large-800.webp";
+import peacockImg from "@/assets/motifs/peacock-necklace.webp";
+import peacock400 from "@/assets/motifs/peacock-necklace-400.webp";
+import lotusImg from "@/assets/motifs/lotus-floral-necklace.webp";
+import lotus400 from "@/assets/motifs/lotus-floral-necklace-400.webp";
 
 const PATH = "/temple-jewellery-guide";
 const HEADLINE = "Temple Jewellery Guide: History, Designs and Care";
@@ -127,6 +131,8 @@ type Motif = {
   seenOn: string;
   icon?: LucideIcon;
   productSlug?: string;
+  /** A photo of the motif, for motifs with no Anantara piece on this site. */
+  photo?: { src: string; srcSet: string; alt: string; width: number; height: number };
 };
 
 const MOTIFS: Motif[] = [
@@ -143,6 +149,13 @@ const MOTIFS: Motif[] = [
       "Grace and beauty. The peacock is the mount of Lord Murugan, and is often set with red and green stones.",
     seenOn: "Necklaces, jhumkas and hair ornaments",
     icon: Feather,
+    photo: {
+      src: peacockImg,
+      srcSet: `${peacock400} 400w, ${peacockImg} 1000w`,
+      alt: "Antique gold temple necklace made of linked peacock motifs, with a carved centre pendant and pearl drops",
+      width: 1000,
+      height: 625,
+    },
   },
   {
     name: "Lotus",
@@ -150,6 +163,13 @@ const MOTIFS: Motif[] = [
       "Purity. The lotus is the flower Goddess Lakshmi sits upon, so it often appears alongside her.",
     seenOn: "Pendants, bangles and the centre of chokers",
     icon: Flower2,
+    photo: {
+      src: lotusImg,
+      srcSet: `${lotus400} 400w, ${lotusImg} 1000w`,
+      alt: "Antique gold bridal choker of gold flowers and ruby-set petals, with a lotus carved on its green centre stone and green bead drops",
+      width: 1000,
+      height: 625,
+    },
   },
   {
     name: "Kasu (coins)",
@@ -425,6 +445,20 @@ function GuidePage() {
                             className="aspect-[16/10] w-full object-cover mix-blend-multiply"
                           />
                         </Link>
+                      ) : m.photo ? (
+                        <div className="block bg-[#fdf2e5]">
+                          <img
+                            src={m.photo.src}
+                            srcSet={m.photo.srcSet}
+                            sizes="(min-width: 640px) 360px, 90vw"
+                            alt={m.photo.alt}
+                            width={m.photo.width}
+                            height={m.photo.height}
+                            loading="lazy"
+                            decoding="async"
+                            className="aspect-[16/10] w-full object-cover"
+                          />
+                        </div>
                       ) : (
                         <div
                           className="flex aspect-[16/10] items-center justify-center bg-sand"
